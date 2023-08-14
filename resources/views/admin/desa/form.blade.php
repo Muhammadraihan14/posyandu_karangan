@@ -65,28 +65,19 @@
         <!--end::Container-->
     </div>
     <!--begin::Basic info-->
-    <div class="card">
-        <!--begin::Body-->
-        <div class="card-body p-lg-17">
-            <!--begin::Row-->
-            <div class="row mb-3">
-                <!--begin::Col-->
-                <div class="col-md-6 pe-lg-10">
-                    <!--begin::Form-->
-                    <form action="" class="form mb-15" method="post" id="kt_contact_form">
-
-                    </form>
-                    <!--end::Form-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-md-6 ps-lg-10">
-                    <!--begin::Map-->
-                    {{-- <div id="map" class="w-100 rounded mb-2 mb-lg-0 mt-2" style="height: 486px"></div> --}}
-                    <!--end::Map-->
-                </div>
-                <!--end::Col-->
+    <div class="card mb-5 mb-xl-10">
+        <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+            data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+            <!--begin::Card title-->
+            <div class="card-title m-0">
+                <h3 class="fw-bolder m-0">Form Desa</h3>
             </div>
+            <!--end::Card title-->
+        </div>
+        <!--begin::Body-->
+        <div class="card-body border-top p-9">
+            <!--begin::Row-->
+
             <!--end::Row-->
             <!--begin::Row-->
             <!--end::Row-->
@@ -101,61 +92,118 @@
 
             </div>
             <!--end::Card-->
-            <form action="{{ route('desa.save') }}" method="POST">
-                <div class="row mb-6">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 col-form-label required fw-bold fs-6"> Nama lokasi</label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        <input type="text" name="name" class="form-control form-control-lg form-control-solid"
-                            placeholder="Masukkan nama lokasi" @error('name') is-invalid @enderror required />
-                        @error('name')
-                            <div class="invalid-feddback " role="alert">
-                                {{ $message }}
-                            </div>
-                        @enderror
+            <form class="form" action="{{ route('desa.save') }}" method="POST">
+                @csrf
+                @if (isset($data))
+                    <input type="text" name="id" id="id" value="{{ $data->id }}">
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label required fw-bold fs-6"> Nama lokasi</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="name" class="form-control form-control-lg form-control-solid"
+                                id="name" value="{{ $data->name }}" placeholder="Masukkan nama lokasi"
+                                @error('name') is-invalid @enderror required />
+                            @error('name')
+                                <div class="invalid-feddback " role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Col-->
                     </div>
-                    <!--end::Col-->
-                </div>
-                <div class="row mb-6">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Latitude</label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        <input type="text" name="latitude" id="latitude"
-                            class="form-control form-control-lg form-control-solid" placeholder="Masukkan latitude"
-                            @error('latitude') is-invalid @enderror required />
-                        @error('latitude')
-                            <div class="invalid-feddback " role="alert">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label required fw-bold fs-6">Latitude</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="latitude" id="latitude"
+                                class="form-control form-control-lg form-control-solid" value="{{ $data->latitude }}"
+                                placeholder="Masukkan latitude" @error('latitude') is-invalid @enderror required />
+                            @error('latitude')
+                                <div class="invalid-feddback " role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Col-->
                     </div>
-                    <!--end::Col-->
-                </div>
-                <div class="row mb-6">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 col-form-label required fw-bold fs-6"> Longitude</label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        <input type="text" name="longitude" id="longitude"
-                            class="form-control form-control-lg form-control-solid" placeholder="Masukkan longitude"
-                            @error('longitude') is-invalid @enderror required />
-                        @error('longitude')
-                            <div class="invalid-feddback " role="alert">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label required fw-bold fs-6"> Longitude</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="longitude" id="longitude"
+                                class="form-control form-control-lg form-control-solid" value="{{ $data->longitude }}"
+                                placeholder="Masukkan longitude" @error('longitude') is-invalid @enderror required />
+                            @error('longitude')
+                                <div class="invalid-feddback " role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Col-->
                     </div>
-                    <!--end::Col-->
-                </div>
+                @else
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label required fw-bold fs-6"> Nama lokasi</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="name" class="form-control form-control-lg form-control-solid"
+                                id="name" placeholder="Masukkan nama lokasi" @error('name') is-invalid @enderror
+                                required />
+                            @error('name')
+                                <div class="invalid-feddback " role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label required fw-bold fs-6">Latitude</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="latitude" id="latitude"
+                                class="form-control form-control-lg form-control-solid" placeholder="Masukkan latitude"
+                                @error('latitude') is-invalid @enderror required />
+                            @error('latitude')
+                                <div class="invalid-feddback " role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label required fw-bold fs-6"> Longitude</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="longitude" id="longitude"
+                                class="form-control form-control-lg form-control-solid" placeholder="Masukkan longitude"
+                                @error('longitude') is-invalid @enderror required />
+                            @error('longitude')
+                                <div class="invalid-feddback " role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                @endif
                 <!--begin::Actions-->
                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                     <button type="reset" class="btn btn-light btn-active-light-primary me-2"><a
-                            href="{{ route('admin') }}">Cancel</a> </button>
+                            href="{{ route('desa') }}">Cancel</a> </button>
                     <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save</button>
                 </div>
                 <!--end::Actions-->
@@ -169,23 +217,11 @@
 @endsection
 @section('script')
     <script>
-        $('#image_url').change(function() {
-            console.log($('#image_url').val());
-        })
-    </script>
-    <script>
         @isset($data)
-            // $('#username').val('{{ $data['user']['username'] }}');
-            // $('#name').val('{{ $data['user']['name'] }}');
-            $('#image_url').val({{ $data['user']['image_url'] }});
-            console.log($('#image_url').val());
-
-            // $('#nip').val('{{ $data['user']['nip'] }}');
-            // $('#gender').val('{{ $data['user']['gender'] }}');
-
-
-            document.getElementById("gender").value = {{ $data['user']['gender'] }};
-            //   document.getElementById("image_url").value = {{ $data['user']['image_url'] }};
+            $('#name').val({{ $data['name'] }});
+            $('#latitude').val({{ $data['latitude'] }});
+            $('#longitude').val({{ $data['longitude'] }});
+            console.log($('#name').val());
         @endisset
     </script>
     <script>

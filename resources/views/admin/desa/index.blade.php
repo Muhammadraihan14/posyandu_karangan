@@ -383,19 +383,19 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Name=-->
                                         <td>
-                                            <a href="{{ route('petugas.detail', ['id' => $val->id]) }}"
+                                            <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
                                                 class="text-gray-800 text-hover-primary mb-1">{{ $val->name }}</a>
                                         </td>
                                         <!--end::Name=-->
                                         <!--begin::Name=-->
                                         <td>
-                                            <a href="{{ route('petugas.detail', ['id' => $val->id]) }}"
+                                            <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
                                                 class="text-gray-800 text-hover-primary mb-1">{{ $val->latitude}}</a>
                                         </td>
                                         <!--end::Name=-->
                                         <!--begin::Email=-->
                                         <td>
-                                            <a href="{{ route('petugas.detail', ['id' => $val->id]) }}"
+                                            <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
                                                 class="text-gray-600 text-hover-primary mb-1">{{ $val->longitude }}</a>
                                         </td>
                                         <td class="text-center">{{ $val->created_at->translatedFormat('d M Y, h:i A') }}
@@ -426,13 +426,13 @@
                                                 data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('petugas.edit', ['id' => $val->id]) }}"
+                                                    <a href="{{ route('desa.edit', ['id' => $val->id]) }}"
                                                         class="menu-link px-3">Edit</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('petugas.detail', ['id' => $val->id]) }}"
+                                                    <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
                                                         class="menu-link px-3">View</a>
                                                 </div>
                                                 <!--end::Menu item-->
@@ -1077,7 +1077,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "petugas/delete/" + id;
+                        window.location = "desa/delete/" + id;
                     } else {
                         swal("Batal menghapus akun!");
                     }

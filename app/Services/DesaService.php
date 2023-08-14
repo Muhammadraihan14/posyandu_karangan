@@ -35,33 +35,40 @@ class DesaService
         Paginator::useBootstrap();
         return $data;
     }
-    public static function AdminStore($params)
+    public static function DesaStore($params)
     {
         // dd($params);
-        $username = $params['name'].rand(pow(10, 8 - 1), pow(10, 8) -1);
+        // $username = $params['name'].rand(pow(10, 8 - 1), pow(10, 8) -1);
         DB::beginTransaction();
         // try {
-            $inputUser['user_name'] = $username;
-            $inputUser['user_type'] = 'admin';
             $inputUser['name'] = $params['name'];
-            $inputUser['email'] = $params['email'];
-            $inputUser['nip'] = $params['nip'];
-            $inputUser['gender'] = $params['gender'];
-            $inputUser['password'] = Hash::make($params['password']);
-            if(isset($params['image_url'])){
-                $inputUser['image_url'] = $params['image_url'];
-            }   
+            $inputUser['latitude'] = $params['latitude'];
+            $inputUser['longitude'] = $params['longitude'];
+
+
+
+            // $inputUser['user_name'] = $username;
+            // $inputUser['user_type'] = 'admin';
+            // $inputUser['name'] = $params['name'];
+            // $inputUser['email'] = $params['email'];
+            // $inputUser['nip'] = $params['nip'];
+            // $inputUser['gender'] = $params['gender'];
+            // $inputUser['password'] = Hash::make($params['password']);
+            // if(isset($params['image_url'])){
+            //     $inputUser['image_url'] = $params['image_url'];
+            // }   
             if (isset($params['id'])) {
                 // dd($params['id']);
-                $petugas =  Admin::find($params['id']);
-                $petugas->update([]);
-                $user = $petugas->user()->update($inputUser);
+                $desa =  Desa::find($params['id']);
+                $desa->update($inputUser);
+                // $user = $desa->user()->update($inputUser);
             }else{
-                $data = User::create($inputUser);
-                $admin = $data->admin()->create([]);
+                // dd($params);
+                $desa = Desa::create($inputUser);
+                // $admin = $desa->admin()->create([]);
             }
             DB::commit();
-            // return $data;
+            return $desa;
         // } catch (\Throwable $th) {
         //     DB::rollback();
         //     return $th;
@@ -72,14 +79,16 @@ class DesaService
         $data = Admin::with('user')->find($id);
         return $data;
     }
-    public static function AdminEdit($id)
+    public static function DesaEdit($id)
     {
-        $data = Admin::with('user')->find($id);
+        
+        $data = Desa::find($id);
+        // dd($data);
         return $data;
     }
     public static function delete($id)
     {
-        $data = Admin::with('user')->find($id);
+        $data = Desa::find($id);
         $data->delete();
         if($data){
             return "Deleted";

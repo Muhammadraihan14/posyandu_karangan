@@ -40,6 +40,7 @@ class AdminController extends Controller
                 'password_confirmation' => 'min:6'
             ]);
             $params = $validated;
+            dd($params);
         }else{
             $params = $request->all();
         }        
