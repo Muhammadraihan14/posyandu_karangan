@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Blog;
 use App\Models\Admin;
+use App\Models\Lansia;
 use App\Models\Petugas;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -59,6 +60,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blog::class);
     }
+    public function lansia()
+    {
+        return $this->hasMany(Lansia::class);
+    }
+
+ 
     // public function blog()
     // {
     //     return $this->hasOne(Blog::class,'creator_id');

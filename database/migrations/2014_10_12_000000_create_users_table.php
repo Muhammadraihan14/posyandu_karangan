@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image_url', 500)->nullable();
-            $table->string('nip')->nullable();
+            $table->string('nip')->unique();
             $table->integer('gender')->nullable();
             $table->rememberToken();
             $table->timestamps();

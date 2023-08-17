@@ -172,24 +172,28 @@
                         <!--begin::Card title-->
                         <div class="card-title">
                             <!--begin::Search-->
-                            <form action="{{Request::fullUrl()}}" method="GET">
-                            <div class="d-flex align-items-center position-relative my-1">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
-                                            rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
-                                        <path
-                                            d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                            fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <input value="{{Request::input('keywords')}}" name="keywords" type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Cari nama atau nip" />
-                            </div>
-                            <!--end::Search-->
-                        </form>
+                            <form action="{{ Request::fullUrl() }}" method="GET">
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                                    <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"
+                                                height="2" rx="1" transform="rotate(45 17.0365 15.1223)"
+                                                fill="black" />
+                                            <path
+                                                d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                                                fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                    <input value="{{ Request::input('keywords') }}" name="keywords" type="text"
+                                        data-kt-customer-table-filter="search"
+                                        class="form-control form-control-solid w-250px ps-15"
+                                        placeholder="Cari nama atau nip" />
+                                </div>
+                                <!--end::Search-->
+                            </form>
                         </div>
                         <!--begin::Card title-->
                         <!--begin::Card toolbar-->
@@ -322,8 +326,8 @@
                                 </button> --}}
                                 <!--end::Export-->
                                 <!--begin::Add customer-->
-                                <a href="{{ route('admin.create') }}"><button type="button"
-                                        class="btn btn-primary">Tambah Admin</button></a>
+                                <a href="{{ route('lansia.create') }}"><button type="button" class="btn btn-primary">Tambah
+                                        Lansia</button></a>
 
                                 <!--end::Add customer-->
                             </div>
@@ -355,10 +359,11 @@
                                             No
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">username</th>
-                                    <th class="min-w-125px">name</th>
-                                    <th class="min-w-125px">Email</th>
-                                    <th class="min-w-125px">nip</th>
+                                    <th class="min-w-125px ">name</th>
+                                    <th class="min-w-125px ">nik</th>
+                                    <th class="min-w-125px ">umur</th>
+                                    <th class="min-w-125px ">alamat</th>
+                                    {{-- <th class="min-w-125px">nip</th> --}}
                                     <th class="text-end min-w-70px">Actions</th>
                                 </tr>
                                 <!--end::Table row-->
@@ -366,37 +371,43 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="fw-bold text-gray-600">
-															@foreach($data as $key => $val)
+                                @foreach ($data as $key => $val)
                                     <tr>
                                         <!--begin::Checkbox-->
                                         <!--begin::nomor-->
                                         <td>
                                             <div class="fs-7 text-dark fw-bolder">
-									{{ $key + $data->firstItem() }}
+                                                {{ $key + $data->firstItem() }}
                                             </div>
                                         </td>
                                         <!--end::nomor-->
                                         <!--end::Checkbox-->
                                         <!--begin::Name=-->
-                                        <td>
-                                            <a href="{{ route('admin.detail',['id'=>$val->id]) }}"
-                                                class="text-gray-800 text-hover-primary mb-1">{{ $val->user->user_name }}</a>
+                                        <td class="">
+                                            <a href="{{ route('lansia.detail', ['id' => $val->id]) }}"
+                                                class="text-gray-800 text-hover-primary mb-1 ">{{ $val->name }}</a>
                                         </td>
                                         <!--end::Name=-->
                                         <!--begin::Name=-->
-                                        <td>
-                                            <a href="{{ route('admin.detail',['id'=>$val->id]) }}"
-                                                class="text-gray-800 text-hover-primary mb-1">{{ $val->user->name }}</a>
+                                        <td class="">
+                                            <a href="{{ route('lansia.detail', ['id' => $val->id]) }}"
+                                                class="text-gray-800 text-hover-primary mb-1">{{ $val->nik }}</a>
+                                        </td>
+                                        <!--end::Name=-->
+                                        <!--begin::Name=-->
+                                        <td class="">
+                                            <a href="{{ route('lansia.detail', ['id' => $val->id]) }}"
+                                                class="text-gray-800 text-hover-primary mb-1">{{ $val->umur }}</a>
                                         </td>
                                         <!--end::Name=-->
                                         <!--begin::Email=-->
-                                        <td>
-                                            <a href="{{ route('admin.detail',['id'=>$val->id]) }}"
-                                                class="text-gray-600 text-hover-primary mb-1">{{ $val->user->email }}</a>
+                                        <td class="">
+                                            <a href="{{ route('lansia.detail', ['id' => $val->id]) }}"
+                                                class="text-gray-600 text-hover-primary mb-1">{{ $val->alamat }}</a>
                                         </td>
                                         <!--end::Email=-->
                                         <!--begin::Company=-->
-                                        <td>{{ $val->user->nip }}</td>
+                                        {{-- <td>{{ $val->user->nip }}</td> --}}
                                         <!--end::Company=-->
                                         <!--begin::Payment method=-->
                                         <!--end::Date=-->
@@ -419,12 +430,12 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                 data-kt-menu="true">
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.edit',['id'=>$val->id]) }}"
+                                                    <a href="{{ route('lansia.edit', ['id' => $val->id]) }}"
                                                         class="menu-link px-3">Edit</a>
                                                 </div>
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.detail',['id'=>$val->id]) }}"
+                                                    <a href="{{ route('lansia.detail', ['id' => $val->id]) }}"
                                                         class="menu-link px-3">View</a>
                                                 </div>
                                                 <!--end::Menu item-->
@@ -1056,7 +1067,7 @@
         @if (session()->has('successEdit'))
             swal("Success!", "Data Berhasil diedit", "success");
         @endif
-		@if (session()->has('success_hapus'))
+        @if (session()->has('success_hapus'))
             swal("Success!", "Data Berhasil dihapus", "success");
         @endif
         $('.deleteMember').click(function() {
@@ -1069,7 +1080,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "admin/delete/" + id;
+                        window.location = "lansia/delete/" + id;
                     } else {
                         swal("Batal menghapus akun!");
                     }
