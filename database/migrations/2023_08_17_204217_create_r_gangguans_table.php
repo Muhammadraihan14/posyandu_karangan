@@ -13,28 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lansias', function (Blueprint $table) {
+        Schema::create('r_gangguans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('umur');
-            // $table->dateTime('pemeriksaan1')->nullable();
-            // $table->dateTime('pemeriksaan2')->nullable();
-            $table->string('nik')->unique();
-            $table->string('alamat');
-            // $table->integer('gender');
-            $table->enum('gender',['pria','wanita']);
             // $table->integer('g_ginjal')->nullable();
+            // $table->integer('g_pengelihatan')->nullable();
+            // $table->integer('g_pendengaran')->nullable();
             $table->enum('g_ginjal',['Ya','Tidak'])->nullable();
             $table->enum('g_pengelihatan',['Ya','Tidak'])->nullable();
             $table->enum('g_pendengaran',['Ya','Tidak'])->nullable();
 
-            // $table->integer('g_pengelihatan')->nullable();
-            // $table->integer('g_pendengaran')->nullable();
             $table->string('penyuluhan')->nullable();
             $table->string('pemberdayaan')->nullable();
             $table->text('keterangan')->nullable();
-            $table->unsignedBigInteger('petugas_id');
-            $table->foreign('petugas_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('lansia_id');
+            $table->foreign('lansia_id')->references('id')->on('lansias');
+
             $table->timestamps();
         });
     }
@@ -46,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lansias');
+        Schema::dropIfExists('r_gangguans');
     }
 };

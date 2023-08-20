@@ -27,7 +27,7 @@ class UserAccont extends Seeder
                 'password'=>bcrypt('qwaszx'),
                 'image_url' => 'http://localhost/avatars/150-'.rand(1,10).'.jpg',
                 'nip' => '123456789012345678',
-                'gender' => 1,
+                'gender' => 'pria',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -40,7 +40,7 @@ class UserAccont extends Seeder
                 'password'=>bcrypt('qwaszx'),
                 'image_url' => 'http://localhost/avatars/150-'.rand(1,10).'.jpg',
                 'nip' => '123456789012345687',
-                'gender' => 0,
+                'gender' => "wanita",
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],

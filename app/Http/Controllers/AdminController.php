@@ -23,6 +23,7 @@ class AdminController extends Controller
     public function edit($id) 
     {
         $data = AdminService::AdminEdit($id);
+        // dd($data);
 
         // dd($data);
         return view('admin.admin.form', compact('data'));
@@ -40,7 +41,7 @@ class AdminController extends Controller
                 'password_confirmation' => 'min:6'
             ]);
             $params = $validated;
-            dd($params);
+            // dd($params);
         }else{
             $params = $request->all();
         }        

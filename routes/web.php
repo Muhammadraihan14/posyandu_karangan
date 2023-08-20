@@ -77,9 +77,11 @@ Route::get('blog/delete/{id}', [BlogController::class, 'delete'])->name('blog.de
 Route::get('lansia', [LansiaController::class, 'index'])->name('lansia')->middleware('auth');
 Route::get('lansia/create', [LansiaController::class, 'create'])->name('lansia.create')->middleware('auth');
 Route::get('lansia/edit/{id}', [LansiaController::class, 'edit'])->name('lansia.edit')->middleware('auth');
-Route::get('lansia/{id}', [LansiaController::class, 'detail'])->name('lansia.detail')->middleware('auth');
 Route::post('lansia/save', [LansiaController::class, 'save'])->name('lansia.save')->middleware('auth');
 Route::get('lansia/delete/{id}', [LansiaController::class, 'delete'])->name('lansia.delete')->middleware('auth');
+Route::get('lansia/{id}', [LansiaController::class, 'detail'])->name('lansia.detail')->middleware('auth');
+// Route::get('lansia/{id}', [LansiaController::class, 'detail'])->name('lansia.overview')->middleware('auth');
+
 
 
 Route::get('desa', [DesaController::class, 'index'])->name('desa')->middleware('auth');

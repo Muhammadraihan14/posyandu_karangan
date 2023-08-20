@@ -10,9 +10,11 @@ class P_LAB extends Model
 {
     use HasFactory;
     protected $guarded= ['id'];
+    protected $dates= ['tanggal_p_lab'];
+
     public function lansia()
     {
-        return $this->belongsTo(Lansia::class);
+        return $this->belongsTo(Lansia::class, 'lansia_id');
     }
 
 }

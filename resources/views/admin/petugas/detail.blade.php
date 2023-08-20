@@ -368,7 +368,7 @@
                 <!--end::Label-->
                 <!--begin::Col-->
                 <div class="col-lg-8">
-                    <span class="fw-bolder fs-6 text-gray-800">{{ $data->user->gender == 1 ? 'pria' : 'wanita' }}</span>
+                    <span class="fw-bolder fs-6 text-gray-800">{{ $data->user->gender }}</span>
                 </div>
                 <!--end::Col-->
             </div>

@@ -38,7 +38,7 @@ class PetugasService
         // dd($params);
         $username = $params['name'].rand(pow(10, 8 - 1), pow(10, 8) -1);
         DB::beginTransaction();
-        // try {
+        try {
             $inputUser['user_name'] = $username;
             $inputUser['user_type'] = 'petugas';
             $inputUser['name'] = $params['name'];
@@ -61,10 +61,10 @@ class PetugasService
             }
             DB::commit();
             return $user;
-        // } catch (\Throwable $th) {
-        //     DB::rollback();
-        //     return $th;
-        // }
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th;
+        }
     }
     public static function PetugasDetail($id)
     {

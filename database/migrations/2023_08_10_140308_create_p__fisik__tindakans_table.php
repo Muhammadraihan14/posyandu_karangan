@@ -21,21 +21,23 @@ return new class extends Migration
             $table->float('berat_badan', 8, 2)->nullable();
             $table->float('tinggi_badan', 8, 2)->nullable();
             $table->float('imt', 8, 2)->nullable();
-            // $table->enum('status_gizi',['Kurang','Normal','Lebih'])->nullable();
+            $table->enum('status_gizi',['Kurang','Normal','Lebih'])->nullable();
             //tekanan darah
             $table->integer('sistole')->nullable();
             $table->integer('diastole')->nullable();
-            // $table->enum('tekanan_darah',['Tinggi','Normal','Rendah'])->nullable();
+            $table->enum('tekanan_darah',['Tinggi','Normal','Rendah'])->nullable();
             //lain2
             $table->string('lain')->nullable();
             $table->string('tata_laksana')->nullable();
             $table->string('konseling')->nullable();
-            $table->integer('rujuk')->nullable();
+            // $table->integer('rujuk')->nullable();
+            $table->enum('rujuk',['Ya','Tidak'])->nullable();
+
 
 
 
             $table->unsignedBigInteger('lansia_id');
-            $table->foreign('lansia_id')->references('id')->on('lansias')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('lansia_id')->references('id')->on('lansias');
             $table->timestamps();
         });
     }

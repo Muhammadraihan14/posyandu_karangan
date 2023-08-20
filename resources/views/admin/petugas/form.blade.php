@@ -343,13 +343,14 @@
                         </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Jenis Kelamin</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6 ">Jenis Kelamin</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <select name="gender" id="gender" class="form-control form-control-lg form-control-solid" >
-                                    <option value="1">Pria</option>
-                                    <option value="0">Wanita</option>
+                                <select name="gender" id="gender" class="form-control form-control-lg form-control-solid" required >
+                                    <option></option>
+                                    <option value="pria">Pria</option>
+                                    <option value="wanita">Wanita</option>
                                 </select>
                             </div>
                             <!--end::Col-->
@@ -491,14 +492,15 @@
                         </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Jenis Kelamin</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6 ">Jenis Kelamin</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
                                 <select name="gender" id="gender"
-                                    class="form-control form-control-lg form-control-solid">
-                                    <option value="1">Pria</option>
-                                    <option value="0">Wanita</option>
+                                    class="form-control form-control-lg form-control-solid" required>
+                                    <option></option>
+                                    <option value="pria">Pria</option>
+                                    <option value="wanita">Wanita</option>
                                 </select>
                             </div>
                             <!--end::Col-->
@@ -531,8 +533,13 @@
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
                                 <input type="password" name="password_confirmation"
-                                    class="form-control form-control-lg form-control-solid" required />
+                                    class="form-control form-control-lg form-control-solid" @error('password_confirmation') is-invalid @enderror required />
                             </div>
+                            @error('password_confirmation')
+                            <div class="invalid-feddback " role="alert">
+                                {{ $message }}
+                            </div>
+                            @enderror
                             <!--end::Col-->
                         </div>
 
