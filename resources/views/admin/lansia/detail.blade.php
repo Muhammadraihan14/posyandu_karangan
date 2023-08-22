@@ -174,6 +174,12 @@
                                 href="{{ Request::url() }}?page=lab">Laboratorium</a>
                         </li>
                         <!--end::Nav item-->
+                        <!--begin::Nav item-->
+                        <li class="nav-item mt-2">
+                            <a class="nav-link text-active-primary py-5 me-6 {{ request()->page == 'fisik' ? 'active' : '' }}"
+                                href="{{ Request::url() }}?page=fisik">Fisik dan Tindakan</a>
+                        </li>
+                        <!--end::Nav item-->
                     </ul>
                     <!--begin::Navs-->
                 </div>
@@ -183,189 +189,7 @@
                 $page = request()->page ? 'detail_' . request()->page : 'detail_overview';
             @endphp
             @include("admin/lansia/$page")
-            <div class="row gy-5 g-xl-10">
-                <!--begin::Col-->
-                <div class="col-xl-6">
-                    <!--begin::Charts Widget 1-->
-                    <div class="card card-xl-stretch mb-xl-10">
-                        <!--begin::Header-->
-                        <div class="card-header border-0 pt-5">
-                            <!--begin::Title-->
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder fs-3 mb-1">Recent Statistics</span>
-                                <span class="text-muted fw-bold fs-7">More than 400 new members</span>
-                            </h3>
-                            <!--end::Title-->
-                            <!--begin::Toolbar-->
-                            <div class="card-toolbar">
-                                <!--begin::Menu-->
-                                <button type="button"
-                                    class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
-                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                    <span class="svg-icon svg-icon-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
-                                            viewBox="0 0 24 24">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="5" y="5" width="5" height="5"
-                                                    rx="1" fill="#000000" />
-                                                <rect x="14" y="5" width="5" height="5"
-                                                    rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="5" y="14" width="5" height="5"
-                                                    rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="14" y="14" width="5" height="5"
-                                                    rx="1" fill="#000000" opacity="0.3" />
-                                            </g>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--begin::Menu 1-->
-                                <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
-                                    id="kt_menu_618d2f4cf3d0f">
-                                    <!--begin::Header-->
-                                    <div class="px-7 py-5">
-                                        <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                                    </div>
-                                    <!--end::Header-->
-                                    <!--begin::Menu separator-->
-                                    <div class="separator border-gray-200"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Form-->
-                                    <div class="px-7 py-5">
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Status:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <div>
-                                                <select class="form-select form-select-solid" data-kt-select2="true"
-                                                    data-placeholder="Select option"
-                                                    data-dropdown-parent="#kt_menu_618d2f4cf3d0f" data-allow-clear="true">
-                                                    <option></option>
-                                                    <option value="1">Approved</option>
-                                                    <option value="2">Pending</option>
-                                                    <option value="2">In Process</option>
-                                                    <option value="2">Rejected</option>
-                                                </select>
-                                            </div>
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Member Type:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Options-->
-                                            <div class="d-flex">
-                                                <!--begin::Options-->
-                                                <label
-                                                    class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                    <span class="form-check-label">Author</span>
-                                                </label>
-                                                <!--end::Options-->
-                                                <!--begin::Options-->
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="2"
-                                                        checked="checked" />
-                                                    <span class="form-check-label">Customer</span>
-                                                </label>
-                                                <!--end::Options-->
-                                            </div>
-                                            <!--end::Options-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Notifications:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Switch-->
-                                            <div
-                                                class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    name="notifications" checked="checked" />
-                                                <label class="form-check-label">Enabled</label>
-                                            </div>
-                                            <!--end::Switch-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Actions-->
-                                        <div class="d-flex justify-content-end">
-                                            <button type="reset"
-                                                class="btn btn-sm btn-light btn-active-light-primary me-2"
-                                                data-kt-menu-dismiss="true">Reset</button>
-                                            <button type="submit" class="btn btn-sm btn-primary"
-                                                data-kt-menu-dismiss="true">Apply</button>
-                                        </div>
-                                        <!--end::Actions-->
-                                    </div>
-                                    <!--end::Form-->
-                                </div>
-                                <!--end::Menu 1-->
-                                <!--end::Menu-->
-                            </div>
-                            <!--end::Toolbar-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <!--begin::Chart-->
-                            <div id="kt_charts_widget_1_chart" style="height: 350px"></div>
-                            <!--end::Chart-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Charts Widget 1-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-6">
-                    <!--begin::List Widget 5-->
-                    <div class="card card-xl-stretch mb-xl-10">
-                        <!--begin::Header-->
-                        <div class="card-header align-items-center border-0 mt-4">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="fw-bolder mb-2 text-dark">Aktifitas Pemeriksaaan</span>
-                                <span class="text-muted fw-bold fs-7">{{ $data->pemerisaan_fisik_tindakan->count() }}
-                                    Pemeriksaaan</span>
-                            </h3>
-                            <div class="card-toolbar">
-                            </div>
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body pt-5">
-                            <!--begin::Timeline-->
-                            <div class="timeline-label">
-                                <!--begin::Item-->
-                                @foreach ($data->pemerisaan_fisik_tindakan as $val)
-                                    <div class="timeline-item">
-                                        <!--begin::Label-->
-                                        <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ $val->created_at->translatedFormat('h:i A') }}</div>
-                                        <!--end::Label-->
-                                        <!--begin::Badge-->
-                                        <div class="timeline-badge">
-                                            <i class="fa fa-genderless text-warning fs-1"></i>
-                                        </div>
-                                        <!--end::Badge-->
-                                        <!--begin::Text-->
-                                        <div class="fw-mormal timeline-content text-muted ps-3">{{ $val->tanggal_p->format('d M Y') }}</div>
-                                        <!--end::Text-->
-                                    </div>
-                                @endforeach
-                            </div>
-                            <!--end::Timeline-->
-                        </div>
-                        <!--end: Card Body-->
-                    </div>
-                    <!--end: List Widget 5-->
-                </div>
-                <!--end::Col-->
-            </div>
+
             <!--end::Row-->
 
         </div>
@@ -376,4 +200,7 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
 @endsection

@@ -15,5 +15,9 @@ class P_Fisik_Tindakan extends Model
     {
         return $this->belongsTo(Lansia::class, 'lansia_id');
     }
+    public function pemerisaan_fisik_tindakan(): HasMany
+    {
+        return $this->hasMany(P_Fisik_Tindakan::class,'lansia_id');
+    }
 
 }

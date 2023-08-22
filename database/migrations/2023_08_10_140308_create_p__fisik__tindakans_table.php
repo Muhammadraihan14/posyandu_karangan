@@ -29,7 +29,9 @@ return new class extends Migration
             //lain2
             $table->string('lain')->nullable();
             $table->string('tata_laksana')->nullable();
-            $table->string('konseling')->nullable();
+            // $table->string('konseling')->nullable();
+            $table->enum('konseling',['Ya','Tidak'])->nullable();
+
             // $table->integer('rujuk')->nullable();
             $table->enum('rujuk',['Ya','Tidak'])->nullable();
 
@@ -37,7 +39,10 @@ return new class extends Migration
 
 
             $table->unsignedBigInteger('lansia_id');
-            $table->foreign('lansia_id')->references('id')->on('lansias');
+            $table->foreign('lansia_id')->references('id')->on('lansias')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

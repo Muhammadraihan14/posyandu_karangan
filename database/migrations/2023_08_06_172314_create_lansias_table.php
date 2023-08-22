@@ -33,8 +33,6 @@ return new class extends Migration
             $table->string('penyuluhan')->nullable();
             $table->string('pemberdayaan')->nullable();
             $table->text('keterangan')->nullable();
-            $table->unsignedBigInteger('petugas_id');
-            $table->foreign('petugas_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

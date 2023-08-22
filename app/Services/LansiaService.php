@@ -6,6 +6,7 @@ use DB;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Lansia;
+use App\Models\R_gangguan;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,127 +38,131 @@ class LansiaService
     public static function LansiaStore($params)
     {
         // dd($params);
-        $nilai_imt =  LansiaService::IMT($params['berat_badan'], $params['tinggi_badan']);
-        $nilai_tk =  LansiaService::tekananDarah($params['sistole'], $params['diastole']);
+        // $nilai_imt =  LansiaService::IMT($params['berat_badan'], $params['tinggi_badan']);
+        // $nilai_tk =  LansiaService::tekananDarah($params['sistole'], $params['diastole']);
 
         DB::beginTransaction();
-        try {
+        // try {
             //table lansia
-
-            $inputlansia['petugas_id'] = $params['petugas_id'];
             $inputlansia['name'] = $params['name'];
             $inputlansia['umur'] = $params['umur'];
             $inputlansia['nik'] = $params['nik'];
             $inputlansia['alamat'] = $params['alamat'];
             $inputlansia['gender'] = $params['gender'];
             $inputlansia['desa_id'] = $params['desa_id'];
+            //  //table riwayat gangguan
+            // $inputRiwayat['user_id'] = $params['petugas_id'];
+            // $inputRiwayat['g_ginjal'] = $params['g_ginjal'];
+            // $inputRiwayat['g_pengelihatan'] = $params['g_pengelihatan'];
+            // $inputRiwayat['g_pendengaran'] = $params['g_pendengaran'];
+            // if(isset($params['penyuluhan'])){
+            //     $inputRiwayat['penyuluhan'] = $params['penyuluhan'];
+            // } 
+            // if(isset($params['pemberdayaan'])){
+            //     $inputRiwayat['pemberdayaan'] = $params['pemberdayaan'];
+            // } 
+            // if(isset($params['keterangan'])){
+            //     $inputRiwayat['keterangan'] = $params['keterangan'];
+            // }
+            // // table p__fisik__tindakans
+            // $inputFisik['user_id'] = $params['petugas_id'];
+            // $inputFisik['tanggal_p'] = $params['tanggal_p'];
+            // $inputFisik['berat_badan'] = $params['berat_badan'];
+            // $inputFisik['tinggi_badan'] = $params['tinggi_badan'];
+            // $inputFisik['imt'] = $nilai_imt;
+            // $inputFisik['sistole'] = $params['sistole'];
+            // $inputFisik['diastole'] = $params['diastole'];
+            // $inputFisik['tekanan_darah'] = $nilai_tk;
+            // $inputFisik['user_id'] = $params['petugas_id'];
+            
+            // if(isset($params['lain'])){
+            //     $inputFisik['lain'] = $params['lain'];
+            // } 
+            // $inputFisik['tata_laksana'] = $params['tata_laksana'];
+            // if(isset($params['konseling'])){
+            //     $inputFisik['konseling'] = $params['konseling'];
+            // } 
+            // if(isset($params['rujuk'])){
+            //     $inputFisik['rujuk'] = $params['rujuk'];
+            // } 
+            // // table p3_g_s
+            // $inputRiwayat['user_id'] = $params['petugas_id'];
+            // if(isset($params['tanggal_p_p3g'])){
+            //     $inputP3G['tanggal_p_p3g'] = $params['tanggal_p_p3g'];
+            //     $inputP3G['user_id'] = $params['petugas_id'];
+            // } 
+            // if(isset($params['tingkat_kemandirian'])){
+            //     $inputP3G['tingkat_kemandirian'] = $params['tingkat_kemandirian'];
+            // } 
+            // if(isset($params['g_emosional'])){
+            //     $inputP3G['g_emosional'] = $params['g_emosional'];
+            // } 
+            // if(isset($params['g_kognitiv'])){
+            //     $inputP3G['g_kognitiv'] = $params['g_kognitiv'];
+            // } 
+            // if(isset($params['p_resiko_malnutrisi'])){
+            //     $inputP3G['p_resiko_malnutrisi'] = $params['p_resiko_malnutrisi'];
+            // } 
+            // // $inputP3G['p_resiko_malnutrisi'] = 'A';
 
-            $inputRiwayat['g_ginjal'] = $params['g_ginjal'];
-            $inputRiwayat['g_pengelihatan'] = $params['g_pengelihatan'];
-            $inputRiwayat['g_pendengaran'] = $params['g_pendengaran'];
-            if(isset($params['penyuluhan'])){
-                $inputRiwayat['penyuluhan'] = $params['penyuluhan'];
-            } 
-            if(isset($params['pemberdayaan'])){
-                $inputRiwayat['pemberdayaan'] = $params['pemberdayaan'];
-            } 
-            if(isset($params['keterangan'])){
-                $inputRiwayat['keterangan'] = $params['keterangan'];
-            }
-            // $inputlansia['keterangan'] = $params['keterangan'];
-
-            // table p__fisik__tindakans
-            $inputFisik['tanggal_p'] = $params['tanggal_p'];
-            $inputFisik['berat_badan'] = $params['berat_badan'];
-            $inputFisik['tinggi_badan'] = $params['tinggi_badan'];
-          
-            $inputFisik['imt'] = $nilai_imt;
-            $inputFisik['sistole'] = $params['sistole'];
-            $inputFisik['diastole'] = $params['diastole'];
-            $inputFisik['tekanan_darah'] = $nilai_tk;
-            if(isset($params['lain'])){
-                $inputFisik['lain'] = $params['lain'];
-            } 
-            $inputFisik['tata_laksana'] = $params['tata_laksana'];
-            if(isset($params['konseling'])){
-                $inputFisik['konseling'] = $params['konseling'];
-            } 
-            if(isset($params['rujuk'])){
-                $inputFisik['rujuk'] = $params['rujuk'];
-            } 
-            // table p3_g_s
-            if(isset($params['tanggal_p_p3g'])){
-                $inputP3G['tanggal_p_p3g'] = $params['tanggal_p_p3g'];
-            } 
-            if(isset($params['tingkat_kemandirian'])){
-                $inputP3G['tingkat_kemandirian'] = $params['tingkat_kemandirian'];
-            } 
-            if(isset($params['g_emosional'])){
-                $inputP3G['g_emosional'] = $params['g_emosional'];
-            } 
-            if(isset($params['g_kognitiv'])){
-                $inputP3G['g_kognitiv'] = $params['g_kognitiv'];
-            } 
-            if(isset($params['p_resiko_malnutrisi'])){
-                $inputP3G['p_resiko_malnutrisi'] = $params['p_resiko_malnutrisi'];
-            } 
-            // $inputP3G['p_resiko_malnutrisi'] = 'A';
-
-            if(isset($params['p_resiko_jatuh'])){
-                $inputP3G['p_resiko_jatuh'] = $params['p_resiko_jatuh'];
-            } 
-             //table p__l_a_b_s
-            if(isset($params['tanggal_p_lab'])){
-                $inputLabs['tanggal_p_lab'] = $params['tanggal_p_lab'];
-            }
-            if(isset($params['kolesterol'])){
-                $inputLabs['kolesterol'] = $params['kolesterol'];
-            }
-            if(isset($params['gula_darah'])){
-                $inputLabs['gula_darah'] = $params['gula_darah'];
-            }
-            if(isset($params['asam_urat'])){
-                $inputLabs['asam_urat'] = $params['asam_urat'];
-            }
-            if(isset($params['hb'])){
-                $inputLabs['hb'] = $params['hb'];
-            }
+            // if(isset($params['p_resiko_jatuh'])){
+            //     $inputP3G['p_resiko_jatuh'] = $params['p_resiko_jatuh'];
+            // } 
+            //  //table p__l_a_b_s
+            // if(isset($params['tanggal_p_lab'])){
+            //     $inputLabs['tanggal_p_lab'] = $params['tanggal_p_lab'];
+            //     $inputLabs['user_id'] = $params['petugas_id'];
+            // }
+            // if(isset($params['kolesterol'])){
+            //     $inputLabs['kolesterol'] = $params['kolesterol'];
+            // }
+            // if(isset($params['gula_darah'])){
+            //     $inputLabs['gula_darah'] = $params['gula_darah'];
+            // }
+            // if(isset($params['asam_urat'])){
+            //     $inputLabs['asam_urat'] = $params['asam_urat'];
+            // }
+            // if(isset($params['hb'])){
+            //     $inputLabs['hb'] = $params['hb'];
+            // }
 
   
             if (isset($params['id'])) {
                 // dd($params['id']);
+                // dd("edit");
+                // dd($params);
                 $data =  Lansia::find($params['id']);
                 $data->update($inputlansia);
-                $p3g = $data->riwayat_gangguan()->create($inputRiwayat);
-                $p3g = $data->p3g()->create($inputP3G);
-                $p_lab = $data->pemerisaan_lab()->create($inputLabs);
-                $p_f = $data->pemerisaan_fisik_tindakan()->create($inputFisik);
+                // $p3g = $data->riwayat_gangguan()->create($inputRiwayat);
+                // $p3g = $data->p3g()->create($inputP3G);
+                // $p_lab = $data->pemerisaan_lab()->create($inputLabs);
+                // $p_f = $data->pemerisaan_fisik_tindakan()->create($inputFisik);
                 // dd($data);
                 // $petugas =  Lansia::find($params['id']);
                 // $petugas->update([]);
                 // $user = $petugas->user()->update($inputUser);
             }else{
                 $data = Lansia::create($inputlansia);
-                if(isset($params['tanggal_p_p3g'])){
-                    $p3g = $data->p3g()->create($inputP3G); 
-                }
-                if(isset($params['tanggal_p_lab'])){
-                    $p_lab = $data->pemerisaan_lab()->create($inputLabs);
-                }
-                $p3g = $data->riwayat_gangguan()->create($inputRiwayat);
-                $p_f = $data->pemerisaan_fisik_tindakan()->create($inputFisik);
+                // if(isset($params['tanggal_p_p3g'])){
+                //     $p3g = $data->p3g()->create($inputP3G); 
+                // }
+                // if(isset($params['tanggal_p_lab'])){
+                //     $p_lab = $data->pemerisaan_lab()->create($inputLabs);
+                // }
+                // $p3g = $data->riwayat_gangguan()->create($inputRiwayat);
+                // $p_f = $data->pemerisaan_fisik_tindakan()->create($inputFisik);
 
             }
             DB::commit();
-            return $data;
-        } catch (\Throwable $th) {
-            DB::rollback();
-            return $th;
-        }
+        //     return $data;
+        // } catch (\Throwable $th) {
+        //     DB::rollback();
+        //     return $th;
+        // }
     }
     public static function LansiaDetail($id)
     {
-        $data = Lansia::with('pemerisaan_fisik_tindakan','pemerisaan_lab','p3g' , 'riwayat_gangguan')->find($id);
+        $data = Lansia::with('pemerisaan_fisik_tindakan','pemerisaan_lab','p3g' , 'riwayat_gangguan.user')->find($id);
         return $data;
     }
     public static function LansiaEdit($id)
@@ -167,9 +172,12 @@ class LansiaService
         // dd($data);
         return $data;
     }
-    public static function delete($id)
+    public static function deleteLansia($id)
     {
-        $data = Admin::with('user')->find($id);
+        // $data = Lansia::with('user')->find($id);
+        $data = Lansia::with('pemerisaan_fisik_tindakan','pemerisaan_lab','p3g' , 'riwayat_gangguan.user')->find($id);
+        // dd($data);
+
         $data->delete();
         if($data){
             return "Deleted";
@@ -276,5 +284,52 @@ class LansiaService
             }
         }
         return $data;
+    }
+
+    public static function LansiaStoreGangguan($params)
+    {
+        DB::beginTransaction();
+        // try {
+// dd($params);
+             //table riwayat gangguan
+            $inputRiwayat['user_id'] = $params['petugas_id'];
+            $inputRiwayat['lansia_id'] = $params['lansia_id'];
+            $inputRiwayat['g_ginjal'] = $params['g_ginjal'];
+            $inputRiwayat['g_pengelihatan'] = $params['g_pengelihatan'];
+            $inputRiwayat['g_pendengaran'] = $params['g_pendengaran'];
+            if(isset($params['penyuluhan'])){
+                $inputRiwayat['penyuluhan'] = $params['penyuluhan'];
+            } 
+            if(isset($params['pemberdayaan'])){
+                $inputRiwayat['pemberdayaan'] = $params['pemberdayaan'];
+            } 
+            if(isset($params['keterangan'])){
+                $inputRiwayat['keterangan'] = $params['keterangan'];
+            }
+            if (isset($params['id'])) {
+                // dd($params['id']);
+                // $data =  Lansia::find($params['id']);
+                // $data->update($inputlansia);
+                // $p3g = $data->riwayat_gangguan()->create($inputRiwayat);
+                // $p3g = $data->p3g()->create($inputP3G);
+                // $p_lab = $data->pemerisaan_lab()->create($inputLabs);
+                // $p_f = $data->pemerisaan_fisik_tindakan()->create($inputFisik);
+                // dd($data);
+                // $petugas =  Lansia::find($params['id']);
+                // $petugas->update([]);
+                // $user = $petugas->user()->update($inputUser);
+            }else{
+                // dd($inputRiwayat);
+                // $input = $inputRiwayat;
+                // unset($input['lansia_id']);
+                $data = R_gangguan::create($inputRiwayat);
+
+            }
+            DB::commit();
+            return $data;
+        // } catch (\Throwable $th) {
+        //     DB::rollback();
+        //     return $th;
+        // }
     }
 }
