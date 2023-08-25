@@ -144,10 +144,11 @@ class LansiaController extends Controller
     }
 
     
-    public function detail($id)
+    public function detail(Request $request, $id)
     {
         $data = LansiaService::LansiaDetail($id);
-        // dd($data);
+        $dataGangguan = LansiaService::GangguanList($request);
+        // dd($dataGangguan);
         $desaSelected = $data->desa_id;
         $desa = Desa::find($desaSelected);
         if($data->p3g->last() != NULL){
@@ -168,8 +169,43 @@ class LansiaController extends Controller
             $statusAsamUrat ='';
             $statusHb ='';
         }
-        return view('admin.lansia.detail',compact('data','desa','statusMal','statusMan','statusKoles', 'statusGula','statusAsamUrat','statusHb'));
+        return view('admin.lansia.detail',
+        compact('data','desa','statusMal','statusMan',
+                 'statusKoles', 'statusGula',
+                  'statusAsamUrat','statusHb','dataGangguan'));
     }
+    public function detail_p3g(Request $request, $id)
+    {
+        $data = LansiaService::LansiaDetail($id);
+        $dataGangguan = LansiaService::GangguanList($request);
+        // dd($dataGangguan);
+        $desaSelected = $data->desa_id;
+        $desa = Desa::find($desaSelected);
+        if($data->p3g->last() != NULL){
+           $statusMal = LansiaService::statusRmalNutrisi($data->p3g->last()->p_resiko_malnutrisi); 
+           $statusMan = LansiaService::statusMandiri($data->p3g->last()->tingkat_kemandirian);
+        } else{
+             $statusMal = '';
+             $statusMan = '';
+        }
+        if($data->pemerisaan_lab->last() != NULL){
+            $statusKoles = LansiaService::statusKolesterol($data->pemerisaan_lab->last()->kolesterol);
+            $statusGula = LansiaService::statusGula($data->pemerisaan_lab->last()->gula_darah);
+            $statusAsamUrat = LansiaService::statusAsamUrat($data->pemerisaan_lab->last()->asam_urat, $data->gender);
+            $statusHb = LansiaService::statusHB($data->pemerisaan_lab->last()->hb, $data->gender);
+        } else{
+            $statusKoles = '';
+            $statusGula = '';
+            $statusAsamUrat ='';
+            $statusHb ='';
+        }
+        return view('admin.lansia.detail_p3g',
+        compact('data','desa','statusMal','statusMan',
+                 'statusKoles', 'statusGula',
+                  'statusAsamUrat','statusHb','dataGangguan'));
+    }
+
+
 
 
     public function delete($id)
@@ -191,7 +227,7 @@ class LansiaController extends Controller
         if(!isset($request['id'])){
             $validated = $request->validate([
                 //table lansia
-                'petugas_id' => 'required',
+                'user_id' => 'required',
                 'lansia_id' => 'required',
                 'g_ginjal' => 'required',
                 'g_pengelihatan' => 'required',
@@ -202,10 +238,12 @@ class LansiaController extends Controller
             ]);
             $params = $validated;
         }else{
+            // dd($request);
             $validated = $request->validate([
                 //table lansia
                 'id' => 'required',
-                'petugas_id' => 'required',
+                'lansia_id' => 'required',
+                'user_id' => 'required',
                 'g_ginjal' => 'required',
                 'g_pengelihatan' => 'required',
                 'g_pendengaran' => 'required',
@@ -214,10 +252,7 @@ class LansiaController extends Controller
                 'keterangan' => 'required',
             ]);
             $params = $validated;
-           
         }  
-        $idLansia  = $request['lansia_id'];
-
         $data = LansiaService::LansiaStoreGangguan($params);
         if(!isset($request['id'])){
             return back()->with('success', 'Berhasil menambahkan data');
@@ -226,17 +261,20 @@ class LansiaController extends Controller
         }
     }
 
-    public function edit_ganngguan($id) 
-    {      
-        $data = statusRmalNutrisi::LansiaEdit($id);
-        $desa = Desa::all();
-        $fsk = P_Fisik_Tindakan::all();
-
-        $FisikSelected = $data->pemerisaan_fisik_tindakan->last();
-        $GangguanSelected = $data->riwayat_gangguan->last();
-        $P3gSelected = $data->p3g->last();
-        $LabSelected = $data->pemerisaan_lab->last();
-     
-        return view('admin.lansia.form', compact('data','desa', 'GangguanSelected' , 'FisikSelected', 'P3gSelected','LabSelected'));
+    public function delete_gangguan($id)
+    {
+        $data = LansiaService::deleteGangguan($id);
+        return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
     }
+
+
+
+    // ===========Fisik dan Tindakan====================
+        public function index_Tindakan(Request $request)
+    {
+        $data = LansiaService::lansiaList($request);
+        return view('admin.lansia.index', compact('data'));
+    }
+
+    // =================================================
 }

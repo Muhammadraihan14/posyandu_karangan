@@ -82,11 +82,6 @@
             </div>
             <!--end::Col-->
         </div>
-        <!--end::Input group-->
-        <!--begin::Input group-->
-        <!--end::Input group-->
-
-
     </div>
     <!--end::Card body-->
 </div>
@@ -107,82 +102,43 @@
     <!--begin::Card header-->
     <!--begin::Card body-->
     <div class="card-body p-9">
-        <!--begin::Row-->
         <div class="row mb-7">
-            <!--begin::Label-->
             <label class="col-lg-4 fw-bold text-muted">Gangguan Ginjal</label>
-            <!--end::Label-->
-            <!--begin::Col-->
             <div class="col-lg-8">
-                <span
-                    class="fw-bolder fs-6 text-gray-800">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_ginjal : '-' }}</span>
+                <span class="fw-bolder fs-6 text-gray-800">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_ginjal : '-' }}</span>
             </div>
-            <!--end::Col-->
         </div>
-        <!--end::Row-->
-        <!--begin::Input group-->
         <div class="row mb-7">
-            <!--begin::Label-->
             <label class="col-lg-4 fw-bold text-muted">Gangguan Penglihatan</label>
-            <!--end::Label-->
-            <!--begin::Col-->
             <div class="col-lg-8 fv-row">
-                <span
-                    class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_pengelihatan : '-' }}</span>
+                <span  class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_pengelihatan : '-' }}</span>
             </div>
-            <!--end::Col-->
         </div>
-        <!--end::Input group-->
-        <!--begin::Input group-->
         <div class="row mb-7">
-            <!--begin::Label-->
             <label class="col-lg-4 fw-bold text-muted">Gangguan Pendengaran</label>
-            <!--end::Label-->
-            <!--begin::Col-->
             <div class="col-lg-8 fv-row">
-                <span
-                    class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_pendengaran : '-' }}</span>
+                <span class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_pendengaran : '-' }}</span>
             </div>
-            <!--end::Col-->
         </div>
-        <!--end::Input group-->
         <div class="row mb-7">
-            <!--begin::Label-->
             <label class="col-lg-4 fw-bold text-muted">Penyuluhan</label>
-            <!--end::Label-->
-            <!--begin::Col-->
             <div class="col-lg-8 fv-row">
-                <span
-                    class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->penyuluhan : '-' }}</span>
+                <span  class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->penyuluhan : '-' }}</span>
             </div>
-            <!--end::Col-->
         </div>
-        <!--begin::Input group-->
         <div class="row mb-7">
-            <!--begin::Label-->
             <label class="col-lg-4 fw-bold text-muted">Pemberdayaan</label>
-            <!--end::Label-->
-            <!--begin::Col-->
             <div class="col-lg-8 fv-row">
                 <span
                     class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->pemberdayaan : '-' }}</span>
             </div>
-            <!--end::Col-->
         </div>
         <div class="row mb-7">
-            <!--begin::Label-->
             <label class="col-lg-4 fw-bold text-muted">Keterangan</label>
-            <!--end::Label-->
-            <!--begin::Col-->
             <div class="col-lg-8 fv-row">
-                <span
-                    class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->keterangan : '-' }}</span>
+                <span class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->keterangan : '-' }}</span>
             </div>
-            <!--end::Col-->
         </div>
-        <!--end::Input group-->
-        <!--begin::Input group-->
-        <!--end::Input group-->
 
 
     </div>
@@ -281,13 +237,6 @@
                         <!--begin::Joined-->
                         <td class="text-center">{{ $val->created_at->translatedFormat('d M Y, h:i A') }}
                         </td>
-                        <!--end::Email=-->
-                        <!--begin::Company=-->
-                        {{-- <td>{{ $val->user->nip }}</td> --}}
-                        <!--end::Company=-->
-                        <!--begin::Payment method=-->
-                        <!--end::Date=-->
-                        <!--begin::Action=-->
                         <td class="text-end">
                             <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -487,7 +436,7 @@
             </div>
             <!--end::Header-->
             <!--begin::Body-->
-            <div class="card-body pt-5">
+            <div class="card-body pt-5 card-scroll h-200px">
                 <!--begin::Timeline-->
                 <div class="timeline-label">
                     <!--begin::Item-->

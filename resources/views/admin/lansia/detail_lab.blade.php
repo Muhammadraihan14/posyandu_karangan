@@ -15,78 +15,56 @@
         <!--begin::Card header-->
         <!--begin::Card body-->
         <div class="card-body p-9">
-            <!--begin::Row-->
             <div class="row mb-7">
-                <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">Kolesterol</label>
-                <!--end::Label-->
-                <!--begin::Col-->
                 <div class="col-lg-8">
                     <span
-                        class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->kolesterol : '-' }} mg / dl </span>
+                        class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->kolesterol : '-' }}
+                        mg / dl </span>
                     <span
                         class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span>
-
                 </div>
-                <!--end::Col-->
             </div>
-            <!--end::Row-->
-            <!--begin::Input group-->
             <div class="row mb-7">
-                <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">Gula Darah</label>
-                <!--end::Label-->
-                <!--begin::Col-->
                 <div class="col-lg-8 fv-row">
                     <span
-                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->gula_darah : '-' }} mg / dl </span>
-												<span
+                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->gula_darah : '-' }}
+                        mg / dl </span>
+                    <span
                         class="badge {{ $statusGula == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusGula != null ? $statusGula : '' }}</span>
                 </div>
-                <!--end::Col-->
             </div>
-            <!--end::Input group-->
-            <!--begin::Input group-->
             <div class="row mb-7">
-                <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">Asam Urat</label>
-                <!--end::Label-->
-                <!--begin::Col-->
                 <div class="col-lg-8 fv-row">
-
                     <div class="col-lg-8 d-flex align-items-center">
                         <span
-                            class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->asam_urat : '-' }} mg / dl </span>
-                        <span class="badge {{ $statusAsamUrat == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusAsamUrat != null ? $statusAsamUrat : '' }}</span>
+                            class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->asam_urat : '-' }}
+                            mg / dl </span>
+                        <span
+                            class="badge {{ $statusAsamUrat == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusAsamUrat != null ? $statusAsamUrat : '' }}</span>
                     </div>
                 </div>
                 <!--end::Col-->
             </div>
-            <!--end::Input group-->
-            <!--begin::Input group-->
             <div class="row mb-7">
-                <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">Hemoglobin</label>
-                <!--end::Label-->
-                <!--begin::Col-->
                 <div class="col-lg-8 fv-row">
                     <span
-                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->hb : '-' }} mg / dl </span>
-                        <span class="badge {{ $statusHb == 'Anemia' ? 'badge-danger' : 'badge-success ' }}">{{ $statusHb != null ? $statusHb : '' }}</span>
+                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->hb : '-' }}
+                        mg / dl </span>
+                    <span
+                        class="badge {{ $statusHb == 'Anemia' ? 'badge-danger' : 'badge-success ' }}">{{ $statusHb != null ? $statusHb : '' }}</span>
 
                 </div>
-                <!--end::Col-->
             </div>
             <div class="row mb-7">
-                <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
-                <!--end::Label-->
-                <!--begin::Col-->
                 <div class="col-lg-8 fv-row">
                     <span
                         class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->tanggal_p_lab->translatedFormat('d M Y, h:i A') : '-' }}</span>
                 </div>
-                <!--end::Col-->
             </div>
         </div>
         <!--end::Card body-->
@@ -163,20 +141,20 @@
                             <!--end::nomor-->
                             <!--end::Checkbox-->
                             <!--begin::Email=-->
-                            <td class="text-center">{{ $val->kolesterol }}  mg / dl
+                            <td class="text-center">{{ $val->kolesterol }} mg / dl
                             </td>
                             <!--end::Last login=-->
                             <!--begin::Name=-->
                             <td class="text-center">
-                                <a
-                                    href="#"class="text-dark fw-bolder text-hover-primary fs-6">{{ $val->gula_darah }}  mg / dl</a>
+                                <a href="#"class="text-dark fw-bolder text-hover-primary fs-6">{{ $val->gula_darah }}
+                                    mg / dl</a>
                             </td>
                             <!--end::Name=-->
                             <!--begin::Name=-->
-                            <td class="text-center">{{ $val->asam_urat }}  mg / dl</td>
+                            <td class="text-center">{{ $val->asam_urat }} mg / dl</td>
                             <!--end::Name=-->
                             <!--begin::Name=-->
-                            <td class="text-center">{{ $val->	hb }}  mg / dl</td>
+                            <td class="text-center">{{ $val->hb }} mg / dl</td>
                             <!--end::Name=-->
                             {{-- <td class="text-center">
                                 <a

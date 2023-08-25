@@ -35,6 +35,27 @@ class LansiaService
         Paginator::useBootstrap();
         return $data;
     }
+
+    public static function GangguanList(Request $request)
+    {
+        // if($request->has('keywords')){
+        //     $data = Admin::leftJoin('users', 'users.id', 'admins.user_id')->select('users.*', 'admins.*')
+        //     ->where(function ($row) use ($request){
+        //             $row->where(function ($query) use ($request) {
+        //                 $query->where('users.name', 'like', '%' . $request->keywords . '%')
+        //                     ->orWhere('users.nip', 'like', '%' . $request->keywords . '%');
+        //             });
+        //     })->paginate(5);
+// SELECT `users`.*, `admins*` FROM `admins` LEFT JOIN `users` ON `users`.`id` = `admins`.`user_id`
+// WHERE ((`users`.`name` LIKE % $request % OR `users`.`nip` LIKE % $request %) )
+        // }else{
+            $data = R_gangguan::paginate(5);
+        // }
+
+      
+        Paginator::useBootstrap();
+        return $data;
+    }
     public static function LansiaStore($params)
     {
         // dd($params);
@@ -289,10 +310,9 @@ class LansiaService
     public static function LansiaStoreGangguan($params)
     {
         DB::beginTransaction();
-        // try {
-// dd($params);
-             //table riwayat gangguan
-            $inputRiwayat['user_id'] = $params['petugas_id'];
+        try {
+
+            $inputRiwayat['user_id'] = $params['user_id'];
             $inputRiwayat['lansia_id'] = $params['lansia_id'];
             $inputRiwayat['g_ginjal'] = $params['g_ginjal'];
             $inputRiwayat['g_pengelihatan'] = $params['g_pengelihatan'];
@@ -307,29 +327,31 @@ class LansiaService
                 $inputRiwayat['keterangan'] = $params['keterangan'];
             }
             if (isset($params['id'])) {
-                // dd($params['id']);
-                // $data =  Lansia::find($params['id']);
-                // $data->update($inputlansia);
-                // $p3g = $data->riwayat_gangguan()->create($inputRiwayat);
-                // $p3g = $data->p3g()->create($inputP3G);
-                // $p_lab = $data->pemerisaan_lab()->create($inputLabs);
-                // $p_f = $data->pemerisaan_fisik_tindakan()->create($inputFisik);
-                // dd($data);
-                // $petugas =  Lansia::find($params['id']);
-                // $petugas->update([]);
-                // $user = $petugas->user()->update($inputUser);
+                $data =  R_gangguan::find($params['id']);
+                $data->update($inputRiwayat);
             }else{
-                // dd($inputRiwayat);
-                // $input = $inputRiwayat;
-                // unset($input['lansia_id']);
                 $data = R_gangguan::create($inputRiwayat);
 
             }
             DB::commit();
             return $data;
-        // } catch (\Throwable $th) {
-        //     DB::rollback();
-        //     return $th;
-        // }
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th;
+        }
+    }
+
+    public static function deleteGangguan($id)
+    {
+        // $data = Lansia::with('user')->find($id);
+        $data = R_gangguan::find($id);
+        // dd($data);
+
+        $data->delete();
+        if($data){
+            return "Deleted";
+        }else{
+            return "Failed";
+        }
     }
 }

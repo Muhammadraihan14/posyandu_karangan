@@ -30,8 +30,6 @@
                 </div>
                 <!--end::Col-->
             </div>
-            <!--end::Row-->
-            <!--begin::Input group-->
             <div class="row mb-7">
                 <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">Tinggi Badan</label>
@@ -44,8 +42,6 @@
                 </div>
                 <!--end::Col-->
             </div>
-            <!--end::Input group-->
-            <!--begin::Input group-->
             <div class="row mb-7">
                 <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">IMT</label>
@@ -62,46 +58,21 @@
                 </div>
                 <!--end::Col-->
             </div>
-            <!--end::Input group-->
-            <!--begin::Input group-->
-            {{-- <div class="row mb-7">
-                <!--begin::Label-->
-                <label class="col-lg-4 fw-bold text-muted">Status Gizi </label>
-                <!--end::Label-->
-                <!--begin::Col-->
-                <div class="col-lg-8 fv-row">
-                    <span class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '-' }} mg / dl </span>
-                        <span class="badge {{ $data->pemerisaan_fisik_tindakan->last()->status_gizi == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->status_gizi != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '' }}</span>
-
-                </div>
-                <!--end::Col-->
-            </div> --}}
             <div class="row mb-7">
-                <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">Tekanan Darah </label>
-                <!--end::Label-->
-                <!--begin::Col-->
                 <div class="col-lg-8 fv-row">
                     <span
                         class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->sistole : '-' }} / {{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->diastole : '-' }} mmHg </span>
                         <span class="badge {{  $data->pemerisaan_fisik_tindakan->last()->tekanan_darah == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{  $data->pemerisaan_fisik_tindakan->last()->tekanan_darah != null ?  $data->pemerisaan_fisik_tindakan->last()->tekanan_darah : '' }}</span>
-
                 </div>
-                <!--end::Col-->
             </div>
             <div class="row mb-7">
-                <!--begin::Label-->
                 <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
-                <!--end::Label-->
-                <!--begin::Col-->
                 <div class="col-lg-8 fv-row">
-                    <span
-                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                    <span class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
                 </div>
-                <!--end::Col-->
             </div>
         </div>
-        <!--end::Card body-->
     </div>
     {{-- ======================= --}}
     <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
@@ -136,7 +107,6 @@
         <!--begin::Card header-->
         <!--begin::Card body-->
         <div class="card-body p-9 table-responsive">
-
             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                 <!--begin::Table head-->
                 <thead>
@@ -147,9 +117,6 @@
                                 No
                             </div>
                         </th>
-                        {{-- <th class="min-w-125px">judul</th>
-													<th class="min-w-125px">creator</th>
-													<th class="min-w-125px">Created</th> --}}
                         <th class="min-w-125px text-center">Berat Badan</th>
                         <th class="min-w-125px text-center">Tinggi Badan</th>
                         <th class="min-w-125px text-center">IMT</th>
