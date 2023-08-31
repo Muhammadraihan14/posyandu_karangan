@@ -156,6 +156,7 @@ class LansiaController extends Controller
         $desa = Desa::find($desaSelected);
         
         $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(5);
+        $riwayat_gangguan = $data->riwayat_gangguan()->paginate(5);
         // dd($pemeriksaanFisik);
         if($data->p3g->last() != NULL){
            $statusMal = LansiaService::statusRmalNutrisi($data->p3g->last()->p_resiko_malnutrisi); 
@@ -187,7 +188,7 @@ class LansiaController extends Controller
         compact('data','desa','statusMal',
         'statusMan', 'statusKoles', 'statusGula', 
         'statusAsamUrat','statusHb','dataGangguan' ,
-        'FisikSelected','pemeriksaanFisik'));
+        'FisikSelected','pemeriksaanFisik', 'riwayat_gangguan'));
     }
     public function detail_p3g(Request $request, $id)
     {
@@ -327,6 +328,8 @@ class LansiaController extends Controller
             $params = $validated;
             // dd($params);
         }
+        // dd($params);
+
 
         $data = LansiaService::LansiaStoreFisik($params);
         if(!isset($request['id'])){

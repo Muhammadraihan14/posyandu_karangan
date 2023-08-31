@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\Lansia;
 use App\Models\R_gangguan;
+use App\Models\P_Fisik_Tindakan;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Request;
@@ -206,43 +207,7 @@ class LansiaService
             return "Failed";
         }
     }
-    public static function IMT($bb,$tb){
-     $nilai =   round($bb/(pow($tb/100,2)),2);
-    //  dd($nilai);
-        // if($nilai < 18.5){
-        //     dd("K");
-        // } elseif ($nilai <= 18.5 && $nilai >= 25 ){
-        //     dd("N");
 
-        // } else{
-        //     dd("L");
-        // }
-
-        return $nilai;
-
-    }
-    public static function tekananDarah($sistole ,$diastole){
-        $data ="";
-        if(($sistole < 100) || ($diastole < 70 )){
-          return $data = "Rendah";
-        } elseif (($sistole >= 100 && $sistole <= 140) && ($diastole >= 70 && $diastole <= 95)){
-            return $data = "Normal";
-        } else{
-            return $data = "Tinggi";
-        }
-        return $data;
-    }
-    public static function statusRmalNutrisi($param){
-        $data ="";
-        if($param == 'RM'){
-          return $data = "Resiko Malnutrisi";
-        } elseif ($param == 'M'){
-            return $data = "Malnutrisi";
-        } else{
-            return $data = "Normal";
-        }
-        return $data;
-    }
     public static function statusMandiri($param){
         $data ="";
         if($param == 'A'){
@@ -354,4 +319,108 @@ class LansiaService
             return "Failed";
         }
     }
+
+
+
+    // =============Pemeriksaan fisik dan tindakan===================
+    public static function IMT($bb,$tb)
+    {
+        $nilai =   round($bb/(pow($tb/100,2)),2);
+        return $nilai;
+
+    }
+    public static function statusGizi($nilai)
+    {
+       $data ="";
+
+           if($nilai < 18.5){
+             return $data = "Kurang";
+           } elseif ($nilai >= 18.5 && $nilai <= 25 ){
+            return $data = "Normal";
+           } else {
+            return $data = "Lebih";
+           }
+            return $data;
+    }
+    public static function tekananDarah($sistole ,$diastole)
+    {
+        $data ="";
+        if(($sistole < 100) || ($diastole < 70 )){
+            return $data = "Rendah";
+        } elseif (($sistole >= 100 && $sistole <= 140) && ($diastole >= 70 && $diastole <= 95)){
+            return $data = "Normal";
+        } else{
+            return $data = "Tinggi";
+        }
+        return $data;
+    }
+    public static function statusRmalNutrisi($param)
+    {
+        $data ="";
+        if($param == 'RM'){
+            return $data = "Resiko Malnutrisi";
+        } elseif ($param == 'M'){
+            return $data = "Malnutrisi";
+        } else{
+            return $data = "Normal";
+        }
+        return $data;
+    }
+    public static function LansiaStoreFisik($params)
+    {
+        $nilai_imt =  LansiaService::IMT($params['berat_badan'], $params['tinggi_badan']);
+        $nilai_tk =  LansiaService::tekananDarah($params['sistole'], $params['diastole']);
+        $statusGizi =  LansiaService::statusGizi($nilai_imt);
+        DB::beginTransaction();
+        try {
+            $inputFisik['user_id'] = $params['user_id'];
+            $inputFisik['lansia_id'] = $params['lansia_id'];
+            $inputFisik['tanggal_p'] = $params['tanggal_p'];
+            $inputFisik['berat_badan'] = $params['berat_badan'];
+            $inputFisik['tinggi_badan'] = $params['tinggi_badan'];
+            $inputFisik['imt'] = $nilai_imt;
+            $inputFisik['sistole'] = $params['sistole'];
+            $inputFisik['diastole'] = $params['diastole'];
+            $inputFisik['tekanan_darah'] = $nilai_tk;
+            $inputFisik['status_gizi'] = $statusGizi;
+            if(isset($params['lain'])){
+                $inputFisik['lain'] = $params['lain'];
+            } 
+            $inputFisik['tata_laksana'] = $params['tata_laksana'];
+            if(isset($params['konseling'])){
+                $inputFisik['konseling'] = $params['konseling'];
+            } 
+            if(isset($params['rujuk'])){
+                $inputFisik['rujuk'] = $params['rujuk'];
+            } 
+            if (isset($params['id'])) {
+                $data =  P_Fisik_Tindakan::find($params['id']);
+                $data->update($inputFisik);
+            }else{
+                $data = P_Fisik_Tindakan::create($inputFisik);
+            }
+            DB::commit();
+            return $data;
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th;
+        }
+    }
+    public static function deleteFisikTindakan($id)
+    {
+        // $data = Lansia::with('user')->find($id);
+        $data = P_Fisik_Tindakan::find($id);
+        // dd($data);
+
+        $data->delete();
+        if($data){
+            return "Deleted";
+        }else{
+            return "Failed";
+        }
+    }
+    // =============End Pemeriksaan fisik dan tindakan===============
+
+
+
 }

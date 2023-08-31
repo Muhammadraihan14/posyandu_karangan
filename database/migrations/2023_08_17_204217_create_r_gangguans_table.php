@@ -18,6 +18,7 @@ return new class extends Migration
             // $table->integer('g_ginjal')->nullable();
             // $table->integer('g_pengelihatan')->nullable();
             // $table->integer('g_pendengaran')->nullable();
+            $table->dateTime('tanggal_p_g')->nullable();
             $table->enum('g_ginjal',['Ya','Tidak'])->nullable();
             $table->enum('g_pengelihatan',['Ya','Tidak'])->nullable();
             $table->enum('g_pendengaran',['Ya','Tidak'])->nullable();
