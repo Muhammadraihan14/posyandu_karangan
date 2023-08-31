@@ -271,32 +271,25 @@ class LansiaService
         }
         return $data;
     }
-
+    // ============= Gangguan ===================
     public static function LansiaStoreGangguan($params)
     {
         DB::beginTransaction();
         try {
-
             $inputRiwayat['user_id'] = $params['user_id'];
             $inputRiwayat['lansia_id'] = $params['lansia_id'];
+            $inputRiwayat['tanggal_p_g'] = $params['tanggal_p_g'];
             $inputRiwayat['g_ginjal'] = $params['g_ginjal'];
             $inputRiwayat['g_pengelihatan'] = $params['g_pengelihatan'];
             $inputRiwayat['g_pendengaran'] = $params['g_pendengaran'];
-            if(isset($params['penyuluhan'])){
-                $inputRiwayat['penyuluhan'] = $params['penyuluhan'];
-            } 
-            if(isset($params['pemberdayaan'])){
-                $inputRiwayat['pemberdayaan'] = $params['pemberdayaan'];
-            } 
-            if(isset($params['keterangan'])){
-                $inputRiwayat['keterangan'] = $params['keterangan'];
-            }
+            $inputRiwayat['penyuluhan'] = $params['penyuluhan'];
+            $inputRiwayat['pemberdayaan'] = $params['pemberdayaan'];
+            $inputRiwayat['keterangan'] = $params['keterangan'];
             if (isset($params['id'])) {
                 $data =  R_gangguan::find($params['id']);
                 $data->update($inputRiwayat);
             }else{
                 $data = R_gangguan::create($inputRiwayat);
-
             }
             DB::commit();
             return $data;
@@ -305,7 +298,6 @@ class LansiaService
             return $th;
         }
     }
-
     public static function deleteGangguan($id)
     {
         // $data = Lansia::with('user')->find($id);
@@ -319,6 +311,9 @@ class LansiaService
             return "Failed";
         }
     }
+
+    // ============= End Gangguan===================
+
 
 
 

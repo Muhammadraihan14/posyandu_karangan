@@ -11,6 +11,8 @@ class R_gangguan extends Model
 {
     use HasFactory;
     protected $guarded= [];
+    protected $dates= ['tanggal_p_g'];
+
     public function lansia()
     {
         return $this->belongsTo(Lansia::class, 'lansia_id');

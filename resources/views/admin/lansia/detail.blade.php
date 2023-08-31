@@ -624,7 +624,7 @@
                     </div>
                     <!--end::Card title-->
                     <!--begin::Action-->
-                    <a  data-bs-toggle="modal" data-bs-target="#tindakan" class="btn btn-primary align-self-center">Tambah</a>
+                    <a  data-bs-toggle="modal" data-bs-target="#gangguan" class="btn btn-primary align-self-center">Tambah</a>
                     <!--end::Action-->
                 </div>
                 <div class="card-body p-9 table-responsive">
@@ -638,11 +638,9 @@
                                         No
                                     </div>
                                 </th>
-                                <th class="min-w-125px text-center">Berat Badan</th>
-                                <th class="min-w-125px text-center">Tinggi Badan</th>
-                                <th class="min-w-125px text-center">IMT</th>
-                                <th class="min-w-125px text-center">Status Gizi</th>
-                                <th class="min-w-125px text-center">Tekanan Darah</th>
+                                <th class="min-w-125px text-center">Gangguan Ginjal</th>
+                                <th class="min-w-125px text-center">Gangguan Pengelihatan</th>
+                                <th class="min-w-125px text-center">Gangguan Pendengaran</th>
                                 <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
                                 <th class="text-end min-w-70px">Actions</th>
                             </tr>
@@ -660,22 +658,16 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->berat_badan }} Kg</a>
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailGangguan{{ $val->id }}" class="menu-link px-3">{{ $val->g_ginjal }}</a>
                                     </td>
                                     <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tinggi_badan }} cm</a>
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailGangguan{{ $val->id }}" class="menu-link px-3">{{ $val->g_pengelihatan }}</a>
                                     </td>
                                     <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->imt }} Kg/m^2</a>
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailGangguan{{ $val->id }}" class="menu-link px-3">{{ $val->g_pendengaran }}</a>
                                     </td>
                                     <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->status_gizi }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tekanan_darah }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p->translatedFormat('d M Y, h:i A') }}</a>
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailGangguan{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p_g->translatedFormat('d M Y, h:i A') }}</a>
                                         {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
                                     </td>
 
@@ -697,17 +689,17 @@
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                             data-kt-menu="true">
                                             <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal" data-bs-target="#tindakanEdit{{ $val->id }}" class="menu-link px-3">Edit</a>
+                                                <a data-bs-toggle="modal" data-bs-target="#GangguanEdit{{ $val->id }}" class="menu-link px-3">Edit</a>
                                             </div>
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">View</a>
+                                                <a data-bs-toggle="modal" data-bs-target="#detailGangguan{{ $val->id }}" class="menu-link px-3">View</a>
 
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 deleteFisik"
+                                                <a href="#" class="menu-link px-3 deleteGangguan"
                                                     data-kt-customer-table-filter="delete_row"
                                                     data-id="{{ $val->id }}">Delete</a>
                                             </div>
@@ -738,6 +730,7 @@
     </div>
     <!--end::Post-->
 		@include('admin.lansia.form.modal_fisik_tindakan')
+		@include('admin.lansia.form.modal_gangguan')
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -764,6 +757,22 @@
                 .then((willDelete) => {
                     if (willDelete) {
                         window.location = "delete/fisik/" + id;
+                    } else {
+                        swal("Batal menghapus data!");
+                    }
+                });
+        });
+        $('.deleteGangguan').click(function() {
+            var id = $(this).attr('data-id');
+            swal({
+                    title: "Apakah Anda Yakin?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "delete/gangguan/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
