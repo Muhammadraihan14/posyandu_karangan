@@ -81,12 +81,17 @@ Route::post('lansia/save', [LansiaController::class, 'save'])->name('lansia.save
 Route::get('lansia/delete/{id}', [LansiaController::class, 'delete'])->name('lansia.delete')->middleware('auth');
 Route::get('lansia/{id}', [LansiaController::class, 'detail'])->name('lansia.detail')->middleware('auth');
 // Route::get('lansia/{id}', [LansiaController::class, 'detail'])->name('lansia.overview')->middleware('auth');
-Route::get('lansia/create/gangguan', [LansiaController::class, 'create_ganngguan'])->name('lansia.create.ganngguan')->middleware('auth');
 // Route::get('lansia/create/gangguan', [LansiaController::class, 'create_ganngguan'])->name('lansia.create.ganngguan')->middleware('auth');
+Route::get('lansia/create/gangguan', [LansiaController::class, 'create_ganngguan'])->name('lansia.create.ganngguan')->middleware('auth');
 Route::get('lansia/edit/gangguan/{id}', [LansiaController::class, 'edit_ganngguan'])->name('lansia.edit.ganngguan')->middleware('auth');
-
 Route::post('lansia/gangguan/save', [LansiaController::class, 'save_gangguan'])->name('lansia.save.g')->middleware('auth');
 Route::get('lansia/delete/gangguan/{id}', [LansiaController::class, 'delete_gangguan'])->name('lansia.delete.g')->middleware('auth');
+
+
+Route::get('lansia/create/fisik', [LansiaController::class, 'create_fisik'])->name('lansia.create.fisik')->middleware('auth');
+Route::get('lansia/edit/fisik/{id}', [LansiaController::class, 'edit_fisik'])->name('lansia.edit.fisik')->middleware('auth');
+Route::post('lansia/fisik/save', [LansiaController::class, 'save_fisik'])->name('lansia.save.f')->middleware('auth');
+Route::get('lansia/delete/fisik/{id}', [LansiaController::class, 'delete_fisik'])->name('lansia.delete.f')->middleware('auth');
 
 
 

@@ -11,6 +11,9 @@ class P_Fisik_Tindakan extends Model
     use HasFactory;
     protected $guarded= ['id'];
     protected $dates= ['tanggal_p'];
+    protected $casts = [
+        'tanggal_p' => 'datetime'
+    ];
     public function lansia()
     {
         return $this->belongsTo(Lansia::class, 'lansia_id');
@@ -18,6 +21,10 @@ class P_Fisik_Tindakan extends Model
     public function pemerisaan_fisik_tindakan(): HasMany
     {
         return $this->hasMany(P_Fisik_Tindakan::class,'lansia_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

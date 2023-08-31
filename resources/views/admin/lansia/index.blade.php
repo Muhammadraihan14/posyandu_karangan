@@ -550,7 +550,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "lansia/delete/" + id;
+                        window.location = 'lansia/delete/' + id;
                     } else {
                         swal("Batal menghapus akun!");
                     }

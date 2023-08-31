@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
-use App\Models\P_Fisik_Tindakan;
 use Illuminate\Http\Request;
 use App\Services\DesaService;
 use App\Services\LansiaService;
+use App\Models\P_Fisik_Tindakan;
 use Illuminate\Pagination\Paginator;
+
 
 class LansiaController extends Controller
 {
@@ -147,10 +148,15 @@ class LansiaController extends Controller
     public function detail(Request $request, $id)
     {
         $data = LansiaService::LansiaDetail($id);
+        // dd($data);
         $dataGangguan = LansiaService::GangguanList($request);
-        // dd($dataGangguan);
+        // $dataFisik = PemeriksaanFisikService::FiskList($request, $id);
+        // dd($dataFisik);
         $desaSelected = $data->desa_id;
         $desa = Desa::find($desaSelected);
+        
+        $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(5);
+        // dd($pemeriksaanFisik);
         if($data->p3g->last() != NULL){
            $statusMal = LansiaService::statusRmalNutrisi($data->p3g->last()->p_resiko_malnutrisi); 
            $statusMan = LansiaService::statusMandiri($data->p3g->last()->tingkat_kemandirian);
@@ -169,10 +175,19 @@ class LansiaController extends Controller
             $statusAsamUrat ='';
             $statusHb ='';
         }
+     
+
+        if($data->pemerisaan_fisik_tindakan->last() != NULL){
+            $FisikSelected = $data->pemerisaan_fisik_tindakan->last();
+        } else{
+            $FisikSelected = "";
+
+        }
         return view('admin.lansia.detail',
-        compact('data','desa','statusMal','statusMan',
-                 'statusKoles', 'statusGula',
-                  'statusAsamUrat','statusHb','dataGangguan'));
+        compact('data','desa','statusMal',
+        'statusMan', 'statusKoles', 'statusGula', 
+        'statusAsamUrat','statusHb','dataGangguan' ,
+        'FisikSelected','pemeriksaanFisik'));
     }
     public function detail_p3g(Request $request, $id)
     {
@@ -205,14 +220,14 @@ class LansiaController extends Controller
                   'statusAsamUrat','statusHb','dataGangguan'));
     }
 
-
-
-
     public function delete($id)
     {
         $data = LansiaService::deleteLansia($id);
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
     }
+
+    // ===========Riwayat Gangguan ====================
+
 
     public function create_ganngguan(Request $request)
     {
@@ -267,14 +282,65 @@ class LansiaController extends Controller
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
     }
 
+    // ================================================
 
 
-    // ===========Fisik dan Tindakan====================
-        public function index_Tindakan(Request $request)
+    // ===========Fisik dan Tindakan ====================
+        public function save_fisik(Request $request)
     {
-        $data = LansiaService::lansiaList($request);
-        return view('admin.lansia.index', compact('data'));
+        // dd($request);
+        if(!isset($request['id'])){
+            $validated = $request->validate([
+                //table p__fisik__tindakans
+                'user_id' => 'required',
+                'lansia_id' => 'required',
+                'tanggal_p' => 'required',
+                'tinggi_badan' => 'required',
+                'berat_badan' => 'required',
+                'sistole' => 'required',
+                'diastole' => 'required',
+                'tata_laksana' => 'required',
+                'konseling' => 'required',
+                'rujuk' => 'required',
+                'lain' => 'required',
+
+            ]);
+            $params = $validated;
+            // dd($params);
+        }else{
+            // dd($request);
+            $validated = $request->validate([
+                //table lansia
+                'id' => 'required',
+                'user_id' => 'required',
+                'lansia_id' => 'required',
+                'tanggal_p' => 'required',
+                'tinggi_badan' => 'required',
+                'berat_badan' => 'required',
+                'sistole' => 'required',
+                'diastole' => 'required',
+                'lain' => 'required',
+                'tata_laksana' => 'required',
+                'konseling' => 'required',
+                'rujuk' => 'required',
+            ]);
+            $params = $validated;
+            // dd($params);
+        }
+
+        $data = LansiaService::LansiaStoreFisik($params);
+        if(!isset($request['id'])){
+            return back()->with('success', 'Berhasil menambahkan data');
+        }else{
+            return  back()->with('successEdit', 'Berhasil mengedit data');
+        }
     }
 
+    public function delete_fisik($id)
+    {
+        // dd($id);
+        $data = LansiaService::deleteFisikTindakan($id);
+        return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
+    }
     // =================================================
 }

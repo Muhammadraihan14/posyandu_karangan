@@ -259,11 +259,7 @@
                             </div>
                         </div> --}}
                 </div>
-                {{-- ?///////////////////////////////////////////////////////////////// --}}
             @else
-                <!--begin::Input group-->
-
-                <!--end::Input group-->
                 <div class="row mb-6">
                     <!--begin::Label-->
                     <label class="col-lg-4 col-form-label required fw-bold fs-6">Nama</label>
@@ -451,36 +447,29 @@
         </div>
         @endif
     </div>
-    <!--end::Content-->        <!--begin::Actions-->
-        <div class="card-footer d-flex justify-content-end py-6 px-9">
-            <button type="reset" class="btn btn-light btn-active-light-primary me-2"><a
-                    href="{{ route('lansia') }}">Cancel</a> </button>
-            <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save</button>
-        </div>
-        <!--end::Actions-->
-        </form
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+        <button type="reset" class="btn btn-light btn-active-light-primary me-2"><a
+                href="{{ route('lansia') }}">Cancel</a> </button>
+        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save</button>
     </div>
-    <!--end::Basic info-->
-
->
-
-    <!--end::Basic info-->
+    </form>
+    </div>
 @endsection
 @section('script')
     <script>
         @isset($data)
-                $('#gender').val('{{ $data['gender'] }}').toString();
-                $('#desa_id').val('{{ $data['desa_id'] }}').toString();
-            @if($FisikSelected != NULL)
+            $('#gender').val('{{ $data['gender'] }}').toString();
+            $('#desa_id').val('{{ $data['desa_id'] }}').toString();
+            @if ($FisikSelected != null)
                 $('#konseling').val('{{ $FisikSelected['konseling'] }}').toString();
                 $('#rujuk').val('{{ $FisikSelected['rujuk'] }}').toString();
             @endif
-            @if($GangguanSelected != NULL)
+            @if ($GangguanSelected != null)
                 $('#g_ginjal').val('{{ $GangguanSelected['g_ginjal'] }}').toString();
                 $('#g_pengelihatan').val('{{ $GangguanSelected['g_pengelihatan'] }}').toString();
                 $('#g_pendengaran').val('{{ $GangguanSelected['g_pendengaran'] }}').toString();
             @endif
-            @if ($P3gSelected != NULL)
+            @if ($P3gSelected != null)
                 $('#tingkat_kemandirian').val('{{ $P3gSelected['tingkat_kemandirian'] }}').toString();
                 $('#g_emosional').val('{{ $P3gSelected['g_emosional'] }}').toString();
                 $('#g_kognitiv').val('{{ $P3gSelected['g_kognitiv'] }}').toString();

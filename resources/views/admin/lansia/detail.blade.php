@@ -250,182 +250,392 @@
                         </div>
 
                         <div class="tab-pane fade" id="kt_tab_pane_8" role="tabpanel">
-                            <div class="row mb-7">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 fw-bold text-muted">Berat Badan</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8">
-                                    <span
-                                        class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->berat_badan : '-' }}
-                                        Kg </span>
-                                    {{-- <span --}}
-                                    {{-- class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span> --}}
-
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <div class="row mb-7">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 fw-bold text-muted">Tinggi Badan</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tinggi_badan : '-' }}
-                                        m </span>
-                                    {{-- <span class="badge {{ $statusGula == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusGula != null ? $statusGula : '' }}</span> --}}
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <div class="row mb-7">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 fw-bold text-muted">IMT</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-
-                                    <div class="col-lg-8 d-flex align-items-center">
+                            @if ($data->pemerisaan_fisik_tindakan->last() != null)
+                                <div class="row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 fw-bold text-muted">Berat Badan</label>
+                                    <!--end::Label-->
+                                    <!--begin::Col-->
+                                    <div class="col-lg-8">
                                         <span
-                                            class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->imt : '-' }}
-                                            Kg/m^2 </span>
-                                        <span
-                                            class="badge {{ $data->pemerisaan_fisik_tindakan->last()->status_gizi == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->status_gizi != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '' }}</span>
+                                            class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->berat_badan : '-' }}
+                                            Kg </span>
+                                        {{-- <span --}}
+                                        {{-- class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span> --}}
 
                                     </div>
+                                    <!--end::Col-->
                                 </div>
-                                <!--end::Col-->
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Tekanan Darah </label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->sistole : '-' }}
-                                        /
-                                        {{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->diastole : '-' }}
-                                        mmHg </span>
-                                    <span
-                                        class="badge {{ $data->pemerisaan_fisik_tindakan->last()->tekanan_darah == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->tekanan_darah != null ? $data->pemerisaan_fisik_tindakan->last()->tekanan_darah : '' }}</span>
+                                <div class="row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 fw-bold text-muted">Tinggi Badan</label>
+                                    <!--end::Label-->
+                                    <!--begin::Col-->
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tinggi_badan : '-' }}
+                                            cm </span>
+                                        {{-- <span class="badge {{ $statusGula == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusGula != null ? $statusGula : '' }}</span> --}}
+                                    </div>
+                                    <!--end::Col-->
                                 </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                <div class="row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 fw-bold text-muted">IMT</label>
+                                    <!--end::Label-->
+                                    <!--begin::Col-->
+                                    <div class="col-lg-8 fv-row">
+
+                                        <div class="col-lg-8 d-flex align-items-center">
+                                            <span
+                                                class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->imt : '-' }}
+                                                Kg/m^2 </span>
+                                            <span
+                                                class="badge {{ $data->pemerisaan_fisik_tindakan->last()->status_gizi == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->status_gizi != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '' }}</span>
+
+                                        </div>
+                                    </div>
+                                    <!--end::Col-->
                                 </div>
-                            </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Tekanan Darah </label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->sistole : '-' }}
+                                            /
+                                            {{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->diastole : '-' }}
+                                            mmHg </span>
+                                        <span
+                                            class="badge {{ $data->pemerisaan_fisik_tindakan->last()->tekanan_darah == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->tekanan_darah != null ? $data->pemerisaan_fisik_tindakan->last()->tekanan_darah : '' }}</span>
+                                    </div>
+                                </div>                                
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Konseling </label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->konseling : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Rujuk </label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->rujuk : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Tata Laksana </label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tata_laksana : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Lain-lain </label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->lain : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Diperiksa Oleh</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->user->name : '-' }}</span>
+                                    </div>
+                                </div>
+                            @else
+                                <p class="text-center">Belum pernah melakukan pemeriksaan</p>
+                            @endif
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_9" role="tabpanel">
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Gangguan Ginjal</label>
-                                <div class="col-lg-8">
-                                    <span
-                                        class="fw-bolder fs-6 text-gray-800">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_ginjal : '-' }}</span>
-                                </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Gangguan Penglihatan</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_pengelihatan : '-' }}</span>
-                                </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Gangguan Pendengaran</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_pendengaran : '-' }}</span>
-                                </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Penyuluhan</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->penyuluhan : '-' }}</span>
-                                </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Pemberdayaan</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->pemberdayaan : '-' }}</span>
-                                </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Keterangan</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->keterangan : '-' }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="kt_tab_pane_10" role="tabpanel">
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Kolesterol</label>
-                                <div class="col-lg-8">
-                                    <span
-                                        class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->kolesterol : '-' }}
-                                        mg / dl </span>
-                                    <span
-                                        class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span>
-                                </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Gula Darah</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->gula_darah : '-' }}
-                                        mg / dl </span>
-                                    <span
-                                        class="badge {{ $statusGula == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusGula != null ? $statusGula : '' }}</span>
-                                </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Asam Urat</label>
-                                <div class="col-lg-8 fv-row">
-                                    <div class="col-lg-8 d-flex align-items-center">
+                            @if ($data->riwayat_gangguan->last() != null)
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Gangguan Ginjal</label>
+                                    <div class="col-lg-8">
                                         <span
-                                            class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->asam_urat : '-' }}
-                                            mg / dl </span>
-                                        <span
-                                            class="badge {{ $statusAsamUrat == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusAsamUrat != null ? $statusAsamUrat : '' }}</span>
+                                            class="fw-bolder fs-6 text-gray-800">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_ginjal : '-' }}</span>
                                     </div>
                                 </div>
-                                <!--end::Col-->
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Hemoglobin</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->hb : '-' }}
-                                        mg / dl </span>
-                                    <span
-                                        class="badge {{ $statusHb == 'Anemia' ? 'badge-danger' : 'badge-success ' }}">{{ $statusHb != null ? $statusHb : '' }}</span>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Gangguan Penglihatan</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_pengelihatan : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Gangguan Pendengaran</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_pendengaran : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Penyuluhan</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->penyuluhan : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Pemberdayaan</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->pemberdayaan : '-' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Keterangan</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->keterangan : '-' }}</span>
+                                    </div>
+                                </div>
+                            @else
+                                <p class="text-center">Belum pernah melakukan pemeriksaan</p>
+                            @endif
+                        </div>
+                        <div class="tab-pane fade" id="kt_tab_pane_10" role="tabpanel">
+                            @if ($data->pemerisaan_lab->last() != null)
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Kolesterol</label>
+                                    <div class="col-lg-8">
+                                        <span
+                                            class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->kolesterol : '-' }}
+                                            mg / dl </span>
+                                        <span
+                                            class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Gula Darah</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->gula_darah : '-' }}
+                                            mg / dl </span>
+                                        <span
+                                            class="badge {{ $statusGula == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusGula != null ? $statusGula : '' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Asam Urat</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <div class="col-lg-8 d-flex align-items-center">
+                                            <span
+                                                class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->asam_urat : '-' }}
+                                                mg / dl </span>
+                                            <span
+                                                class="badge {{ $statusAsamUrat == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusAsamUrat != null ? $statusAsamUrat : '' }}</span>
+                                        </div>
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Hemoglobin</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->hb : '-' }}
+                                            mg / dl </span>
+                                        <span
+                                            class="badge {{ $statusHb == 'Anemia' ? 'badge-danger' : 'badge-success ' }}">{{ $statusHb != null ? $statusHb : '' }}</span>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-7">
-                                <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
-                                <div class="col-lg-8 fv-row">
-                                    <span
-                                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->tanggal_p_lab->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->tanggal_p_lab->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <p class="text-center">Belum pernah melakukan pemeriksaan</p>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
+						<br>
+            {{-- ======================= --}}
+            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
+                <!--begin::Card header-->
+                <div class="card-header cursor-pointer">
+                    <!--begin::Card title-->
+                    <div class="card-title">
+                        <!--begin::Search-->
+                    <h3 class="card-title">Pemeriksaaan Fisik dan Tindakan</h3>
+
+                        <div class="d-flex align-items-center position-relative my-1">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                            {{-- <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
+                                        rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
+                                    <path
+                                        d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                                        fill="black" />
+                                </svg>
+                            </span> --}}
+                            <!--end::Svg Icon-->
+                            {{-- <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Customers" /> --}}
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <!--end::Card title-->
+                    <!--begin::Action-->
+                    <a  data-bs-toggle="modal" data-bs-target="#tindakan" class="btn btn-primary align-self-center">Tambah</a>
+                    <!--end::Action-->
+                </div>
+                <div class="card-body p-9 table-responsive">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
+                        <!--begin::Table head-->
+                        <thead>
+                            <!--begin::Table row-->
+                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                <th class="w-10px pe-2">
+                                    <div class="me-3">
+                                        No
+                                    </div>
+                                </th>
+                                <th class="min-w-125px text-center">Berat Badan</th>
+                                <th class="min-w-125px text-center">Tinggi Badan</th>
+                                <th class="min-w-125px text-center">IMT</th>
+                                <th class="min-w-125px text-center">Status Gizi</th>
+                                <th class="min-w-125px text-center">Tekanan Darah</th>
+                                <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
+                                <th class="text-end min-w-70px">Actions</th>
+                            </tr>
+                            <!--end::Table row-->
+                        </thead>
+                        <!--end::Table head-->
+                        <!--begin::Table body-->
+                        <tbody class="fw-bold text-gray-600">
+                            @foreach ($pemeriksaanFisik as $key => $val)
+                                <tr>
+                                    <td>
+                                        <div class="fs-7 text-dark fw-bolder">
+                                            {{ $key + $pemeriksaanFisik->firstItem() }}
+                                            {{-- {{ $loop->iteration }} --}}
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->berat_badan }} Kg</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tinggi_badan }} cm</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->imt }} Kg/m^2</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->status_gizi }}</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tekanan_darah }}</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p->translatedFormat('d M Y, h:i A') }}</a>
+                                        {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
+                                    </td>
+
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                            <span class="svg-icon svg-icon-5 m-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
+                                                        fill="black" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->
+                                        </a>
+                                        <!--begin::Menu-->
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                            data-kt-menu="true">
+                                            <div class="menu-item px-3">
+                                                <a data-bs-toggle="modal" data-bs-target="#tindakanEdit{{ $val->id }}" class="menu-link px-3">Edit</a>
+                                            </div>
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a data-bs-toggle="modal" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">View</a>
+
+                                            </div>
+                                            <!--end::Menu item-->
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 deleteFisik"
+                                                    data-kt-customer-table-filter="delete_row"
+                                                    data-id="{{ $val->id }}">Delete</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                        <!--end::Menu-->
+                                    </td>
+                                    <!--end::Action=-->
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    {{ $pemeriksaanFisik->links() }}
+
+                </div>
+                <!--end::Card body-->
+            </div>
+						{{-- <a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">Add New Target</a> --}}
+            {{-- ======================= --}}
+
 
             <!--end::Row-->
 
         </div>
+
         <!--end::Container-->
     </div>
     <!--end::Post-->
+		@include('admin.lansia.form.modal_fisik_tindakan')
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        @if (session()->has('success'))
+            swal("Success!", "Data Berhasil dibuat", "success");
+        @endif
+        @if (session()->has('successEdit'))
+            swal("Success!", "Data Berhasil diedit", "success");
+        @endif
+        @if (session()->has('success_hapus'))
+            swal("Success!", "Data Berhasil dihapus", "success");
+        @endif
+        $('.deleteFisik').click(function() {
+            var id = $(this).attr('data-id');
+            swal({
+                    title: "Apakah Anda Yakin?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "delete/fisik/" + id;
+                    } else {
+                        swal("Batal menghapus data!");
+                    }
+                });
+        });
+    </script>
 @endsection
