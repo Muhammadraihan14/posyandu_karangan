@@ -24,7 +24,7 @@ return new class extends Migration
             $table->enum('g_emosional',['Ya','Tidak'])->nullable();
             $table->enum('g_kognitiv',['Ya','Tidak'])->nullable();
 
-            $table->enum('p_resiko_malnutrisi',['N','M','RM'])->nullable();
+            $table->enum('p_resiko_malnutrisi',['Normal','Malnutrisi','Resiko Malnutrisi'])->nullable();
             // $table->integer('p_resiko_jatuh')->nullable();
             $table->enum('p_resiko_jatuh',['Ya','Tidak'])->nullable();
 

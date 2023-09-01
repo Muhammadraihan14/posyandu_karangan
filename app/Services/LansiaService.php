@@ -6,6 +6,8 @@ use DB;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Lansia;
+use App\Models\P_LAB;
+use App\Models\P3G;
 use App\Models\R_gangguan;
 use App\Models\P_Fisik_Tindakan;
 use Illuminate\Pagination\Paginator;
@@ -64,7 +66,7 @@ class LansiaService
         // $nilai_tk =  LansiaService::tekananDarah($params['sistole'], $params['diastole']);
 
         DB::beginTransaction();
-        // try {
+        try {
             //table lansia
             $inputlansia['name'] = $params['name'];
             $inputlansia['umur'] = $params['umur'];
@@ -176,11 +178,11 @@ class LansiaService
 
             }
             DB::commit();
-        //     return $data;
-        // } catch (\Throwable $th) {
-        //     DB::rollback();
-        //     return $th;
-        // }
+            return $data;
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th;
+        }
     }
     public static function LansiaDetail($id)
     {
@@ -415,6 +417,81 @@ class LansiaService
         }
     }
     // =============End Pemeriksaan fisik dan tindakan===============
+    // ============= LAB ==================
+    public static function LansiaStoreLAB($params)
+    {
+        DB::beginTransaction();
+        try {
+            $inputLabs['user_id'] = $params['user_id'];
+            $inputLabs['lansia_id'] = $params['lansia_id'];
+            $inputLabs['tanggal_p_lab'] = $params['tanggal_p_lab'];
+            $inputLabs['kolesterol'] = $params['kolesterol'];
+            $inputLabs['gula_darah'] = $params['gula_darah'];
+            $inputLabs['asam_urat'] = $params['asam_urat'];
+            $inputLabs['hb'] = $params['hb'];
+            if (isset($params['id'])) {
+                $data =  P_LAB::find($params['id']);
+                $data->update($inputLabs);
+            }else{
+                $data = P_LAB::create($inputLabs);
+            }
+            DB::commit();
+            return $data;
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th;
+        }
+    }
+    public static function delete_lab($id)
+    {
+        $data = P_LAB::find($id);
+        $data->delete();
+        if($data){
+            return "Deleted";
+        }else{
+            return "Failed";
+        }
+    }
+    // ============= End LAB==============
+    // ============= P3G ==================
+    public static function LansiaStoreP3G($params)
+    {
+        DB::beginTransaction();
+        try {
+                $inputP3G['user_id'] = $params['user_id'];
+                $inputP3G['lansia_id'] = $params['lansia_id'];
+                $inputP3G['tanggal_p_p3g'] = $params['tanggal_p_p3g'];
+                $inputP3G['tingkat_kemandirian'] = $params['tingkat_kemandirian'];
+                $inputP3G['g_emosional'] = $params['g_emosional'];
+                $inputP3G['g_kognitiv'] = $params['g_kognitiv'];
+                $inputP3G['p_resiko_malnutrisi'] = $params['p_resiko_malnutrisi'];
+                $inputP3G['p_resiko_jatuh'] = $params['p_resiko_jatuh'];
+            if (isset($params['id'])) {
+                $data =  P3G::find($params['id']);
+                $data->update($inputP3G);
+            }else{
+							// dd('Error');
+                $data = P3G::create($inputP3G);
+            }
+            DB::commit();
+            return $data;
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th;
+        }
+    }
+    public static function delete_p3g($id)
+    {
+        $data = P3G::find($id);
+        $data->delete();
+        if($data){
+            return "Deleted";
+        }else{
+            return "Failed";
+        }
+    }
+    // ============= End P3G==============
+
 
 
 

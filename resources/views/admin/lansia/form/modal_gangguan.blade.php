@@ -374,6 +374,12 @@
 															class="fw-bold text-gray-800 fs-6">{{ $val != null ? $val->keterangan : '-' }}</span>
 											</div>
 									</div>
+                                    <div class="row mb-7">
+                                        <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
+                                        <div class="col-lg-8 fv-row">
+                                                <span class="fw-bold text-gray-800 fs-6">{{ $val->tanggal_p_g != null ? $val->tanggal_p_g->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                        </div>
+                                </div>
 									<div class="row mb-7">
 										<label class="col-lg-4 fw-bold text-muted">Diperiksa Oleh</label>
 										<div class="col-lg-8 fv-row">

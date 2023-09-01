@@ -82,16 +82,22 @@ Route::get('lansia/delete/{id}', [LansiaController::class, 'delete'])->name('lan
 Route::get('lansia/{id}', [LansiaController::class, 'detail'])->name('lansia.detail')->middleware('auth');
 // Route::get('lansia/{id}', [LansiaController::class, 'detail'])->name('lansia.overview')->middleware('auth');
 // Route::get('lansia/create/gangguan', [LansiaController::class, 'create_ganngguan'])->name('lansia.create.ganngguan')->middleware('auth');
-Route::get('lansia/create/gangguan', [LansiaController::class, 'create_ganngguan'])->name('lansia.create.ganngguan')->middleware('auth');
+// Route::get('lansia/create/gangguan', [LansiaController::class, 'create_ganngguan'])->name('lansia.create.ganngguan')->middleware('auth');
 Route::get('lansia/edit/gangguan/{id}', [LansiaController::class, 'edit_ganngguan'])->name('lansia.edit.ganngguan')->middleware('auth');
 Route::post('lansia/gangguan/save', [LansiaController::class, 'save_gangguan'])->name('lansia.save.g')->middleware('auth');
 Route::get('lansia/delete/gangguan/{id}', [LansiaController::class, 'delete_gangguan'])->name('lansia.delete.g')->middleware('auth');
 
 
-Route::get('lansia/create/fisik', [LansiaController::class, 'create_fisik'])->name('lansia.create.fisik')->middleware('auth');
-Route::get('lansia/edit/fisik/{id}', [LansiaController::class, 'edit_fisik'])->name('lansia.edit.fisik')->middleware('auth');
+// Route::get('lansia/create/fisik', [LansiaController::class, 'create_fisik'])->name('lansia.create.fisik')->middleware('auth');
 Route::post('lansia/fisik/save', [LansiaController::class, 'save_fisik'])->name('lansia.save.f')->middleware('auth');
 Route::get('lansia/delete/fisik/{id}', [LansiaController::class, 'delete_fisik'])->name('lansia.delete.f')->middleware('auth');
+
+Route::post('lansia/lab/save', [LansiaController::class, 'save_lab'])->name('lansia.save.lab')->middleware('auth');
+Route::get('lansia/delete/lab/{id}', [LansiaController::class, 'delete_lab'])->name('lansia.delete.lab')->middleware('auth');
+
+
+Route::post('lansia/p3g/save', [LansiaController::class, 'save_p3g'])->name('lansia.save.p3g')->middleware('auth');
+Route::get('lansia/delete/p3g/{id}', [LansiaController::class, 'delete_p3g'])->name('lansia.delete.p3g')->middleware('auth');
 
 
 

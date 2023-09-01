@@ -143,8 +143,6 @@ class LansiaController extends Controller
             return redirect('lansia')->with('successEdit', 'Berhasil mengedit data');
         }
     }
-
-    
     public function detail(Request $request, $id)
     {
         $data = LansiaService::LansiaDetail($id);
@@ -157,6 +155,8 @@ class LansiaController extends Controller
         
         $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(5);
         $riwayat_gangguan = $data->riwayat_gangguan()->paginate(5);
+        $pemerisaan_lab = $data->pemerisaan_lab()->paginate(5);
+        $p3g = $data->p3g()->paginate(5);
         // dd($pemeriksaanFisik);
         if($data->p3g->last() != NULL){
            $statusMal = LansiaService::statusRmalNutrisi($data->p3g->last()->p_resiko_malnutrisi); 
@@ -188,10 +188,9 @@ class LansiaController extends Controller
         compact('data','desa','statusMal',
         'statusMan', 'statusKoles', 'statusGula', 
         'statusAsamUrat','statusHb','dataGangguan' ,
-        'FisikSelected','pemeriksaanFisik', 'riwayat_gangguan'));
+        'FisikSelected','pemeriksaanFisik', 'riwayat_gangguan',
+        'pemerisaan_lab','p3g'));
     }
-
-
     public function delete($id)
     {
         $data = LansiaService::deleteLansia($id);
@@ -305,4 +304,106 @@ class LansiaController extends Controller
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
     }
     // =================================================
+    // ===========LAB ==================================
+    public function save_lab(Request $request)
+    {
+        // dd($request);
+        if(!isset($request['id'])){
+            $validated = $request->validate([
+               //table p__l_a_b_s
+                'user_id' => 'required',
+                'lansia_id' => 'required',
+                'tanggal_p_lab' => 'required',
+                'kolesterol' => 'required',
+                'gula_darah' => 'required',
+                'asam_urat' => 'required',
+                'hb' => 'required',
+
+            ]);
+            $params = $validated;
+            // dd($params);
+        }else{
+            $validated = $request->validate([
+                //table lansia
+                'id' => 'required',
+                'user_id' => 'required',
+                'lansia_id' => 'required',
+                'tanggal_p_lab' => 'required',
+                'kolesterol' => 'required',
+                'gula_darah' => 'required',
+                'asam_urat' => 'required',
+                'hb' => 'required', 
+            ]);
+            $params = $validated;
+
+            // dd($params);
+        }
+        $data = LansiaService::LansiaStoreLAB($params);
+        if(!isset($request['id'])){
+            return back()->with('success', 'Berhasil menambahkan data');
+        }else{
+            return  back()->with('successEdit', 'Berhasil mengedit data');
+        }
+    }
+    public function delete_lab($id)
+    {
+        // dd($id);
+        $data = LansiaService::delete_lab($id);
+        return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
+    }
+    // =================================================
+    // =========== P3G ==================================
+    public function save_p3g(Request $request)
+    {
+        // dd($request);
+        if(!isset($request['id'])){
+            $validated = $request->validate([
+                // table p3_g_s
+                'user_id' => 'required',
+                'lansia_id' => 'required',
+                'tanggal_p_p3g' => 'required',
+                'tingkat_kemandirian' => 'required',
+                'g_emosional' => 'required',
+                'g_kognitiv' => 'required',
+                'p_resiko_malnutrisi' => 'required',
+                'p_resiko_jatuh' => 'required',
+            ]);
+            $params = $validated;
+            // dd($params);
+        }else{
+            $validated = $request->validate([
+                //table lansia
+                'id' => 'required',
+                'user_id' => 'required',
+                'lansia_id' => 'required',
+                'tanggal_p_p3g' => 'required',
+                'tingkat_kemandirian' => 'required',
+                'g_emosional' => 'required',
+                'g_kognitiv' => 'required',
+                'p_resiko_malnutrisi' => 'required',
+                'p_resiko_jatuh' => 'required', 
+            ]);
+            $params = $validated;
+
+            // dd($params);
+        }
+        $data = LansiaService::LansiaStoreP3G($params);
+        if(!isset($request['id'])){
+            return back()->with('success', 'Berhasil menambahkan data');
+        }else{
+            return  back()->with('successEdit', 'Berhasil mengedit data');
+        }
+    }
+    public function delete_p3g($id)
+    {
+        // dd($id);
+        $data = LansiaService::delete_p3g($id);
+        return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
+    }
+    // =================================================
+
+
+
+
+
 }
