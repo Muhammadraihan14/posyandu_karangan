@@ -153,10 +153,10 @@ class LansiaController extends Controller
         $desaSelected = $data->desa_id;
         $desa = Desa::find($desaSelected);
         
-        $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(5);
-        $riwayat_gangguan = $data->riwayat_gangguan()->paginate(5);
-        $pemerisaan_lab = $data->pemerisaan_lab()->paginate(5);
-        $p3g = $data->p3g()->paginate(5);
+        $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(3);
+        $riwayat_gangguan = $data->riwayat_gangguan()->paginate(3);
+        $pemerisaan_lab = $data->pemerisaan_lab()->paginate(3);
+        $p3g = $data->p3g()->paginate(3);
         // dd($pemeriksaanFisik);
         if($data->p3g->last() != NULL){
            $statusMal = LansiaService::statusRmalNutrisi($data->p3g->last()->p_resiko_malnutrisi); 
