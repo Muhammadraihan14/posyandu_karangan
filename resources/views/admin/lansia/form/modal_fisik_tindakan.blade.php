@@ -28,7 +28,6 @@
                       <form id="kt_modal_new_target_form" class="form" action="{{ route('lansia.save.f') }}"
                           method="POST">
                           @csrf
-
                           <div class="mb-13 text-center">
                               <h1 class="mb-3">Pemeriksaan Fisik dan Tindakan</h1>
                           </div>
@@ -54,29 +53,19 @@
                               <!--begin::Col-->
                               <div class="col-md-6 fv-row">
                                   <label class="required fs-6 fw-bold mb-2">Tinggi Badan</label>
-                                  <input type="number" name="tinggi_badan" @error('tinggi_badan') is-invalid @enderror
+                                  <input type="number" name="tinggi_badan" id="tinggi_badan" @error('tinggi_badan') is-invalid @enderror
                                       class="form-control form-control-solid" required />
                                   @error('tinggi_badan')
                                       <div class="invalid-feddback " role="alert">
                                           {{ $message }}
                                       </div>
                                   @enderror
-                                  {{-- <select class="form-select form-select-solid" data-control="select2"
-                                      data-hide-search="true" data-placeholder="Select a Team Member"
-                                      name="target_assign">
-                                      <option value="">Select user...</option>
-                                      <option value="1">Karina Clark</option>
-                                      <option value="2">Robert Doe</option>
-                                      <option value="3">Niel Owen</option>
-                                      <option value="4">Olivia Wild</option>
-                                      <option value="5">Sean Bean</option>
-                                  </select> --}}
                               </div>
                               <!--end::Col-->
                               <!--begin::Col-->
                               <div class="col-md-6 fv-row">
                                   <label class="required fs-6 fw-bold mb-2">Berat Badan</label>
-                                  <input type="number" name="berat_badan" @error('berat_badan') is-invalid @enderror
+                                  <input type="number" name="berat_badan" id="berat_badan" @error('berat_badan') is-invalid @enderror
                                       class="form-control form-control-solid" required />
                                   @error('berat_badan')
                                       <div class="invalid-feddback " role="alert">

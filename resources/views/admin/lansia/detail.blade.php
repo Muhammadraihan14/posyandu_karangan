@@ -120,7 +120,8 @@
                                             <div class="fw-bold fs-6 text-gray-400">Fisik dan Tindakan</div>
                                             <div class="d-flex align-items-center">
                                                 <div class="fs-2 fw-bolder" data-kt-countup="true"
-                                                    data-kt-countup-value="{{ $data->pemerisaan_fisik_tindakan->count() }}" >0</div>
+                                                    data-kt-countup-value="{{ $data->pemerisaan_fisik_tindakan->count() }}">
+                                                    0</div>
                                             </div>
                                             <!--end::Number-->
                                             <!--begin::Label-->
@@ -132,7 +133,7 @@
                                             <div class="fw-bold fs-6 text-gray-400">Gangguan</div>
                                             <div class="d-flex align-items-center">
                                                 <div class="fs-2 fw-bolder" data-kt-countup="true"
-                                                    data-kt-countup-value="{{ $data->riwayat_gangguan->count() }}" >0</div>
+                                                    data-kt-countup-value="{{ $data->riwayat_gangguan->count() }}">0</div>
                                             </div>
                                             <!--end::Number-->
                                             <!--begin::Label-->
@@ -144,7 +145,7 @@
                                             <div class="fw-bold fs-6 text-gray-400">Laboratorium</div>
                                             <div class="d-flex align-items-center">
                                                 <div class="fs-2 fw-bolder" data-kt-countup="true"
-                                                    data-kt-countup-value="{{ $data->pemerisaan_lab->count() }}" >0</div>
+                                                    data-kt-countup-value="{{ $data->pemerisaan_lab->count() }}">0</div>
                                             </div>
                                             <!--end::Number-->
                                             <!--begin::Label-->
@@ -156,7 +157,8 @@
                                             <div class="fw-bold fs-6 text-gray-400">P3G</div>
                                             <div class="d-flex align-items-center">
                                                 {{-- <div class="fs-2 fw-bolder" data-kt-countup="true"  data-kt-countup-value="{{ $data->p3g->count() }}" >0</div> --}}
-																								<div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="{{ $data->p3g->count() }}" >0</div>
+                                                <div class="fs-2 fw-bolder" data-kt-countup="true"
+                                                    data-kt-countup-value="{{ $data->p3g->count() }}">0</div>
 
                                             </div>
                                             <!--end::Number-->
@@ -481,13 +483,13 @@
                                             class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->tanggal_p_lab->translatedFormat('d M Y, h:i A') : '-' }}</span>
                                     </div>
                                 </div>
-																<div class="row mb-7">
-																	<label class="col-lg-4 fw-bold text-muted">Diperiksa Oleh</label>
-																	<div class="col-lg-8 fv-row">
-																			<span
-																					class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last()->user->name != null ? $data->pemerisaan_lab->last()->user->name : '-' }}</span>
-																	</div>
-															</div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Diperiksa Oleh</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last()->user->name != null ? $data->pemerisaan_lab->last()->user->name : '-' }}</span>
+                                    </div>
+                                </div>
                             @else
                                 <p class="text-center">Belum pernah melakukan pemeriksaan</p>
                             @endif
@@ -532,7 +534,8 @@
 
                                         <div class="col-lg-8 d-flex align-items-center">
                                             {{-- <span class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->p3g->last() != null ? $data->p3g->last()->p_resiko_malnutrisi : '-' }}</span> --}}
-                                            <span class="badge {{ $data->p3g->last()->p_resiko_malnutrisi == 'Malnutrisi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->p3g->last()->p_resiko_malnutrisi != null ? $data->p3g->last()->p_resiko_malnutrisi : '' }}</span>
+                                            <span
+                                                class="badge {{ $data->p3g->last()->p_resiko_malnutrisi == 'Malnutrisi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->p3g->last()->p_resiko_malnutrisi != null ? $data->p3g->last()->p_resiko_malnutrisi : '' }}</span>
                                         </div>
                                     </div>
                                     <!--end::Col-->
@@ -572,13 +575,13 @@
                                     </div>
                                     <!--end::Col-->
                                 </div>
-																<div class="row mb-7">
-																	<label class="col-lg-4 fw-bold text-muted">Diperiksa Oleh</label>
-																	<div class="col-lg-8 fv-row">
-																			<span
-																					class="fw-bold text-gray-800 fs-6">{{ $data->p3g->last()->user->name != null ? $data->p3g->last()->user->name : '-' }}</span>
-																	</div>
-															</div>
+                                <div class="row mb-7">
+                                    <label class="col-lg-4 fw-bold text-muted">Diperiksa Oleh</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <span
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->p3g->last()->user->name != null ? $data->p3g->last()->user->name : '-' }}</span>
+                                    </div>
+                                </div>
                             @else
                                 <p class="text-center">Belum pernah melakukan pemeriksaan</p>
                             @endif
@@ -597,7 +600,7 @@
                         <h3 class="card-title">Pemeriksaaan Fisik dan Tindakan</h3>
 
                         <div class="d-flex align-items-center position-relative my-1">
-                            
+
                         </div>
                         <!--end::Search-->
                     </div>
@@ -734,7 +737,7 @@
                         <h3 class="card-title">Riwayat Gangguan</h3>
 
                         <div class="d-flex align-items-center position-relative my-1">
-                            
+
                         </div>
                         <!--end::Search-->
                     </div>
@@ -859,7 +862,7 @@
                         <h3 class="card-title">Riwayat Laboratorium</h3>
 
                         <div class="d-flex align-items-center position-relative my-1">
-                            
+
                         </div>
                         <!--end::Search-->
                     </div>
@@ -982,7 +985,7 @@
                         <h3 class="card-title">Riwayat P3G</h3>
 
                         <div class="d-flex align-items-center position-relative my-1">
-                            
+
                         </div>
                         <!--end::Search-->
                     </div>
@@ -1188,6 +1191,20 @@
                 });
         });
     </script>
-		<script src="{{ url('/') }}/assets/plugins/global/plugins.bundle.js"></script>
-		<script src="{{ url('/') }}/assets/js/scripts.bundle.js"></script>
+    <script src="{{ url('/') }}/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="{{ url('/') }}/assets/js/scripts.bundle.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('6f68404576d48427f8f3', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('posyandu');
+        channel.bind('new-request', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>
 @endsection

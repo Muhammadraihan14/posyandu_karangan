@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
+use App\Events\SensorEvent;
 use Illuminate\Http\Request;
 use App\Services\DesaService;
 use App\Services\LansiaService;
+use App\Services\SensorService;
 use App\Models\P_Fisik_Tindakan;
 use Illuminate\Pagination\Paginator;
 
@@ -145,7 +147,11 @@ class LansiaController extends Controller
     }
     public function detail(Request $request, $id)
     {
+
         $data = LansiaService::LansiaDetail($id);
+        $dataSensor = SensorService::getDataSensor();
+        
+        
         // dd($data);
         $dataGangguan = LansiaService::GangguanList($request);
         // $dataFisik = PemeriksaanFisikService::FiskList($request, $id);

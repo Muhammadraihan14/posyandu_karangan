@@ -20,19 +20,18 @@ class LansiaService
 {
     public static function lansiaList(Request $request)
     {
-        // if($request->has('keywords')){
-        //     $data = Admin::leftJoin('users', 'users.id', 'admins.user_id')->select('users.*', 'admins.*')
-        //     ->where(function ($row) use ($request){
-        //             $row->where(function ($query) use ($request) {
-        //                 $query->where('users.name', 'like', '%' . $request->keywords . '%')
-        //                     ->orWhere('users.nip', 'like', '%' . $request->keywords . '%');
-        //             });
-        //     })->paginate(5);
+        if($request->has('keywords')){
+            $data = Lansia::where(function ($row) use ($request){
+                    $row->where(function ($query) use ($request) {
+                        $query->where('lansias.name', 'like', '%' . $request->keywords . '%')
+                            ->orWhere('lansias.nik', 'like', '%' . $request->keywords . '%');
+                    });
+            })->paginate(5);
 // SELECT `users`.*, `admins*` FROM `admins` LEFT JOIN `users` ON `users`.`id` = `admins`.`user_id`
 // WHERE ((`users`.`name` LIKE % $request % OR `users`.`nip` LIKE % $request %) )
-        // }else{
+        }else{
             $data = Lansia::with('pemerisaan_fisik_tindakan','pemerisaan_lab','p3g' , 'riwayat_gangguan' )->paginate(5);
-        // }
+        }
 
       
         Paginator::useBootstrap();

@@ -1,11 +1,13 @@
 <?php
 
+use App\Events\SensorEvent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DesaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LansiaController;
+use App\Http\Controllers\SensorController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
@@ -20,6 +22,7 @@ use App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -111,6 +114,12 @@ Route::get('desa/edit/{id}', [DesaController::class, 'edit'])->name('desa.edit')
 Route::get('desa/{id}', [DesaController::class, 'detail'])->name('desa.detail')->middleware('auth');
 Route::post('desa/save', [DesaController::class, 'save'])->name('desa.save')->middleware('auth');
 Route::get('desa/delete/{id}', [DesaController::class, 'delete'])->name('desa.delete')->middleware('auth');
+
+
+
+
+//Route di node MCU
+Route::get('/simpan/{nilaiTinggi}/{nilaiBerat}', [SensorController::class, 'simpan'])->middleware('auth');
 
 
 
