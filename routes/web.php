@@ -94,6 +94,8 @@ Route::get('lansia/delete/gangguan/{id}', [LansiaController::class, 'delete_gang
 // Route::get('lansia/create/fisik', [LansiaController::class, 'create_fisik'])->name('lansia.create.fisik')->middleware('auth');
 Route::post('lansia/fisik/save', [LansiaController::class, 'save_fisik'])->name('lansia.save.f')->middleware('auth');
 Route::get('lansia/delete/fisik/{id}', [LansiaController::class, 'delete_fisik'])->name('lansia.delete.f')->middleware('auth');
+Route::get('lansia/fisik/{id}', [LansiaController::class, 'detail_fisik'])->name('lansia.detail.f')->middleware('auth');
+
 
 Route::post('lansia/lab/save', [LansiaController::class, 'save_lab'])->name('lansia.save.lab')->middleware('auth');
 Route::get('lansia/delete/lab/{id}', [LansiaController::class, 'delete_lab'])->name('lansia.delete.lab')->middleware('auth');

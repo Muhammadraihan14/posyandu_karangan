@@ -1,111 +1,68 @@
-<!--begin::details View-->
-@if ($data->pemerisaan_fisik_tindakan->last() != null)
-    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
-        <!--begin::Card header-->
-        <div class="card-header cursor-pointer">
-            <!--begin::Card title-->
-            <div class="card-title m-0">
-                <h3 class="fw-bolder m-0">Pemeriksaan Fisik dan Tindakan Detail</h3>
-            </div>
-            <!--end::Card title-->
-            <!--begin::Action-->
-            <a href="../../demo1/dist/account/settings.html" class="btn btn-primary align-self-center">Edit Profile</a>
-            <!--end::Action-->
-        </div>
-        <!--begin::Card header-->
-        <!--begin::Card body-->
-        <div class="card-body p-9">
-            <!--begin::Row-->
-            <div class="row mb-7">
-                <!--begin::Label-->
-                <label class="col-lg-4 fw-bold text-muted">Berat Badan</label>
-                <!--end::Label-->
-                <!--begin::Col-->
-                <div class="col-lg-8">
-                    <span
-                        class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->berat_badan : '-' }} Kg </span>
-                    {{-- <span --}}
-                        {{-- class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span> --}}
+@extends('layouts.app')
+@section('head')
+    <title>Lansia Detail Fisik | Posyandu lansia</title>
+    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+@endsection
+@section('konten')
+    <div class="toolbar" id="kt_toolbar">
+        <!--begin::Container-->
+        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                <!--begin::Title-->
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Lansia</h1>
+                <!--end::Title-->
+                <!--begin::Separator-->
+                <span class="h-20px border-gray-200 border-start mx-4"></span>
+                <!--end::Separator-->
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
 
-                </div>
-                <!--end::Col-->
-            </div>
-            <div class="row mb-7">
-                <!--begin::Label-->
-                <label class="col-lg-4 fw-bold text-muted">Tinggi Badan</label>
-                <!--end::Label-->
-                <!--begin::Col-->
-                <div class="col-lg-8 fv-row">
-                    <span
-                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tinggi_badan : '-' }} m </span>
-												{{-- <span class="badge {{ $statusGula == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusGula != null ? $statusGula : '' }}</span> --}}
-                </div>
-                <!--end::Col-->
-            </div>
-            <div class="row mb-7">
-                <!--begin::Label-->
-                <label class="col-lg-4 fw-bold text-muted">IMT</label>
-                <!--end::Label-->
-                <!--begin::Col-->
-                <div class="col-lg-8 fv-row">
-
-                    <div class="col-lg-8 d-flex align-items-center">
-                        <span
-                            class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->imt : '-' }} Kg/m^2 </span>
-                            <span class="badge {{ $data->pemerisaan_fisik_tindakan->last()->status_gizi == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->status_gizi != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '' }}</span>
-
-                    </div>
-                </div>
-                <!--end::Col-->
-            </div>
-            <div class="row mb-7">
-                <label class="col-lg-4 fw-bold text-muted">Tekanan Darah </label>
-                <div class="col-lg-8 fv-row">
-                    <span
-                        class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->sistole : '-' }} / {{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->diastole : '-' }} mmHg </span>
-                        <span class="badge {{  $data->pemerisaan_fisik_tindakan->last()->tekanan_darah == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{  $data->pemerisaan_fisik_tindakan->last()->tekanan_darah != null ?  $data->pemerisaan_fisik_tindakan->last()->tekanan_darah : '' }}</span>
-                </div>
-            </div>
-            <div class="row mb-7">
-                <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
-                <div class="col-lg-8 fv-row">
-                    <span class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
-                </div>
+                    <li class="breadcrumb-item text-muted"><a href="{{ route('lansia') }}">List lansia</a></li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-dark"><a href="{{ route('lansia.detail', ['id' => $data->id]) }}">Detail lansia</a></li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-dark">Detail fisik lansia</li>
+                </ul>
+                <!--end::Breadcrumb-->
             </div>
         </div>
+        <!--end::Container-->
     </div>
-    {{-- ======================= --}}
+    {{-- ==========Pemeriksaaan Fisik dan Tindakan================= --}}
+    <br>
     <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
         <!--begin::Card header-->
         <div class="card-header cursor-pointer">
             <!--begin::Card title-->
             <div class="card-title">
                 <!--begin::Search-->
+                <h3 class="card-title">Pemeriksaaan Fisik dan Tindakan</h3>
+
                 <div class="d-flex align-items-center position-relative my-1">
-                    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                    <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none">
-                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
-                                rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
-                            <path
-                                d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                fill="black" />
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                    <input type="text" data-kt-customer-table-filter="search"
-                        class="form-control form-control-solid w-250px ps-15" placeholder="Search Customers" />
+
                 </div>
                 <!--end::Search-->
             </div>
             <!--end::Card title-->
             <!--begin::Action-->
-            <a href="../../demo1/dist/account/settings.html" class="btn btn-primary align-self-center">Edit Profile</a>
+            <a data-bs-toggle="modal" data-bs-target="#tindakan" class="btn btn-primary align-self-center">Tambah</a>
             <!--end::Action-->
         </div>
-        <!--begin::Card header-->
-        <!--begin::Card body-->
         <div class="card-body p-9 table-responsive">
             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                 <!--begin::Table head-->
@@ -121,8 +78,8 @@
                         <th class="min-w-125px text-center">Tinggi Badan</th>
                         <th class="min-w-125px text-center">IMT</th>
                         <th class="min-w-125px text-center">Status Gizi</th>
-                        <th class="min-w-125px">Tekanan Darah</th>
-                        <th class="min-w-125px">Tanggal Pemeriksaan</th>
+                        <th class="min-w-125px text-center">Tekanan Darah</th>
+                        <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
                         <th class="text-end min-w-70px">Actions</th>
                     </tr>
                     <!--end::Table row-->
@@ -130,54 +87,40 @@
                 <!--end::Table head-->
                 <!--begin::Table body-->
                 <tbody class="fw-bold text-gray-600">
-                    @foreach ($data->pemerisaan_fisik_tindakan as $key => $val)
+                    @foreach ($pemeriksaanFisik as $key => $val)
                         <tr>
-                            <!--begin::Checkbox-->
-                            <!--begin::nomor-->
                             <td>
                                 <div class="fs-7 text-dark fw-bolder">
-                                    {{-- {{ $key + $data->p3g->firstItem() }} --}}
-                                    {{ $loop->iteration }}
+                                    {{ $key + $pemeriksaanFisik->firstItem() }}
+                                    {{-- {{ $loop->iteration }} --}}
                                 </div>
                             </td>
-                            <!--end::nomor-->
-                            <!--end::Checkbox-->
-                            <!--begin::Email=-->
-                            <td class="text-center">{{ $val->berat_badan }}  mg / dl
+                            <td class="text-center">
+                                <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->berat_badan }} Kg</a>
                             </td>
-                            <!--end::Last login=-->
-                            <!--begin::Name=-->
-                            {{-- <td class="text-center">
-                                <a
-                                    href="#"class="text-dark fw-bolder text-hover-primary fs-6">{{ $val->gula_darah }}  mg / dl</a>
-                            </td> --}}
-                            <!--end::Name=-->
-                            <!--begin::Name=-->
-                            <td class="text-center">{{ $val->tinggi_badan }}  mg / dl</td>
-                            <!--end::Name=-->
-                            <!--begin::Name=-->
-                            <td class="text-center">{{ $val->imt }} Kg/m^2</td>
-                            <!--end::Name=-->
-                            <!--begin::Name=-->
-                            <td class="text-center">{{ $val->status_gizi }}</td>
-                            <!--end::Name=-->
-                            <!--begin::Name=-->
-                            <td class="text-center">{{ $val->tekanan_darah }}</td>
-                            <!--end::Name=-->
-                            {{-- <td class="text-center">
-                                <a
-                                    href="#"class="text-dark fw-bolder text-hover-primary fs-6">{{ $val->g_kognitiv }}</a>
-                            </td> --}}
-                            <!--begin::Joined-->
-                            <td class="text-center">{{ $val->tanggal_p->translatedFormat('d M Y, h:i A') }}
+                            <td class="text-center">
+                                <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->tinggi_badan }} cm</a>
                             </td>
-                            <!--end::Email=-->
-                            <!--begin::Company=-->
-                            {{-- <td>{{ $val->user->nip }}</td> --}}
-                            <!--end::Company=-->
-                            <!--begin::Payment method=-->
-                            <!--end::Date=-->
-                            <!--begin::Action=-->
+                            <td class="text-center">
+                                <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->imt }} Kg/m^2</a>
+                            </td>
+                            <td class="text-center">
+                                <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->status_gizi }}</a>
+                            </td>
+                            <td class="text-center">
+                                <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->tekanan_darah }}</a>
+                            </td>
+                            <td class="text-center">
+                                <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->tanggal_p->translatedFormat('d M Y, h:i A') }}</a>
+                                {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
+                            </td>
+
                             <td class="text-end">
                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -196,18 +139,19 @@
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                     data-kt-menu="true">
                                     <div class="menu-item px-3">
-                                        <a href="{{ route('blog.edit', ['id' => $val->id]) }}"
+                                        <a data-bs-toggle="modal" data-bs-target="#tindakanEdit{{ $val->id }}"
                                             class="menu-link px-3">Edit</a>
                                     </div>
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="{{ route('blog.detail', ['id' => $val->id]) }}"
+                                        <a data-bs-toggle="modal" data-bs-target="#detailFisik{{ $val->id }}"
                                             class="menu-link px-3">View</a>
+
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3 deleteMember"
+                                        <a href="#" class="menu-link px-3 deleteFisik"
                                             data-kt-customer-table-filter="delete_row"
                                             data-id="{{ $val->id }}">Delete</a>
                                     </div>
@@ -221,30 +165,108 @@
                 </tbody>
                 <!--end::Table body-->
             </table>
+            {{ $pemeriksaanFisik->links() }}
+
         </div>
         <!--end::Card body-->
     </div>
-    {{-- ======================= --}}
-@else
-    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
-        <!--begin::Card header-->
-        <div class="card-header cursor-pointer">
-            <!--begin::Card title-->
-            <div class="card-title m-0">
-                <h3 class="fw-bolder m-0">Pemeriksaan Laboratorium Details</h3>
-            </div>
-            <!--end::Card title-->
-            <!--begin::Action-->
-            {{-- <a href="../../demo1/dist/account/settings.html" class="btn btn-primary align-self-center">Edit Profile</a> --}}
-            <!--end::Action-->
-        </div>
-        <!--begin::Card header-->
-        <!--begin::Card body-->
-        <div class="card-body p-9">
-            <label class="col-lg-12 fw-bold text-muted text-center">Belum ada melakukan pemeriksaan
-                laboratorium</label>
-        </div>
-        <!--end::Card body-->
-    </div>
-@endif
-<!--end::details View-->
+    {{-- ==========End Pemeriksaaan Fisik dan Tindakan============= --}}
+
+    @include('admin.lansia.form.modal_fisik_tindakan')
+@endsection
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        @if (session()->has('success'))
+            swal("Success!", "Data Berhasil dibuat", "success");
+        @endif
+        @if (session()->has('successEdit'))
+            swal("Success!", "Data Berhasil diedit", "success");
+        @endif
+        @if (session()->has('success_hapus'))
+            swal("Success!", "Data Berhasil dihapus", "success");
+        @endif
+        $('.deleteFisik').click(function() {
+            var id = $(this).attr('data-id');
+            swal({
+                    title: "Apakah Anda Yakin?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "delete/fisik/" + id;
+                    } else {
+                        swal("Batal menghapus data!");
+                    }
+                });
+        });
+        $('.deleteGangguan').click(function() {
+            var id = $(this).attr('data-id');
+            swal({
+                    title: "Apakah Anda Yakin?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "delete/gangguan/" + id;
+                    } else {
+                        swal("Batal menghapus data!");
+                    }
+                });
+        });
+        $('.deleteLab').click(function() {
+            var id = $(this).attr('data-id');
+            swal({
+                    title: "Apakah Anda Yakin?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "delete/lab/" + id;
+                    } else {
+                        swal("Batal menghapus data!");
+                    }
+                });
+        });
+        $('.deleteP3G').click(function() {
+            var id = $(this).attr('data-id');
+            swal({
+                    title: "Apakah Anda Yakin?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "delete/p3g/" + id;
+                    } else {
+                        swal("Batal menghapus data!");
+                    }
+                });
+        });
+    </script>
+    <script src="{{ url('/') }}/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="{{ url('/') }}/assets/js/scripts.bundle.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('6f68404576d48427f8f3', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('posyandu');
+        channel.bind('new-request', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>
+@endsection

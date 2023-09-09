@@ -83,26 +83,6 @@
                                         </a>
                                         {{-- <a href="#" class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade to Pro</a> --}}
                                     </div>
-                                    <!--end::Name-->
-                                    <!--begin::Info-->
-                                    {{-- <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
-                                        <a href="#"
-                                            class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
-                                            <span class="svg-icon svg-icon-4 me-1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path opacity="0.3"
-                                                        d="M18.0624 15.3453L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3453C4.56242 13.6453 3.76242 11.4453 4.06242 8.94534C4.56242 5.34534 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24534 19.9624 9.94534C20.0624 12.0453 19.2624 13.9453 18.0624 15.3453Z"
-                                                        fill="black" />
-                                                    <path
-                                                        d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->{{ $data->alamat }}</a>
-                                    </div> --}}
-                                    <!--end::Info-->
                                 </div>
                                 <!--end::User-->
                             </div>
@@ -277,16 +257,25 @@
                             <!--end::Card body-->
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_8" role="tabpanel">
+
                             @if ($data->pemerisaan_fisik_tindakan->last() != null)
                                 <div class="row mb-7">
                                     <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">Berat Badan</label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-7">
                                         <span
                                             class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->berat_badan : '-' }}
                                             Kg </span>
+                                        {{-- <span --}}
+                                        {{-- class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span> --}}
+
+                                    </div>
+                                    <div class="col-lg-1">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-2x end"></i> --}}
+                                       <a href="{{ route('lansia.detail.f', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
+                                        {{-- <i class="bi bi-clock-history"></i> --}}
                                         {{-- <span --}}
                                         {{-- class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span> --}}
 
@@ -381,6 +370,7 @@
                             @else
                                 <p class="text-center">Belum pernah melakukan pemeriksaan</p>
                             @endif
+                            
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_9" role="tabpanel">
                             @if ($data->riwayat_gangguan->last() != null)
@@ -589,143 +579,7 @@
                     </div>
                 </div>
             </div>
-            {{-- ==========Pemeriksaaan Fisik dan Tindakan================= --}}
-            <br>
-            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
-                <!--begin::Card header-->
-                <div class="card-header cursor-pointer">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <!--begin::Search-->
-                        <h3 class="card-title">Pemeriksaaan Fisik dan Tindakan</h3>
 
-                        <div class="d-flex align-items-center position-relative my-1">
-
-                        </div>
-                        <!--end::Search-->
-                    </div>
-                    <!--end::Card title-->
-                    <!--begin::Action-->
-                    <a data-bs-toggle="modal" data-bs-target="#tindakan"
-                        class="btn btn-primary align-self-center">Tambah</a>
-                    <!--end::Action-->
-                </div>
-                <div class="card-body p-9 table-responsive">
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
-                        <!--begin::Table head-->
-                        <thead>
-                            <!--begin::Table row-->
-                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="w-10px pe-2">
-                                    <div class="me-3">
-                                        No
-                                    </div>
-                                </th>
-                                <th class="min-w-125px text-center">Berat Badan</th>
-                                <th class="min-w-125px text-center">Tinggi Badan</th>
-                                <th class="min-w-125px text-center">IMT</th>
-                                <th class="min-w-125px text-center">Status Gizi</th>
-                                <th class="min-w-125px text-center">Tekanan Darah</th>
-                                <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
-                                <th class="text-end min-w-70px">Actions</th>
-                            </tr>
-                            <!--end::Table row-->
-                        </thead>
-                        <!--end::Table head-->
-                        <!--begin::Table body-->
-                        <tbody class="fw-bold text-gray-600">
-                            @foreach ($pemeriksaanFisik as $key => $val)
-                                <tr>
-                                    <td>
-                                        <div class="fs-7 text-dark fw-bolder">
-                                            {{ $key + $pemeriksaanFisik->firstItem() }}
-                                            {{-- {{ $loop->iteration }} --}}
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailFisik{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->berat_badan }} Kg</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailFisik{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->tinggi_badan }} cm</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailFisik{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->imt }} Kg/m^2</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailFisik{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->status_gizi }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailFisik{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->tekanan_darah }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailFisik{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->tanggal_p->translatedFormat('d M Y, h:i A') }}</a>
-                                        {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
-                                    </td>
-
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-5 m-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
-                                            <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal"
-                                                    data-bs-target="#tindakanEdit{{ $val->id }}"
-                                                    class="menu-link px-3">Edit</a>
-                                            </div>
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal"
-                                                    data-bs-target="#detailFisik{{ $val->id }}"
-                                                    class="menu-link px-3">View</a>
-
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 deleteFisik"
-                                                    data-kt-customer-table-filter="delete_row"
-                                                    data-id="{{ $val->id }}">Delete</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu-->
-                                    </td>
-                                    <!--end::Action=-->
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <!--end::Table body-->
-                    </table>
-                    {{ $pemeriksaanFisik->links() }}
-
-                </div>
-                <!--end::Card body-->
-            </div>
-            {{-- ==========End Pemeriksaaan Fisik dan Tindakan============= --}}
             {{-- ==========Riwayat Gangguan================================ --}}
             <br>
             <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">

@@ -158,7 +158,6 @@ class LansiaController extends Controller
         // dd($dataFisik);
         $desaSelected = $data->desa_id;
         $desa = Desa::find($desaSelected);
-        
         $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(3);
         $riwayat_gangguan = $data->riwayat_gangguan()->paginate(3);
         $pemerisaan_lab = $data->pemerisaan_lab()->paginate(3);
@@ -308,6 +307,20 @@ class LansiaController extends Controller
         // dd($id);
         $data = LansiaService::deleteFisikTindakan($id);
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
+    }
+    public function detail_fisik($id)
+    {
+        // dd($id);
+        $data = LansiaService::LansiaDetail($id);
+        $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(3);
+        if($data->pemerisaan_fisik_tindakan->last() != NULL){
+            $FisikSelected = $data->pemerisaan_fisik_tindakan->last();
+        } else{
+            $FisikSelected = "";
+
+        }
+        return view('admin.lansia.detail_fisik',compact('data','pemeriksaanFisik','FisikSelected'));
+
     }
     // =================================================
     // ===========LAB ==================================
