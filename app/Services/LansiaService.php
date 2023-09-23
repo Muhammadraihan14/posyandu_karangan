@@ -3,16 +3,17 @@
 namespace App\Services;
 
 use DB;
+use App\Models\P3G;
 use App\Models\User;
 use App\Models\Admin;
-use App\Models\Lansia;
 use App\Models\P_LAB;
-use App\Models\P3G;
+use App\Models\Lansia;
 use App\Models\R_gangguan;
 use App\Models\P_Fisik_Tindakan;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Request;
+// use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Pagination\Paginator;
 
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('head')
     <title>Lansia Detail | Posyandu lansia</title>
-    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    {{-- <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" /> --}}
 @endsection
 @section('konten')
     <div class="toolbar" id="kt_toolbar">
@@ -99,9 +99,7 @@
                                             <!--begin::Number-->
                                             <div class="fw-bold fs-6 text-gray-400">Fisik dan Tindakan</div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bolder" data-kt-countup="true"
-                                                    data-kt-countup-value="{{ $data->pemerisaan_fisik_tindakan->count() }}">
-                                                    0</div>
+                                                <div class="fs-2 fw-bolder">{{ $data->pemerisaan_fisik_tindakan->count() }}</div>
                                             </div>
                                             <!--end::Number-->
                                             <!--begin::Label-->
@@ -112,8 +110,7 @@
                                             <!--begin::Number-->
                                             <div class="fw-bold fs-6 text-gray-400">Gangguan</div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bolder" data-kt-countup="true"
-                                                    data-kt-countup-value="{{ $data->riwayat_gangguan->count() }}">0</div>
+                                                <div class="fs-2 fw-bolder">{{ $data->riwayat_gangguan->count() }}</div>
                                             </div>
                                             <!--end::Number-->
                                             <!--begin::Label-->
@@ -124,8 +121,7 @@
                                             <!--begin::Number-->
                                             <div class="fw-bold fs-6 text-gray-400">Laboratorium</div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bolder" data-kt-countup="true"
-                                                    data-kt-countup-value="{{ $data->pemerisaan_lab->count() }}">0</div>
+                                                <div class="fs-2 fw-bolder">{{ $data->pemerisaan_lab->count() }}</div>
                                             </div>
                                             <!--end::Number-->
                                             <!--begin::Label-->
@@ -137,8 +133,7 @@
                                             <div class="fw-bold fs-6 text-gray-400">P3G</div>
                                             <div class="d-flex align-items-center">
                                                 {{-- <div class="fs-2 fw-bolder" data-kt-countup="true"  data-kt-countup-value="{{ $data->p3g->count() }}" >0</div> --}}
-                                                <div class="fs-2 fw-bolder" data-kt-countup="true"
-                                                    data-kt-countup-value="{{ $data->p3g->count() }}">0</div>
+                                                <div class="fs-2 fw-bolder">{{ $data->p3g->count() }}</div>
 
                                             </div>
                                             <!--end::Number-->
@@ -257,7 +252,6 @@
                             <!--end::Card body-->
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_8" role="tabpanel">
-
                             @if ($data->pemerisaan_fisik_tindakan->last() != null)
                                 <div class="row mb-7">
                                     <!--begin::Label-->
@@ -265,20 +259,11 @@
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-7">
-                                        <span
-                                            class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->berat_badan : '-' }}
+                                        <span class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->berat_badan : '-' }}
                                             Kg </span>
-                                        {{-- <span --}}
-                                        {{-- class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span> --}}
-
                                     </div>
                                     <div class="col-lg-1">
-                                        {{-- <i class="bi bi-bookmarks-fill fs-2x end"></i> --}}
                                        <a href="{{ route('lansia.detail.f', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
-                                        {{-- <i class="bi bi-clock-history"></i> --}}
-                                        {{-- <span --}}
-                                        {{-- class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span> --}}
-
                                     </div>
                                     <!--end::Col-->
                                 </div>
@@ -376,10 +361,12 @@
                             @if ($data->riwayat_gangguan->last() != null)
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Gangguan Ginjal</label>
-                                    <div class="col-lg-8">
-                                        <span
-                                            class="fw-bolder fs-6 text-gray-800">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_ginjal : '-' }}</span>
+                                    <div class="col-lg-7">
+                                        <span class="fw-bolder fs-6 text-gray-800">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_ginjal : '-' }}</span>
                                     </div>
+                                    <div class="col-lg-1">
+                                        <a href="{{ route('lansia.detail.g', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
+                                     </div>
                                 </div>
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Gangguan Penglihatan</label>
@@ -424,13 +411,16 @@
                             @if ($data->pemerisaan_lab->last() != null)
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Kolesterol</label>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-7">
                                         <span
                                             class="fw-bolder fs-6 text-gray-800">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->kolesterol : '-' }}
                                             mg / dl </span>
                                         <span
                                             class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span>
                                     </div>
+                                    <div class="col-lg-1">
+                                        <a href="{{ route('lansia.detail.lab', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
+                                     </div>
                                 </div>
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Gula Darah</label>
@@ -491,13 +481,13 @@
                                     <label class="col-lg-4 fw-bold text-muted">Tingkat Kemandirian (AKS/ADL)</label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
-                                    <div class="col-lg-8">
-                                        <span
-                                            class="fw-bolder fs-6 text-gray-800">{{ $data->p3g->last() != null ? $data->p3g->last()->tingkat_kemandirian : '-' }}</span>
-                                        <span
-                                            class="badge {{ $statusMan == 'Ketergantungan Berat / Total' ? 'badge-danger' : 'badge-success ' }}">{{ $statusMan != null ? $statusMan : '' }}</span>
-
+                                    <div class="col-mb-6 col-lg-7 ">
+                                        <span class="fw-bolder fs-6 text-gray-800">{{ $data->p3g->last() != null ? $data->p3g->last()->tingkat_kemandirian : '-' }}</span>
+                                        <span class="badge {{ $statusMan == 'Ketergantungan Berat / Total' ? 'badge-danger' : 'badge-success ' }}">{{ $statusMan != null ? $statusMan : '' }}</span>
                                     </div>
+                                    <div class="col-mb-end col-lg-1 ">
+                                        <a href="{{ route('lansia.detail.p3g', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
+                                     </div>
                                     <!--end::Col-->
                                 </div>
                                 <!--end::Row-->
@@ -581,375 +571,10 @@
             </div>
 
             {{-- ==========Riwayat Gangguan================================ --}}
-            <br>
-            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
-                <!--begin::Card header-->
-                <div class="card-header cursor-pointer">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <!--begin::Search-->
-                        <h3 class="card-title">Riwayat Gangguan</h3>
-
-                        <div class="d-flex align-items-center position-relative my-1">
-
-                        </div>
-                        <!--end::Search-->
-                    </div>
-                    <!--end::Card title-->
-                    <!--begin::Action-->
-                    <a data-bs-toggle="modal" data-bs-target="#gangguan"
-                        class="btn btn-primary align-self-center">Tambah</a>
-                    <!--end::Action-->
-                </div>
-                <div class="card-body p-9 table-responsive">
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
-                        <!--begin::Table head-->
-                        <thead>
-                            <!--begin::Table row-->
-                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="w-10px pe-2">
-                                    <div class="me-3">
-                                        No
-                                    </div>
-                                </th>
-                                <th class="min-w-125px text-center">Gangguan Ginjal</th>
-                                <th class="min-w-125px text-center">Gangguan Pengelihatan</th>
-                                <th class="min-w-125px text-center">Gangguan Pendengaran</th>
-                                <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
-                                <th class="text-end min-w-70px">Actions</th>
-                            </tr>
-                            <!--end::Table row-->
-                        </thead>
-                        <!--end::Table head-->
-                        <!--begin::Table body-->
-                        <tbody class="fw-bold text-gray-600">
-                            @foreach ($riwayat_gangguan as $key => $val)
-                                <tr>
-                                    <td>
-                                        <div class="fs-7 text-dark fw-bolder">
-                                            {{ $key + $riwayat_gangguan->firstItem() }}
-                                            {{-- {{ $loop->iteration }} --}}
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailGangguan{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->g_ginjal }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailGangguan{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->g_pengelihatan }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailGangguan{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->g_pendengaran }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailGangguan{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->tanggal_p_g->translatedFormat('d M Y, h:i A') }}</a>
-                                        {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
-                                    </td>
-
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-5 m-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
-                                            <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal"
-                                                    data-bs-target="#GangguanEdit{{ $val->id }}"
-                                                    class="menu-link px-3">Edit</a>
-                                            </div>
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal"
-                                                    data-bs-target="#detailGangguan{{ $val->id }}"
-                                                    class="menu-link px-3">View</a>
-
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 deleteGangguan"
-                                                    data-kt-customer-table-filter="delete_row"
-                                                    data-id="{{ $val->id }}">Delete</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu-->
-                                    </td>
-                                    <!--end::Action=-->
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <!--end::Table body-->
-                    </table>
-                    {{ $riwayat_gangguan->links() }}
-
-                </div>
-                <!--end::Card body-->
-            </div>
             {{-- ==========End Riwayat Gangguan=========================== --}}
             {{-- ==========LAB================================ --}}
-            <br>
-            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
-                <!--begin::Card header-->
-                <div class="card-header cursor-pointer">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <!--begin::Search-->
-                        <h3 class="card-title">Riwayat Laboratorium</h3>
-
-                        <div class="d-flex align-items-center position-relative my-1">
-
-                        </div>
-                        <!--end::Search-->
-                    </div>
-                    <!--end::Card title-->
-                    <!--begin::Action-->
-                    <a data-bs-toggle="modal" data-bs-target="#lab" class="btn btn-primary align-self-center">Tambah</a>
-                    <!--end::Action-->
-                </div>
-                <div class="card-body p-9 table-responsive">
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
-                        <!--begin::Table head-->
-                        <thead>
-                            <!--begin::Table row-->
-                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="w-10px pe-2">
-                                    <div class="me-3">
-                                        No
-                                    </div>
-                                </th>
-                                <th class="min-w-125px text-center">Kolesterol</th>
-                                <th class="min-w-125px text-center">Gula Darah</th>
-                                <th class="min-w-125px text-center">Asam Urat</th>
-                                {{-- <th class="min-w-125px text-center">Hb</th> --}}
-                                <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
-                                <th class="text-end min-w-70px">Actions</th>
-                            </tr>
-                            <!--end::Table row-->
-                        </thead>
-                        <!--end::Table head-->
-                        <!--begin::Table body-->
-                        <tbody class="fw-bold text-gray-600">
-                            @foreach ($pemerisaan_lab as $key => $val)
-                                <tr>
-                                    <td>
-                                        <div class="fs-7 text-dark fw-bolder">
-                                            {{ $key + $pemerisaan_lab->firstItem() }}
-                                            {{-- {{ $loop->iteration }} --}}
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailLab{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->kolesterol }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailLab{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->gula_darah }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailLab{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->asam_urat }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailLab{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->tanggal_p_lab->translatedFormat('d M Y, h:i A') }}</a>
-                                        {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
-                                    </td>
-
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-5 m-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
-                                            <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal" data-bs-target="#LabEdit{{ $val->id }}"
-                                                    class="menu-link px-3">Edit</a>
-                                            </div>
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal" data-bs-target="#detailLab{{ $val->id }}"
-                                                    class="menu-link px-3">View</a>
-
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 deleteLab"
-                                                    data-kt-customer-table-filter="delete_row"
-                                                    data-id="{{ $val->id }}">Delete</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu-->
-                                    </td>
-                                    <!--end::Action=-->
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <!--end::Table body-->
-                    </table>
-                    {{ $pemerisaan_lab->links() }}
-
-                </div>
-                <!--end::Card body-->
-            </div>
             {{-- ==========End LAB=========================== --}}
-            {{-- ========== P3G ================================ --}}
-            <br>
-            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
-                <!--begin::Card header-->
-                <div class="card-header cursor-pointer">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <!--begin::Search-->
-                        <h3 class="card-title">Riwayat P3G</h3>
-
-                        <div class="d-flex align-items-center position-relative my-1">
-
-                        </div>
-                        <!--end::Search-->
-                    </div>
-                    <!--end::Card title-->
-                    <!--begin::Action-->
-                    <a data-bs-toggle="modal" data-bs-target="#p3g" class="btn btn-primary align-self-center">Tambah</a>
-                    <!--end::Action-->
-                </div>
-                <div class="card-body p-9 table-responsive">
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
-                        <!--begin::Table head-->
-                        <thead>
-                            <!--begin::Table row-->
-                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="w-10px pe-2">
-                                    <div class="me-3">
-                                        No
-                                    </div>
-                                </th>
-                                <th class="min-w-125px text-center">Tingkat Kemandirian</th>
-                                <th class="min-w-125px text-center">Gangguan Emosi</th>
-                                <th class="min-w-125px text-center">Gangguan Kognitif</th>
-                                {{-- <th class="min-w-125px text-center">Hb</th> --}}
-                                <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
-                                <th class="text-end min-w-70px">Actions</th>
-                            </tr>
-                            <!--end::Table row-->
-                        </thead>
-                        <!--end::Table head-->
-                        <!--begin::Table body-->
-                        <tbody class="fw-bold text-gray-600">
-                            @foreach ($p3g as $key => $val)
-                                <tr>
-                                    <td>
-                                        <div class="fs-7 text-dark fw-bolder">
-                                            {{ $key + $p3g->firstItem() }}
-                                            {{-- {{ $loop->iteration }} --}}
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailP3G{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->tingkat_kemandirian }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailP3G{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->g_emosional }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailP3G{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->g_kognitiv }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a data-bs-toggle="modal" href="#"
-                                            data-bs-target="#detailP3G{{ $val->id }}"
-                                            class="menu-link px-3">{{ $val->tanggal_p_p3g->translatedFormat('d M Y, h:i A') }}</a>
-                                        {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
-                                    </td>
-
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-5 m-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
-                                            <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal" data-bs-target="#p3gEdit{{ $val->id }}"
-                                                    class="menu-link px-3">Edit</a>
-                                            </div>
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a data-bs-toggle="modal" data-bs-target="#detailP3G{{ $val->id }}"
-                                                    class="menu-link px-3">View</a>
-
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 deleteP3G"
-                                                    data-kt-customer-table-filter="delete_row"
-                                                    data-id="{{ $val->id }}">Delete</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu-->
-                                    </td>
-                                    <!--end::Action=-->
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <!--end::Table body-->
-                    </table>
-                    {{ $p3g->links() }}
-
-                </div>
-                <!--end::Card body-->
-            </div>
+            {{-- ========== P3G ================================ --}
             {{-- ==========End P3G =========================== --}}
 
 
@@ -1045,8 +670,7 @@
                 });
         });
     </script>
-    <script src="{{ url('/') }}/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="{{ url('/') }}/assets/js/scripts.bundle.js"></script>
+
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
         // Enable pusher logging - don't include this in production

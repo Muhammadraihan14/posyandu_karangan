@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('head')
     <title>Lansia Detail Fisik | Posyandu lansia</title>
-    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('konten')
     <div class="toolbar" id="kt_toolbar">
@@ -36,7 +35,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Detail laboratorium lansia</li>
+                    <li class="breadcrumb-item text-dark">Detail gangguan lansia</li>
                 </ul>
                 <!--end::Breadcrumb-->
             </div>
@@ -51,7 +50,7 @@
             <!--begin::Card title-->
             <div class="card-title">
                 <!--begin::Search-->
-                <h3 class="card-title">Riwayat Laboratorium</h3>
+                <h3 class="card-title">Riwayat Gangguan</h3>
 
                 <div class="d-flex align-items-center position-relative my-1">
 
@@ -60,7 +59,8 @@
             </div>
             <!--end::Card title-->
             <!--begin::Action-->
-            <a data-bs-toggle="modal" data-bs-target="#lab" class="btn btn-primary align-self-center">Tambah</a>
+            <a data-bs-toggle="modal" data-bs-target="#gangguan"
+                class="btn btn-primary align-self-center">Tambah</a>
             <!--end::Action-->
         </div>
         <div class="card-body p-9 table-responsive">
@@ -74,10 +74,9 @@
                                 No
                             </div>
                         </th>
-                        <th class="min-w-125px text-center">Kolesterol</th>
-                        <th class="min-w-125px text-center">Gula Darah</th>
-                        <th class="min-w-125px text-center">Asam Urat</th>
-                        {{-- <th class="min-w-125px text-center">Hb</th> --}}
+                        <th class="min-w-125px text-center">Gangguan Ginjal</th>
+                        <th class="min-w-125px text-center">Gangguan Pengelihatan</th>
+                        <th class="min-w-125px text-center">Gangguan Pendengaran</th>
                         <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
                         <th class="text-end min-w-70px">Actions</th>
                     </tr>
@@ -86,33 +85,33 @@
                 <!--end::Table head-->
                 <!--begin::Table body-->
                 <tbody class="fw-bold text-gray-600">
-                    @foreach ($pemerisaan_lab as $key => $val)
+                    @foreach ($riwayat_gangguan as $key => $val)
                         <tr>
                             <td>
                                 <div class="fs-7 text-dark fw-bolder">
-                                    {{ $key + $pemerisaan_lab->firstItem() }}
+                                    {{ $key + $riwayat_gangguan->firstItem() }}
                                     {{-- {{ $loop->iteration }} --}}
                                 </div>
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#"
-                                    data-bs-target="#detailLab{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->kolesterol }}</a>
+                                    data-bs-target="#detailGangguan{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->g_ginjal }}</a>
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#"
-                                    data-bs-target="#detailLab{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->gula_darah }}</a>
+                                    data-bs-target="#detailGangguan{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->g_pengelihatan }}</a>
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#"
-                                    data-bs-target="#detailLab{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->asam_urat }}</a>
+                                    data-bs-target="#detailGangguan{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->g_pendengaran }}</a>
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#"
-                                    data-bs-target="#detailLab{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->tanggal_p_lab->translatedFormat('d M Y, h:i A') }}</a>
+                                    data-bs-target="#detailGangguan{{ $val->id }}"
+                                    class="menu-link px-3">{{ $val->tanggal_p_g->translatedFormat('d M Y, h:i A') }}</a>
                                 {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
                             </td>
 
@@ -134,19 +133,21 @@
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                     data-kt-menu="true">
                                     <div class="menu-item px-3">
-                                        <a data-bs-toggle="modal" data-bs-target="#LabEdit{{ $val->id }}"
+                                        <a data-bs-toggle="modal"
+                                            data-bs-target="#GangguanEdit{{ $val->id }}"
                                             class="menu-link px-3">Edit</a>
                                     </div>
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a data-bs-toggle="modal" data-bs-target="#detailLab{{ $val->id }}"
+                                        <a data-bs-toggle="modal"
+                                            data-bs-target="#detailGangguan{{ $val->id }}"
                                             class="menu-link px-3">View</a>
 
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3 deleteLab"
+                                        <a href="#" class="menu-link px-3 deleteGangguan"
                                             data-kt-customer-table-filter="delete_row"
                                             data-id="{{ $val->id }}">Delete</a>
                                     </div>
@@ -160,18 +161,20 @@
                 </tbody>
                 <!--end::Table body-->
             </table>
-            {{ $pemerisaan_lab->links() }}
+            {{ $riwayat_gangguan->links() }}
 
         </div>
         <!--end::Card body-->
     </div>
     {{-- ==========End Pemeriksaaan Fisik dan Tindakan============= --}}
 
-    @include('admin.lansia.form.modal_lab')
+    @include('admin.lansia.form.modal_gangguan')
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 
     <script>
         @if (session()->has('success'))

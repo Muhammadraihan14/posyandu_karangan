@@ -89,6 +89,8 @@ Route::get('lansia/{id}', [LansiaController::class, 'detail'])->name('lansia.det
 Route::get('lansia/edit/gangguan/{id}', [LansiaController::class, 'edit_ganngguan'])->name('lansia.edit.ganngguan')->middleware('auth');
 Route::post('lansia/gangguan/save', [LansiaController::class, 'save_gangguan'])->name('lansia.save.g')->middleware('auth');
 Route::get('lansia/delete/gangguan/{id}', [LansiaController::class, 'delete_gangguan'])->name('lansia.delete.g')->middleware('auth');
+Route::get('lansia/gangguan/{id}', [LansiaController::class, 'detail_gangguan'])->name('lansia.detail.g')->middleware('auth');
+
 
 
 // Route::get('lansia/create/fisik', [LansiaController::class, 'create_fisik'])->name('lansia.create.fisik')->middleware('auth');
@@ -99,10 +101,14 @@ Route::get('lansia/fisik/{id}', [LansiaController::class, 'detail_fisik'])->name
 
 Route::post('lansia/lab/save', [LansiaController::class, 'save_lab'])->name('lansia.save.lab')->middleware('auth');
 Route::get('lansia/delete/lab/{id}', [LansiaController::class, 'delete_lab'])->name('lansia.delete.lab')->middleware('auth');
+Route::get('lansia/lab/{id}', [LansiaController::class, 'detail_lab'])->name('lansia.detail.lab')->middleware('auth');
+
 
 
 Route::post('lansia/p3g/save', [LansiaController::class, 'save_p3g'])->name('lansia.save.p3g')->middleware('auth');
 Route::get('lansia/delete/p3g/{id}', [LansiaController::class, 'delete_p3g'])->name('lansia.delete.p3g')->middleware('auth');
+Route::get('lansia/p3g/{id}', [LansiaController::class, 'detail_p3g'])->name('lansia.detail.p3g')->middleware('auth');
+
 
 
 
@@ -121,7 +127,7 @@ Route::get('desa/delete/{id}', [DesaController::class, 'delete'])->name('desa.de
 
 
 //Route di node MCU
-Route::get('/simpan/{nilaiTinggi}/{nilaiBerat}', [SensorController::class, 'simpan'])->middleware('auth');
+Route::get('/simpan/{nilaiTinggi}/{nilaiBerat}', [SensorController::class, 'simpan']);
 
 
 

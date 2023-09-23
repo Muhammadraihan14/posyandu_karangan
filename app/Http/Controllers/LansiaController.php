@@ -147,12 +147,8 @@ class LansiaController extends Controller
     }
     public function detail(Request $request, $id)
     {
-
         $data = LansiaService::LansiaDetail($id);
-        $dataSensor = SensorService::getDataSensor();
-        
-        
-        // dd($data);
+        $dataSensor = SensorService::getDataSensor();   
         $dataGangguan = LansiaService::GangguanList($request);
         // $dataFisik = PemeriksaanFisikService::FiskList($request, $id);
         // dd($dataFisik);
@@ -248,12 +244,29 @@ class LansiaController extends Controller
             return  back()->with('successEdit', 'Berhasil mengedit data');
         }
     }
-
     public function delete_gangguan($id)
     {
         $data = LansiaService::deleteGangguan($id);
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
     }
+    public function detail_gangguan($id)
+    {
+        // dd($id);
+        $data = LansiaService::LansiaDetail($id);
+        // $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(3);
+        $riwayat_gangguan = $data->riwayat_gangguan()->paginate(5);
+        // if($data->pemerisaan_fisik_tindakan->last() != NULL){
+        //     $FisikSelected = $data->pemerisaan_fisik_tindakan->last();
+        // } else{
+        //     $FisikSelected = "";
+
+        // }
+        Paginator::useBootstrap();
+
+        return view('admin.lansia.detail_gangguan',compact('data','riwayat_gangguan'));
+
+    }
+
     // ================================================
 
 
@@ -312,13 +325,15 @@ class LansiaController extends Controller
     {
         // dd($id);
         $data = LansiaService::LansiaDetail($id);
-        $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(3);
+        $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(5);
         if($data->pemerisaan_fisik_tindakan->last() != NULL){
             $FisikSelected = $data->pemerisaan_fisik_tindakan->last();
         } else{
             $FisikSelected = "";
 
         }
+        Paginator::useBootstrap();
+
         return view('admin.lansia.detail_fisik',compact('data','pemeriksaanFisik','FisikSelected'));
 
     }
@@ -370,6 +385,26 @@ class LansiaController extends Controller
         $data = LansiaService::delete_lab($id);
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
     }
+    public function detail_lab(Request $request, $id)
+    {
+        // dd($id);
+        $data = LansiaService::LansiaDetail($id);
+        if($data->pemerisaan_lab->last() != NULL){
+            $statusKoles = LansiaService::statusKolesterol($data->pemerisaan_lab->last()->kolesterol);
+            $statusGula = LansiaService::statusGula($data->pemerisaan_lab->last()->gula_darah);
+            $statusAsamUrat = LansiaService::statusAsamUrat($data->pemerisaan_lab->last()->asam_urat, $data->gender);
+            $statusHb = LansiaService::statusHB($data->pemerisaan_lab->last()->hb, $data->gender);
+        } else{
+            $statusKoles = '';
+            $statusGula = '';
+            $statusAsamUrat ='';
+            $statusHb ='';
+        }
+        $pemerisaan_lab = $data->pemerisaan_lab()->paginate(5);
+        Paginator::useBootstrap();
+        return view('admin.lansia.detail_lab',compact('data','pemerisaan_lab','statusKoles','statusGula','statusAsamUrat','statusHb'));
+
+    }
     // =================================================
     // =========== P3G ==================================
     public function save_p3g(Request $request)
@@ -418,6 +453,22 @@ class LansiaController extends Controller
         // dd($id);
         $data = LansiaService::delete_p3g($id);
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
+    }
+    public function detail_p3g($id)
+    {
+        // dd($id);
+        $data = LansiaService::LansiaDetail($id);
+        $p3g = $data->p3g()->paginate(5);
+        if($data->p3g->last() != NULL){
+            $statusMal = LansiaService::statusRmalNutrisi($data->p3g->last()->p_resiko_malnutrisi); 
+            $statusMan = LansiaService::statusMandiri($data->p3g->last()->tingkat_kemandirian);
+         }else{
+              $statusMal = '';
+              $statusMan = '';
+         }
+        Paginator::useBootstrap();
+        return view('admin.lansia.detail_p3g',compact('data','p3g','statusMal','statusMan'));
+
     }
     // =================================================
 
