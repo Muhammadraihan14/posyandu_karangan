@@ -59,8 +59,7 @@
             </div>
             <!--end::Card title-->
             <!--begin::Action-->
-            <a data-bs-toggle="modal" data-bs-target="#gangguan"
-                class="btn btn-primary align-self-center">Tambah</a>
+            <a data-bs-toggle="modal" data-bs-target="#gangguan" class="btn btn-primary align-self-center">Tambah</a>
             <!--end::Action-->
         </div>
         <div class="card-body p-9 table-responsive">

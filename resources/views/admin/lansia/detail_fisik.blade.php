@@ -266,4 +266,6 @@
             alert(JSON.stringify(data));
         });
     </script>
+    <script src="/js/app.js"></script>
+
 @endsection

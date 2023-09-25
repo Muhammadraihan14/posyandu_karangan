@@ -382,15 +382,15 @@
                                         <!--end::nomor-->
                                         <!--end::Checkbox-->
                                         <!--begin::Name=-->
-                                        <td>
-                                            <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
-                                                class="text-gray-800 text-hover-primary mb-1">{{ $val->name }}</a>
+                                        <td>{{ $val->name }}
+                                            {{-- <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
+                                                class="text-gray-800 text-hover-primary mb-1"></a> --}}
                                         </td>
                                         <!--end::Name=-->
                                         <!--begin::Name=-->
-                                        <td>
-                                            <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
-                                                class="text-gray-800 text-hover-primary mb-1">{{ $val->latitude}}</a>
+                                        <td>{{ $val->latitude}}
+                                            {{-- <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
+                                                class="text-gray-800 text-hover-primary mb-1"></a> --}}
                                         </td>
                                         <!--end::Name=-->
                                         <!--begin::Email=-->
@@ -431,10 +431,10 @@
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
+                                                {{-- <div class="menu-item px-3">
                                                     <a href="{{ route('desa.detail', ['id' => $val->id]) }}"
                                                         class="menu-link px-3">View</a>
-                                                </div>
+                                                </div> --}}
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">

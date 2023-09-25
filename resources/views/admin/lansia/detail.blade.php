@@ -353,9 +353,9 @@
                                     </div>
                                 </div>
                             @else
-                                <p class="text-center">Belum pernah melakukan pemeriksaan</p>
+                            <div class="row mb-12"> <p class="text-center col-lg-6">Belum c pernah melakukan pemeriksaan</p>
+                                <p class="text-center col-lg-6">btn</p></div>
                             @endif
-                            
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_9" role="tabpanel">
                             @if ($data->riwayat_gangguan->last() != null)
@@ -404,7 +404,10 @@
                                     </div>
                                 </div>
                             @else
-                                <p class="text-center">Belum pernah melakukan pemeriksaan</p>
+                            <div class="row mb-12">
+                                <a data-bs-toggle="modal" data-bs-target="#gangguan" class="btn btn-primary align-self-center">Tambah</a>
+                            </div> 
+                            <div class="row"><p class="text-center col-12">Belum pernah melakukan pemeriksaan</p></div>
                             @endif
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_10" role="tabpanel">

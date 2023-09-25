@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
+use App\Models\Sensor;
 use App\Events\SensorEvent;
 use Illuminate\Http\Request;
 use App\Services\DesaService;
@@ -324,6 +325,12 @@ class LansiaController extends Controller
     public function detail_fisik($id)
     {
         // dd($id);
+
+
+
+        $dataSensor = Sensor::find(1);
+        // dd($dataSensor);
+        event(new SensorEvent($dataSensor->berat_badan, $dataSensor->tinggi_badan));
         $data = LansiaService::LansiaDetail($id);
         $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(5);
         if($data->pemerisaan_fisik_tindakan->last() != NULL){
