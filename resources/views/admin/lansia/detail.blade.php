@@ -675,6 +675,7 @@
     </script>
 
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
@@ -685,7 +686,10 @@
 
         var channel = pusher.subscribe('posyandu');
         channel.bind('new-request', function(data) {
-            alert(JSON.stringify(data));
+            console.log(data.tinggi);
+            $('#tinggi_badan').val(data.tinggi).toString();
+
+
         });
     </script>
 @endsection

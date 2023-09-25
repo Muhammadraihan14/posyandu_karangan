@@ -262,7 +262,11 @@
 
         var channel = pusher.subscribe('posyandu');
         channel.bind('new-request', function(data) {
-            alert(JSON.stringify(data));
+            // alert(JSON.stringify(data));
+            let authors = data;
+            authors.map(function(author) {
+
+});
         });
     </script>
 @endsection
