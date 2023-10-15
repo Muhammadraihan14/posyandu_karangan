@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use DB;
+use File;
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Petugas;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
+
 
 
 
@@ -19,56 +21,72 @@ class BlogService
         Paginator::useBootstrap();
         return $data;
     }
-    public static function PetugasStore($params)
+    public static function BlogStore($params)
     {
-        $username = $params['name'].rand(pow(10, 8 - 1), pow(10, 8) -1);
         DB::beginTransaction();
         try {
-            $inputUser['user_name'] = $username;
-            $inputUser['user_type'] = 'petugas';
-            $inputUser['name'] = $params['name'];
-            $inputUser['email'] = $params['email'];
-            $inputUser['nip'] = $params['nip'];
-            $inputUser['gender'] = $params['gender'];
-            $inputUser['password'] = Hash::make($params['password']);
+ 
+            // $inputUser['judul'] = $params['judul'];
+            // $inputUser['isi'] = $params['isi'];
+            // // $inputUser['image_url'] = $params['image_url'];
+            $inputUser['creator_id'] = $params['user_id'];
             if(isset($params['image_url'])){
                 $inputUser['image_url'] = $params['image_url'];
-            }   
+            } 
+            if(isset($params['judul'])){
+                $inputUser['judul'] = $params['judul'];
+            } 
+            if(isset($params['isi'])){
+                $inputUser['isi'] = $params['isi'];
+            } 
             if (isset($params['id'])) {
                 // dd("edit");
-                $petugas =  Petugas::find($params['id']);
-                // dd($petugas);
-                $petugas->update([]);
-                $user = $petugas->user()->update($inputUser);
+                $petugas =  Blog::find($params['id']);
+                if(isset($params['image_url'])){
+                    File::delete(asset('upload'.$petugas->image_url));
+                }
+                // dd($petugas->image_url);
+                // $petugas->update([]);
+
+                $blog = $petugas->update($inputUser);
             }else{
-                $user = User::create($inputUser);
-                $petugas = $data->petugas()->create([]);
+                // dd("Error");
+                $blog = Blog::create($inputUser);
+                // $petugas = $blog->user()->create([]);
             }
             DB::commit();
-            return $user;
+            return $blog;
         } catch (\Throwable $th) {
             DB::rollback();
             return $th;
         }
     }
-    public static function PetugasDetail($id)
+    public static function BlogDetail($id)
     {
         $data = Petugas::with('user')->find($id);
         return $data;
     }
-    public static function PetugasEdit($id)
+    public static function BlogEdit($id)
     {
-        $data = Petugas::with('user')->find($id);
+        $data = Blog::with('user')->find($id);
         return $data;
     }
     public static function delete($id)
     {
-        $data = Petugas::with('user')->find($id);
+        $data = Blog::find($id);
         $data->delete();
         if($data){
             return "Deleted";
         }else{
             return "Failed";
         }
+    }
+
+
+    public static function totalBlog()
+    {
+        $data = Blog::count();
+        // dd($data);
+        return $data;
     }
 }

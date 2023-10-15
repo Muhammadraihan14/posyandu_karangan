@@ -186,7 +186,7 @@ class LansiaService
     }
     public static function LansiaDetail($id)
     {
-        $data = Lansia::with('pemerisaan_fisik_tindakan','pemerisaan_lab','p3g' , 'riwayat_gangguan.user')->find($id);
+        $data = Lansia::with('pemerisaan_fisik_tindakan.user','pemerisaan_lab.user','p3g.user' , 'riwayat_gangguan.user')->find($id);
         return $data;
     }
     public static function LansiaEdit($id)
@@ -493,6 +493,10 @@ class LansiaService
     // ============= End P3G==============
 
 
-
-
+    public static function totalLansia()
+    {
+        $data = Lansia::count();
+        // dd($data);
+        return $data;
+    }
 }

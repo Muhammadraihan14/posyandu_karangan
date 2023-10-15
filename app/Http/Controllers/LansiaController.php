@@ -262,6 +262,8 @@ class LansiaController extends Controller
         //     $FisikSelected = "";
 
         // }
+        // dd($data);
+
         Paginator::useBootstrap();
 
         return view('admin.lansia.detail_gangguan',compact('data','riwayat_gangguan'));
@@ -324,13 +326,7 @@ class LansiaController extends Controller
     }
     public function detail_fisik($id)
     {
-        // dd($id);
 
-
-
-        $dataSensor = Sensor::find(1);
-        // dd($dataSensor);
-        event(new SensorEvent($dataSensor->berat_badan, $dataSensor->tinggi_badan));
         $data = LansiaService::LansiaDetail($id);
         $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(5);
         if($data->pemerisaan_fisik_tindakan->last() != NULL){
@@ -389,6 +385,7 @@ class LansiaController extends Controller
     public function delete_lab($id)
     {
         // dd($id);
+        
         $data = LansiaService::delete_lab($id);
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
     }

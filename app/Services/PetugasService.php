@@ -86,4 +86,12 @@ class PetugasService
             return "Failed";
         }
     }
+
+
+    public static function totalPetugas()
+    {
+        $data = Petugas::count();
+        // dd($data);
+        return $data;
+    }
 }

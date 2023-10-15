@@ -112,7 +112,7 @@
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#"
                                     data-bs-target="#detailLab{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->tanggal_p_lab->translatedFormat('d M Y, h:i A') }}</a>
+                                    class="menu-link px-3">{{ $val->tanggal_p_lab->translatedFormat('d M Y') }}</a>
                                 {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
                             </td>
 
@@ -166,6 +166,40 @@
         <!--end::Card body-->
     </div>
     {{-- ==========End Pemeriksaaan Fisik dan Tindakan============= --}}
+    <div class="card card-xl-stretch mb-5 mb-xl-8 ">
+        <!--begin::Header-->
+        <div class="card-header align-items-center border-0 mt-4">
+            <h3 class="card-title align-items-start flex-column">
+                <span class="fw-bolder mb-2 text-dark">Riwayat Aktifitas </span>
+                <span class="text-muted fw-bold fs-7">Total : {{ $data->pemerisaan_lab->count() }}</span>
+            </h3>
+        </div>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class="card-body  card-scroll h-400px pt-5">
+            <!--begin::Timeline-->
+            <div class="timeline-label">
+                <!--begin::Item-->
+                @foreach ($data->pemerisaan_lab as $key => $val)
+                    <div class="timeline-item">
+                        <!--begin::Label-->
+                        <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ $val->tanggal_p_lab->translatedFormat('h:i A') }}</div>
+                        <!--end::Label-->
+                        <!--begin::Badge-->
+                        <div class="timeline-badge">
+                            <i class="fa fa-genderless text-primary fs-1"></i>
+                        </div>
+                        <!--end::Badge-->
+                        <!--begin::Text-->
+                        <div class="fw-mormal timeline-content text-muted ps-3">Diperiksa oleh : {{ $val->user->name }}, {{  $val->tanggal_p_lab->translatedFormat('d M Y') }}</div>
+                        <!--end::Text-->
+                    </div>
+                @endforeach
+            </div>
+            <!--end::Timeline-->
+        </div>
+        <!--end: Card Body-->
+    </div>
 
     @include('admin.lansia.form.modal_lab')
 @endsection
@@ -193,7 +227,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/fisik/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -209,7 +243,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/gangguan/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -225,7 +259,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/lab/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -241,7 +275,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/p3g/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }

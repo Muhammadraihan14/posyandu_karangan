@@ -164,7 +164,13 @@
                 <!--begin: Pic-->
                 <div class="me-7 mb-4">
                     <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                        @if($data->user->image_url == null)
+                        <img src="{{ url('/') }}/assets/media/avatars/blank.png" alt="image"/>
+
+                        @else
                         <img src="{{ $data->user->image_url }}" alt="image" />
+
+                        @endif
                         <div
                             class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px">
                         </div>

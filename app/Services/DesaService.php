@@ -96,4 +96,11 @@ class DesaService
             return "Failed";
         }
     }
+
+    public static function totalDesa()
+    {
+        $data = Desa::count();
+        // dd($data);
+        return $data;
+    }
 }

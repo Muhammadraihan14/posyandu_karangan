@@ -110,7 +110,7 @@
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#"
                                     data-bs-target="#detailGangguan{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->tanggal_p_g->translatedFormat('d M Y, h:i A') }}</a>
+                                    class="menu-link px-3">{{ $val->tanggal_p_g->translatedFormat('d M Y') }}</a>
                                 {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
                             </td>
 
@@ -164,8 +164,167 @@
 
         </div>
         <!--end::Card body-->
+
+
+
+        
     </div>
     {{-- ==========End Pemeriksaaan Fisik dan Tindakan============= --}}
+
+
+
+    <div class="card card-xl-stretch mb-5 mb-xl-8 ">
+        <!--begin::Header-->
+        <div class="card-header align-items-center border-0 mt-4">
+            <h3 class="card-title align-items-start flex-column">
+                <span class="fw-bolder mb-2 text-dark">Riwayat Aktifitas </span>
+                <span class="text-muted fw-bold fs-7">Total : {{ $data->riwayat_gangguan->count() }}</span>
+            </h3>
+        </div>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class="card-body  card-scroll h-400px pt-5">
+            <!--begin::Timeline-->
+            <div class="timeline-label">
+                <!--begin::Item-->
+                @foreach ($data->riwayat_gangguan as $key => $val)
+                    <div class="timeline-item">
+                        <!--begin::Label-->
+                        <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ $val->tanggal_p_g->translatedFormat('h:i A') }}</div>
+                        <!--end::Label-->
+                        <!--begin::Badge-->
+                        <div class="timeline-badge">
+                            <i class="fa fa-genderless text-danger fs-1"></i>
+                        </div>
+                        <!--end::Badge-->
+                        <!--begin::Text-->
+                        <div class="fw-mormal timeline-content text-muted ps-3">Diperiksa oleh : {{ $val->user->name }} {{  $val->tanggal_p_g->translatedFormat('d M Y') }}</div>
+                        <!--end::Text-->
+                    </div>
+                @endforeach
+
+                <!--end::Item-->
+                <!--begin::Item-->
+                {{-- <div class="timeline-item">
+                    <!--begin::Label-->
+                    <div class="timeline-label fw-bolder text-gray-800 fs-6">10:00</div>
+                    <!--end::Label-->
+                    <!--begin::Badge-->
+                    <div class="timeline-badge">
+                        <i class="fa fa-genderless text-success fs-1"></i>
+                    </div>
+                    <!--end::Badge-->
+                    <!--begin::Content-->
+                    <div class="timeline-content d-flex">
+                        <span class="fw-bolder text-gray-800 ps-3">AEOL meeting</span>
+                    </div>
+                    <!--end::Content-->
+                </div> --}}
+                <!--end::Item-->
+                <!--begin::Item-->
+                {{-- <div class="timeline-item">
+                    <!--begin::Label-->
+                    <div class="timeline-label fw-bolder text-gray-800 fs-6">14:37</div>
+                    <!--end::Label-->
+                    <!--begin::Badge-->
+                    <div class="timeline-badge">
+                        <i class="fa fa-genderless text-danger fs-1"></i>
+                    </div>
+                    <!--end::Badge-->
+                    <!--begin::Desc-->
+                    <div class="timeline-content fw-bolder text-gray-800 ps-3">Make deposit
+                        <a href="#" class="text-primary">USD 700</a>. to ESL
+                    </div>
+                    <!--end::Desc-->
+                </div> --}}
+                <!--end::Item-->
+                <!--begin::Item-->
+                {{-- <div class="timeline-item">
+                    <!--begin::Label-->
+                    <div class="timeline-label fw-bolder text-gray-800 fs-6">16:50</div>
+                    <!--end::Label-->
+                    <!--begin::Badge-->
+                    <div class="timeline-badge">
+                        <i class="fa fa-genderless text-primary fs-1"></i>
+                    </div>
+                    <!--end::Badge-->
+                    <!--begin::Text-->
+                    <div class="timeline-content fw-mormal text-muted ps-3">Indulging in poorly driving
+                        and keep structure keep great</div>
+                    <!--end::Text-->
+                </div> --}}
+                <!--end::Item-->
+                <!--begin::Item-->
+                {{-- <div class="timeline-item">
+                    <!--begin::Label-->
+                    <div class="timeline-label fw-bolder text-gray-800 fs-6">21:03</div>
+                    <!--end::Label-->
+                    <!--begin::Badge-->
+                    <div class="timeline-badge">
+                        <i class="fa fa-genderless text-danger fs-1"></i>
+                    </div>
+                    <!--end::Badge-->
+                    <!--begin::Desc-->
+                    <div class="timeline-content fw-bold text-gray-800 ps-3">New order placed
+                        <a href="#" class="text-primary">#XF-2356</a>.
+                    </div>
+                    <!--end::Desc-->
+                </div> --}}
+                <!--end::Item-->
+                <!--begin::Item-->
+                {{-- <div class="timeline-item">
+                    <!--begin::Label-->
+                    <div class="timeline-label fw-bolder text-gray-800 fs-6">16:50</div>
+                    <!--end::Label-->
+                    <!--begin::Badge-->
+                    <div class="timeline-badge">
+                        <i class="fa fa-genderless text-primary fs-1"></i>
+                    </div>
+                    <!--end::Badge-->
+                    <!--begin::Text-->
+                    <div class="timeline-content fw-mormal text-muted ps-3">Indulging in poorly driving
+                        and keep structure keep great</div>
+                    <!--end::Text-->
+                </div> --}}
+                <!--end::Item-->
+                <!--begin::Item-->
+                {{-- <div class="timeline-item">
+                    <!--begin::Label-->
+                    <div class="timeline-label fw-bolder text-gray-800 fs-6">21:03</div>
+                    <!--end::Label-->
+                    <!--begin::Badge-->
+                    <div class="timeline-badge">
+                        <i class="fa fa-genderless text-danger fs-1"></i>
+                    </div>
+                    <!--end::Badge-->
+                    <!--begin::Desc-->
+                    <div class="timeline-content fw-bold text-gray-800 ps-3">New order placed
+                        <a href="#" class="text-primary">#XF-2356</a>.
+                    </div>
+                    <!--end::Desc-->
+                </div> --}}
+                <!--end::Item-->
+                <!--begin::Item-->
+                {{-- <div class="timeline-item">
+                    <!--begin::Label-->
+                    <div class="timeline-label fw-bolder text-gray-800 fs-6">10:30</div>
+                    <!--end::Label-->
+                    <!--begin::Badge-->
+                    <div class="timeline-badge">
+                        <i class="fa fa-genderless text-success fs-1"></i>
+                    </div>
+                    <!--end::Badge-->
+                    <!--begin::Text-->
+                    <div class="timeline-content fw-mormal text-muted ps-3">Finance KPI Mobile app
+                        launch preparion meeting</div>
+                    <!--end::Text-->
+                </div> --}}
+                <!--end::Item-->
+            </div>
+            <!--end::Timeline-->
+        </div>
+        <!--end: Card Body-->
+    </div>
 
     @include('admin.lansia.form.modal_gangguan')
 @endsection
@@ -195,7 +354,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/fisik/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -211,7 +370,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/gangguan/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -227,7 +386,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/lab/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -243,7 +402,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/p3g/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }

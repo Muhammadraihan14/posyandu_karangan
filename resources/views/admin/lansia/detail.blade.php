@@ -353,8 +353,10 @@
                                     </div>
                                 </div>
                             @else
-                            <div class="row mb-12"> <p class="text-center col-lg-6">Belum c pernah melakukan pemeriksaan</p>
-                                <p class="text-center col-lg-6">btn</p></div>
+                            <div class="row mb-12">
+                                <a data-bs-toggle="modal" data-bs-target="#tindakan" class="btn btn-primary align-self-center">Tambah</a>
+                            </div> 
+                            <div class="row"><p class="text-center col-12">Belum pernah melakukan pemeriksaan</p></div>
                             @endif
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_9" role="tabpanel">
@@ -474,7 +476,10 @@
                                     </div>
                                 </div>
                             @else
-                                <p class="text-center">Belum pernah melakukan pemeriksaan</p>
+                            <div class="row mb-12">
+                                <a data-bs-toggle="modal" data-bs-target="#lab" class="btn btn-primary align-self-center">Tambah</a>
+                            </div> 
+                            <div class="row"><p class="text-center col-12">Belum pernah melakukan pemeriksaan</p></div>
                             @endif
                         </div>
                         <div class="tab-pane fade" id="kt_tab_pane_11" role="tabpanel">
@@ -566,7 +571,10 @@
                                     </div>
                                 </div>
                             @else
-                                <p class="text-center">Belum pernah melakukan pemeriksaan</p>
+                            <div class="row mb-12">
+                                <a data-bs-toggle="modal" data-bs-target="#p3g" class="btn btn-primary align-self-center">Tambah</a>
+                            </div> 
+                            <div class="row"><p class="text-center col-12">Belum pernah melakukan pemeriksaan</p></div>
                             @endif
                         </div>
                     </div>
@@ -618,7 +626,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/fisik/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -634,7 +642,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/gangguan/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -650,7 +658,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/lab/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
@@ -666,7 +674,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "delete/p3g/" + id;
+                        window.location = "delete/" + id;
                     } else {
                         swal("Batal menghapus data!");
                     }
