@@ -14,7 +14,7 @@ License: For each use you must have a valid license purchased only from above li
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../../../">
-		<title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes</title>
+		<title>Posyandu Lansia | Login</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -60,12 +60,7 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Heading-->
 							<div class="text-center mb-10">
 								<!--begin::Title-->
-								<h1 class="text-dark mb-3">Sign In</h1>
-								<!--end::Title-->
-								<!--begin::Link-->
-								<div class="text-gray-400 fw-bold fs-4">New Here?
-								<a href="{{ route('register') }}" class="link-primary fw-bolder">Create an Account</a></div>
-								<!--end::Link-->
+								<h1 class="text-dark mb-3">Login</h1>
 							</div>
 							<!--begin::Heading-->
 							<!--begin::Input group-->
@@ -91,7 +86,6 @@ License: For each use you must have a valid license purchased only from above li
 									<label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
 									<!--end::Label-->
 									<!--begin::Link-->
-									<a href="../../demo1/dist/authentication/layouts/basic/password-reset.html" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
 									<!--end::Link-->
 								</div>
 								<!--end::Wrapper-->
@@ -113,22 +107,6 @@ License: For each use you must have a valid license purchased only from above li
 									<span class="indicator-progress">Please wait...
 									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 								</button>
-								<!--end::Submit button-->
-								<!--begin::Separator-->
-								{{-- <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
-								<!--end::Separator-->
-								<!--begin::Google link-->
-								<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-								<img alt="Logo" src="{{ url('/') }}/assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Continue with Google</a>
-								<!--end::Google link-->
-								<!--begin::Google link-->
-								<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-								<img alt="Logo" src="{{ url('/') }}/assets/media/svg/brand-logos/facebook-4.svg" class="h-20px me-3" />Continue with Facebook</a>
-								<!--end::Google link-->
-								<!--begin::Google link-->
-								<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100">
-								<img alt="Logo" src="{{ url('/') }}/assets/media/svg/brand-logos/apple-black.svg" class="h-20px me-3" />Continue with Apple</a> --}}
-								<!--end::Google link-->
 							</div>
 							<!--end::Actions-->
 						</form>
@@ -139,13 +117,6 @@ License: For each use you must have a valid license purchased only from above li
 				<!--end::Content-->
 				<!--begin::Footer-->
 				<div class="d-flex flex-center flex-column-auto p-10">
-					<!--begin::Links-->
-					<div class="d-flex align-items-center fw-bold fs-6">
-						<a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-						<a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-						<a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
-					</div>
-					<!--end::Links-->
 				</div>
 				<!--end::Footer-->
 			</div>

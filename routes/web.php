@@ -7,23 +7,13 @@ use App\Http\Controllers\DesaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LansiaController;
-// use App\Http\Controllers\Petugas\LansiaController_p;
 use App\Http\Controllers\SensorController;
 use App\Http\Controllers\LansiaControllerP;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\PetugasControllerP;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
 Route::get('/', function () {
@@ -33,9 +23,6 @@ Route::get('/app', function () {
     return view('layouts.app');
 });
 
-
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
 
 
 
@@ -54,8 +41,6 @@ Route::get('/simpan/{nilaiTinggi}/{nilaiBerat}', [SensorController::class, 'simp
 
 
 
-// Route::get('admin/teachers/create', [TeacherController::class, 'add'])->name('teachers.create');
-// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
 
@@ -122,10 +107,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('lansia/p3g/save', [LansiaController::class, 'save_p3g'])->name('lansia.save.p3g')->middleware('cekAuth:admin');
     Route::get('lansia/p3g/delete/{id}', [LansiaController::class, 'delete_p3g'])->name('lansia.delete.p3g')->middleware('cekAuth:admin');
     Route::get('lansia/p3g/{id}', [LansiaController::class, 'detail_p3g'])->name('lansia.detail.p3g')->middleware('cekAuth:admin');
-
-
-
-
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -157,6 +138,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('Lansia/p3g/save', [LansiaControllerP::class, 'save_p3g'])->name('lansia.petugas.save.p3g')->middleware('cekAuth:petugas');
     Route::get('Lansia/delete/p3g/{id}', [LansiaControllerP::class, 'delete_p3g'])->name('lansia.petugas.delete.p3g')->middleware('cekAuth:petugas');
     Route::get('Lansia/p3g/{id}', [LansiaControllerP::class, 'detail_p3g'])->name('lansia.petugas.detail.p3g')->middleware('cekAuth:petugas');
+
+
+    Route::get('petugas/detail', [PetugasControllerP::class, 'detail'])->name('petugas.details')->middleware('cekAuth:petugas');
+
 
 });
 

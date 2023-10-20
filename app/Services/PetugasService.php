@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
-
+use File;
 use DB;
 use App\Models\User;
 use App\Models\Petugas;
@@ -38,21 +38,25 @@ class PetugasService
         // dd($params);
         $username = $params['name'].rand(pow(10, 8 - 1), pow(10, 8) -1);
         DB::beginTransaction();
-        try {
+        // try {
             $inputUser['user_name'] = $username;
             $inputUser['user_type'] = 'petugas';
             $inputUser['name'] = $params['name'];
             $inputUser['email'] = $params['email'];
+            if(isset($params['gender'])){
+                $inputUser['gender'] = $params['gender'];
+            }
             $inputUser['nip'] = $params['nip'];
-            $inputUser['gender'] = $params['gender'];
             $inputUser['password'] = Hash::make($params['password']);
             if(isset($params['image_url'])){
                 $inputUser['image_url'] = $params['image_url'];
             }   
             if (isset($params['id'])) {
-                // dd("edit");
-                $petugas =  Petugas::find($params['id']);
+                $petugas =  Petugas::with('user')->find($params['id']);
                 // dd($petugas);
+                if(isset($params['image_url'])){
+                    File::delete(asset('upload'.$petugas->user->image_url));
+                }
                 $petugas->update([]);
                 $user = $petugas->user()->update($inputUser);
             }else{
@@ -61,10 +65,10 @@ class PetugasService
             }
             DB::commit();
             return $user;
-        } catch (\Throwable $th) {
-            DB::rollback();
-            return $th;
-        }
+        // } catch (\Throwable $th) {
+        //     DB::rollback();
+        //     return $th;
+        // }
     }
     public static function PetugasDetail($id)
     {

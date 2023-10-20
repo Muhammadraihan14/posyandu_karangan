@@ -15,15 +15,15 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
        $credentials = $request->validate([
-            'email' => 'required|email:dns',
+            'email' => 'required',
             'password' => 'required'
         ]);
+        // dd($credentials);
         if (Auth::attempt($credentials)) {
-
-            if(Auth::user()->user_type == 'admin'){
+            if(Auth::user()-> user_type == 'admin'){
                 $request->session()->regenerate();
                 return redirect()->intended('dashboard');
-            } elseif (Auth::user()->user_type == 'petugas'){
+            } else if (Auth::user()-> user_type == 'petugas'){
                 $request->session()->regenerate();
                 return redirect()->intended('dashboard');
             }

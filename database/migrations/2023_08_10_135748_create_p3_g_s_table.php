@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('p3_g_s', function (Blueprint $table) {
+        Schema::create('PEMERIKSAAN_P3GS', function (Blueprint $table) {
             $table->id();
             // $table->string('tingkat_kemandirian')->nullable();
             $table->dateTime('tanggal_p_p3g')->nullable();

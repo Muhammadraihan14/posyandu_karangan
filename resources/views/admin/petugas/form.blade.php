@@ -179,52 +179,10 @@
         <!--begin::Content-->
         <div id="kt_account_settings_profile_details" class="collapse show">
             <!--begin::Form-->
-            <form class="form" action="{{ route('petugas.save') }}" method="POST">
+            <form class="form" action="{{ route('petugas.save') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!--begin::Card body-->
                 <div class="card-body border-top p-9">
-
-                    <!--begin::Input group-->
-                    {{-- <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label required fw-bold fs-6">Full Name</label>
-                        <!--end::Label-->
-                        <!--begin::Col-->
-                        <div class="col-lg-8">
-                            <!--begin::Row-->
-                            <div class="row">
-                                <!--begin::Col-->
-                                <div class="col-lg-6 fv-row">
-                                    <input type="text" name="fname"
-                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                        placeholder="First name" value="Max" />
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-lg-6 fv-row">
-                                    <input type="text" name="lname"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Last name"
-                                        value="Smith" />
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Row-->
-                        </div>
-                        <!--end::Col-->
-                    </div> --}}
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    {{-- <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label required fw-bold fs-6">Company</label>
-                        <!--end::Label-->
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row">
-                            <input type="text" name="company" class="form-control form-control-lg form-control-solid"
-                                placeholder="Company name" />
-                        </div>
-                        <!--end::Col-->
-                    </div> --}}
                     @if (isset($data))
                         <!--begin::Input group-->
                         <input type="hidden" name="id" value="{{ $data->id }}">
@@ -243,7 +201,7 @@
                                 <!--begin::Card body-->
                                 <div class="card-body text-center pt-0">
                                     <!--begin::Image input-->
-                                    <div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image:url('{{ isset($data) ? $data->user->image_url : '' }}');">
+                                    <div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image:url('{{ isset($data) ?  asset('/upload/'.$data->user->image_url)  : '' }}');">
                                         <!--begin::Preview existing avatar-->
                                         <div class="image-input-wrapper w-150px h-150px"></div>
                                         <!--end::Preview existing avatar-->
@@ -348,7 +306,7 @@
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
                                 <select name="gender" id="gender" class="form-control form-control-lg form-control-solid" required >
-                                    <option></option>
+                                    <option value="{{ $data->user->gender }}">{{ $data->user->gender }}</option>
                                     <option value="pria">Pria</option>
                                     <option value="wanita">Wanita</option>
                                 </select>
@@ -545,13 +503,7 @@
 
 
                 </div>
-                @endif
-
-
-
-                <!--end::Card body-->
-
-                <!--begin::Actions-->
+                    @endif
                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                     <button type="reset" class="btn btn-light btn-active-light-primary me-2"><a
                             href="{{ route('petugas') }}">Cancel</a> </button>

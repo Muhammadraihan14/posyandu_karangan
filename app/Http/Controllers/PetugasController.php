@@ -48,14 +48,26 @@ class PetugasController extends Controller
             ]);
             $params = $validated;
         }else{
-            $params = $request->all();
+            $validated = $request->validate([
+                'id' => 'required',
+                'name' => 'min:3|max:255',
+                'email' => 'email:dns',
+                'nip' => 'min:18|max:18',
+                'gender' => '',
+                'image_url' => '',
+                'password' => 'same:password_confirmation',
+                'password_confirmation' => ''
+                // 'password_confirmation' => 'min:6'
+            ]);
+            $params = $validated;
+            // $params = $request->all();
         }        
         if ($request->hasFile('image_url')) {
-            $image      = $request->file('image_url');
-            $image_name = time() . '.' . $image->extension();
-            $image = Image::make($request->file('image_url'));
-            $image->fit(750, 300)->save(public_path()."/files/$image_name", 80, 'png');
-            $params['image_url'] = url('/files/'.$image_name);
+            $file = $request->file('image_url');
+            $extension = $request->file('image_url')->getClientOriginalName();
+            $filenames = time() . '.' . $extension;
+            $file->move('upload/', $filenames);
+            $params["image_url"] = $filenames;
         }
         $data = PetugasService::PetugasStore($params);
         if(!isset($request['id'])){

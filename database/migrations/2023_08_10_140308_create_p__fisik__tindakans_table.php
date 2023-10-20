@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
   
-        Schema::create('p__fisik__tindakans', function (Blueprint $table) {
+        Schema::create('PEMERIKSAAN_FISIKDANTINDAKANS', function (Blueprint $table) {
             $table->id();
             $table->dateTime('tanggal_p')->nullable();
             //imt

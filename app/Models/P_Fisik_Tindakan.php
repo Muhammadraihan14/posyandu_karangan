@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class P_Fisik_Tindakan extends Model
 {
     use HasFactory;
+    protected $table = "PEMERIKSAAN_FISIKDANTINDAKANS";
     protected $guarded= ['id'];
     protected $dates= ['tanggal_p'];
     protected $casts = [

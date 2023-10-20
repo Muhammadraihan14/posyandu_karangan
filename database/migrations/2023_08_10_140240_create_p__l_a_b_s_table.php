@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('p__l_a_b_s', function (Blueprint $table) {
+        Schema::create('PEMERIKSAAN_LABS', function (Blueprint $table) {
             $table->id();
             $table->dateTime('tanggal_p_lab')->nullable();
             $table->integer('kolesterol')->nullable();

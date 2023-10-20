@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class P3G extends Model
 {
     use HasFactory;
+    protected $table = "PEMERIKSAAN_P3GS";
     protected $guarded= ['id'];
     protected $dates= ['tanggal_p_p3g'];
 

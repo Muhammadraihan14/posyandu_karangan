@@ -168,7 +168,7 @@
                         <img src="{{ url('/') }}/assets/media/avatars/blank.png" alt="image"/>
 
                         @else
-                        <img src="{{ $data->user->image_url }}" alt="image" />
+                        <img src="{{  asset('/upload/'.$data->user->image_url)}} " alt="image" />
 
                         @endif
                         <div
@@ -223,22 +223,6 @@
                                     </span>
                                     <!--end::Svg Icon-->{{ $data->user->user_type }}
                                 </a>
-                                {{-- <a href="#"
-                                    class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
-                                    <span class="svg-icon svg-icon-4 me-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path opacity="0.3"
-                                                d="M18.0624 15.3453L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3453C4.56242 13.6453 3.76242 11.4453 4.06242 8.94534C4.56242 5.34534 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24534 19.9624 9.94534C20.0624 12.0453 19.2624 13.9453 18.0624 15.3453Z"
-                                                fill="black" />
-                                            <path
-                                                d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z"
-                                                fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->SF, Bay Area
-                                </a> --}}
                                 <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
                                     <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
                                     <span class="svg-icon svg-icon-4 me-1">
@@ -268,50 +252,6 @@
                 <!--end::Info-->
             </div>
             <!--end::Details-->
-            {{-- <!--begin::Navs-->
-										<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
-											<!--begin::Nav item-->
-											<li class="nav-item mt-2">
-												<a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="../../demo1/dist/account/overview.html">Overview</a>
-											</li>
-											<!--end::Nav item-->
-											<!--begin::Nav item-->
-											<li class="nav-item mt-2">
-												<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/settings.html">Settings</a>
-											</li>
-											<!--end::Nav item-->
-											<!--begin::Nav item-->
-											<li class="nav-item mt-2">
-												<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/security.html">Security</a>
-											</li>
-											<!--end::Nav item-->
-											<!--begin::Nav item-->
-											<li class="nav-item mt-2">
-												<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/billing.html">Billing</a>
-											</li>
-											<!--end::Nav item-->
-											<!--begin::Nav item-->
-											<li class="nav-item mt-2">
-												<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/statements.html">Statements</a>
-											</li>
-											<!--end::Nav item-->
-											<!--begin::Nav item-->
-											<li class="nav-item mt-2">
-												<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/referrals.html">Referrals</a>
-											</li>
-											<!--end::Nav item-->
-											<!--begin::Nav item-->
-											<li class="nav-item mt-2">
-												<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/api-keys.html">API Keys</a>
-											</li>
-											<!--end::Nav item-->
-											<!--begin::Nav item-->
-											<li class="nav-item mt-2">
-												<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/logs.html">Logs</a>
-											</li>
-											<!--end::Nav item-->
-										</ul>
-										<!--begin::Navs--> --}}
         </div>
     </div>
     <!--end::Navbar-->
@@ -351,6 +291,16 @@
                 <!--begin::Col-->
                 <div class="col-lg-8">
                     <span class="fw-bolder fs-6 text-gray-800">{{ $data->user->user_name }}</span>
+                </div>
+                <!--end::Col-->
+            </div>
+            <div class="row mb-7">
+                <!--begin::Label-->
+                <label class="col-lg-4 fw-bold text-muted">Nomor Induk Pegawai (NIP)</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8">
+                    <span class="fw-bolder fs-6 text-gray-800">{{ $data->user->nip }}</span>
                 </div>
                 <!--end::Col-->
             </div>

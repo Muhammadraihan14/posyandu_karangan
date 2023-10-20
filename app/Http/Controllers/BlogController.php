@@ -67,14 +67,12 @@ class BlogController extends Controller
             // dd($params);
         }     
         if ($request->hasFile('image_url')) {
-        //  dd('jln');
             $file = $request->file('image_url');
             $extension = $request->file('image_url')->getClientOriginalName();
             $filenames = time() . '.' . $extension;
             $file->move('upload/', $filenames);
             $params["image_url"] = $filenames;
         }
-// dd('bwh');
         $data = BlogService::BlogStore($params);
         if(!isset($request['id'])){
             return redirect('blog')->with('success', 'Berhasil menambahkan data');
