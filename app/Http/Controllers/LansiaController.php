@@ -149,6 +149,7 @@ class LansiaController extends Controller
     public function detail(Request $request, $id)
     {
         $data = LansiaService::LansiaDetail($id);
+        // dd($data);
         $dataSensor = SensorService::getDataSensor();   
         $dataGangguan = LansiaService::GangguanList($request);
         // $dataFisik = PemeriksaanFisikService::FiskList($request, $id);
@@ -210,6 +211,7 @@ class LansiaController extends Controller
                 //table lansia
                 'user_id' => 'required',
                 'lansia_id' => 'required',
+                'desa_id' => 'required',
                 'tanggal_p_g' => 'required',
                 'g_ginjal' => 'required',
                 'g_pengelihatan' => 'required',
@@ -226,6 +228,7 @@ class LansiaController extends Controller
                 //table lansia
                 'id' => 'required',
                 'lansia_id' => 'required',
+                'desa_id' => 'required',
                 'tanggal_p_g' => 'required',
                 'user_id' => 'required',
                 'g_ginjal' => 'required',
@@ -276,10 +279,12 @@ class LansiaController extends Controller
     // ===========Fisik dan Tindakan ====================
         public function save_fisik(Request $request)
     {
+        // dd($request);
         if(!isset($request['id'])){
             $validated = $request->validate([
                 //table p__fisik__tindakans
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p' => 'required',
                 'tinggi_badan' => 'required',
@@ -290,14 +295,16 @@ class LansiaController extends Controller
                 'konseling' => 'required',
                 'rujuk' => 'required',
                 'lain' => 'required',
-
             ]);
+            // dd('created');
             $params = $validated;
+            // dd($params);
         }else{
             $validated = $request->validate([
                 //table lansia
                 'id' => 'required',
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p' => 'required',
                 'tinggi_badan' => 'required',
@@ -309,13 +316,15 @@ class LansiaController extends Controller
                 'konseling' => 'required',
                 'rujuk' => 'required',
             ]);
+            // dd('edit');
             $params = $validated;
         }
+        // dd($params);
         $data = LansiaService::LansiaStoreFisik($params);
         if(!isset($request['id'])){
             return back()->with('success', 'Berhasil menambahkan data');
         }else{
-            return  back()->with('successEdit', 'Berhasil mengedit data');
+            return back()->with('successEdit', 'Berhasil mengedit data');
         }
     }
     public function delete_fisik($id)
@@ -350,6 +359,7 @@ class LansiaController extends Controller
                //table p__l_a_b_s
                 'user_id' => 'required',
                 'lansia_id' => 'required',
+                'desa_id' => 'required',
                 'tanggal_p_lab' => 'required',
                 'kolesterol' => 'required',
                 'gula_darah' => 'required',
@@ -364,6 +374,7 @@ class LansiaController extends Controller
                 //table lansia
                 'id' => 'required',
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p_lab' => 'required',
                 'kolesterol' => 'required',
@@ -418,6 +429,7 @@ class LansiaController extends Controller
             $validated = $request->validate([
                 // table p3_g_s
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p_p3g' => 'required',
                 'tingkat_kemandirian' => 'required',
@@ -433,6 +445,7 @@ class LansiaController extends Controller
                 //table lansia
                 'id' => 'required',
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p_p3g' => 'required',
                 'tingkat_kemandirian' => 'required',
@@ -462,6 +475,7 @@ class LansiaController extends Controller
     {
         // dd($id);
         $data = LansiaService::LansiaDetail($id);
+        // dd($data);
         $p3g = $data->p3g()->paginate(5);
         if($data->p3g->last() != NULL){
             $statusMal = LansiaService::statusRmalNutrisi($data->p3g->last()->p_resiko_malnutrisi); 

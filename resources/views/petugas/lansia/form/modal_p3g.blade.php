@@ -33,6 +33,7 @@
                           </div>
                           <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" id="user_id">
                           <input type="hidden" value="{{ $data->id }}" name="lansia_id" id="lansia_id">
+                          <input type="hidden" value="{{ $data->desa_id }}" name="desa_id" id="desa_id">
                           <div class="d-flex flex-column mb-8 fv-row">
                               <!--begin::Label-->
                               <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -181,6 +182,7 @@
                           <input type="hidden" value="{{ $val->id }}" name="id" id="id">
                           <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" id="user_id">
                           <input type="hidden" value="{{ $data->id }}" name="lansia_id" id="lansia_id">
+                          <input type="hidden" value="{{ $data->desa_id }}" name="desa_id" id="desa_id">
                           <div class="d-flex flex-column mb-8 fv-row">
 														<!--begin::Label-->
 														<label class="d-flex align-items-center fs-6 fw-bold mb-2">

@@ -20,7 +20,7 @@
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
 
-                    <li class="breadcrumb-item text-muted"><a href="{{ route('lansia') }}">List lansia</a></li>
+                    <li class="breadcrumb-item text-muted"><a href="{{ route('lansia.petugas') }}">List lansia</a></li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -28,7 +28,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark"><a href="{{ route('lansia.detail', ['id' => $data->id]) }}">Detail lansia</a></li>
+                    <li class="breadcrumb-item text-dark"><a href="{{ route('lansia.petugas.detail', ['id' => $data->id]) }}">Detail lansia</a></li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">

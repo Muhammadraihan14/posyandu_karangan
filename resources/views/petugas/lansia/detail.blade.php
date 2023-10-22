@@ -20,7 +20,7 @@
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
 
-                    <li class="breadcrumb-item text-muted"><a href="{{ route('lansia') }}">List lansia</a></li>
+                    <li class="breadcrumb-item text-muted"><a href="{{ route('lansia.petugas') }}">List lansia</a></li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -367,7 +367,7 @@
                                         <span class="fw-bolder fs-6 text-gray-800">{{ $data->riwayat_gangguan->last() != null ? $data->riwayat_gangguan->last()->g_ginjal : '-' }}</span>
                                     </div>
                                     <div class="col-lg-1">
-                                        <a href="{{ route('lansia.detail.g', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
+                                        <a href="{{ route('lansia.petugas.detail.g', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
                                      </div>
                                 </div>
                                 <div class="row mb-7">
@@ -424,7 +424,7 @@
                                             class="badge {{ $statusKoles == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusKoles != null ? $statusKoles : '' }}</span>
                                     </div>
                                     <div class="col-lg-1">
-                                        <a href="{{ route('lansia.detail.lab', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
+                                        <a href="{{ route('lansia.petugas.detail.lab', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
                                      </div>
                                 </div>
                                 <div class="row mb-7">
@@ -494,7 +494,7 @@
                                         <span class="badge {{ $statusMan == 'Ketergantungan Berat / Total' ? 'badge-danger' : 'badge-success ' }}">{{ $statusMan != null ? $statusMan : '' }}</span>
                                     </div>
                                     <div class="col-mb-end col-lg-1 ">
-                                        <a href="{{ route('lansia.detail.p3g', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
+                                        <a href="{{ route('lansia.petugas.detail.p3g', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
                                      </div>
                                     <!--end::Col-->
                                 </div>

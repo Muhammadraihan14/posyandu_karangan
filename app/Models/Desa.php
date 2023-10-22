@@ -4,15 +4,16 @@ namespace App\Models;
 
 use App\Models\Lansia;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Desa extends Model
 {
     use HasFactory;
     protected $guarded= ['id'];
-    public function lansia()
+    public function lansia() :HasMany
     {
-        return $this->belongsTo(Lansia::class, 'creator_id');
+        return $this->hasMany(Lansia::class);
     }
 
 }

@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('pemberdayaan')->nullable();
             $table->text('keterangan')->nullable();
 
+            $table->unsignedBigInteger('desa_id');
+            $table->foreign('desa_id')->references('id')->on('desas')->onDelete('cascade')->onUpdate('cascade');
+            
             $table->unsignedBigInteger('lansia_id');
             $table->foreign('lansia_id')->references('id')->on('lansias')->onDelete('cascade')->onUpdate('cascade');
 

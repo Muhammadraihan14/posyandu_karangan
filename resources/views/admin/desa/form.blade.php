@@ -236,7 +236,7 @@
                 pseudoFullscreen: false // if true, fullscreen to page width and height
             },
             minZoom: 2
-        }).setView([0, 0], 2);
+        }).setView([0.5911536716372799, 109.36672030833822], 10);
 
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

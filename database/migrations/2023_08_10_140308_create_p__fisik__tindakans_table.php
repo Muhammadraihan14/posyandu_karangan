@@ -34,7 +34,9 @@ return new class extends Migration
 
             // $table->integer('rujuk')->nullable();
             $table->enum('rujuk',['Ya','Tidak'])->nullable();
-
+            
+            $table->unsignedBigInteger('desa_id');
+            $table->foreign('desa_id')->references('id')->on('desas')->onDelete('cascade')->onUpdate('cascade');
 
 
 

@@ -619,13 +619,7 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 		<!--end::Page Custom Javascript-->
 		<script>
-		var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-						maxZoom: 19,
-						attribution: '© OpenStreetMap'
-								});
-		var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-			maxZoom: 19,
-			attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
+
 	
 		var peta1 = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
 							maxZoom: 20,
@@ -642,16 +636,13 @@ License: For each use you must have a valid license purchased only from above li
 						maxZoom: 20,
 						subdomains:['mt0','mt1','mt2','mt3']
 						});
-		var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-				maxZoom: 19,
-				attribution: 'Map data: © OpenStreetMap contributors, SRTM | Map style: © OpenTopoMap (CC-BY-SA)'
-			});
 
 		var map = L.map('map', {
 			center: [39.73, -104.99],
 			zoom: 10,
-			layers: [osmHOT, peta2, peta3, peta4]
-			});
+
+			layers: [peta1, peta2, peta3, peta4]
+			}).setView([0.5911536716372799, 109.36672030833822 , 13]);
 		var baseMaps = {
 			"Terrain": peta1,
 			"Hybrid": peta2,
@@ -659,7 +650,16 @@ License: For each use you must have a valid license purchased only from above li
 			"Satellite": peta4,
 		};
 		var layerControl = L.control.layers(baseMaps).addTo(map);
+		@isset($desa)
+			@foreach ($desa as $dt)
+				L.marker([{{ $dt->latitude }}, {{ $dt->longitude }}]).bindPopup("<h5>Desa :{{ $dt->name }}</h5>Jumlah Lansia : {{ $dt->lansia->count(); }}").addTo(map);
+			@endforeach
+		@endisset
+
+		
 		</script>
+
+
 		<script src="{{ $data['jkChart']->cdn() }}"></script>
 		{{ $data['jkChart']->script() }}
 		

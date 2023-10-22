@@ -51,7 +51,7 @@
             <!--begin::Card title-->
             <div class="card-title">
                 <!--begin::Search-->
-                <h3 class="card-title">Pemeriksaaan Fisik dan Tindakan</h3>
+                <h3 class="card-title">Pemeriksaaan Fisik dan Tindakan </h3>
 
                 <div class="d-flex align-items-center position-relative my-1">
 
@@ -236,14 +236,14 @@
                 <!--begin::Modal header-->
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <form id="kt_modal_new_target_form" class="form" action="{{ route('lansia.save.f') }}"
-                        method="POST">
+                    <form id="kt_modal_new_target_form" class="form" action="{{ route('lansia.save.f') }}" method="POST">
                         @csrf
                         <div class="mb-13 text-center">
                             <h1 class="mb-3">Pemeriksaan Fisik dan Tindakan</h1>
                         </div>
                         <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" id="user_id">
                         <input type="hidden" value="{{ $data->id }}" name="lansia_id" id="lansia_id">
+                        <input type="hidden" value="{{ $data->desa_id }}" name="desa_id" id="desa_id">
                         <div class="d-flex flex-column mb-8 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -395,8 +395,8 @@
     <!--end::Modal - New Target-->
 
 
-    {{-- @include('admin.lansia.form.modal_fisik_tindakan') --}}
     @include('admin.lansia.form.modal_fisik_tindakan')
+    {{-- @include('admin.lansia.form.modal_fisik_tindakan') --}}
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

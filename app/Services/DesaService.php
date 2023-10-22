@@ -103,4 +103,10 @@ class DesaService
         // dd($data);
         return $data;
     }
+    public static function DesaLocation()
+    {
+        $data = Desa::with('lansia')->get();
+        // dd($data);
+        return $data;
+    }
 }

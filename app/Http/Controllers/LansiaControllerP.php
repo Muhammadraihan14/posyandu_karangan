@@ -149,6 +149,8 @@ class LansiaControllerP extends Controller
     public function detail(Request $request, $id)
     {
         $data = LansiaService::LansiaDetail($id);
+        // dd($data);
+
         $dataSensor = SensorService::getDataSensor();   
         $dataGangguan = LansiaService::GangguanList($request);
         // $dataFisik = PemeriksaanFisikService::FiskList($request, $id);
@@ -209,6 +211,7 @@ class LansiaControllerP extends Controller
             $validated = $request->validate([
                 //table lansia
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p_g' => 'required',
                 'g_ginjal' => 'required',
@@ -225,6 +228,7 @@ class LansiaControllerP extends Controller
             $validated = $request->validate([
                 //table lansia
                 'id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p_g' => 'required',
                 'user_id' => 'required',
@@ -278,6 +282,7 @@ class LansiaControllerP extends Controller
             $validated = $request->validate([
                 //table p__fisik__tindakans
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p' => 'required',
                 'tinggi_badan' => 'required',
@@ -296,6 +301,7 @@ class LansiaControllerP extends Controller
                 //table lansia
                 'id' => 'required',
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p' => 'required',
                 'tinggi_badan' => 'required',
@@ -324,13 +330,6 @@ class LansiaControllerP extends Controller
     }
     public function detail_fisik($id)
     {
-        // dd($id);
-
-
-
-        $dataSensor = Sensor::find(1);
-        // dd($dataSensor);
-        // event(new SensorEvent($dataSensor->berat_badan, $dataSensor->tinggi_badan));
         $data = LansiaService::LansiaDetail($id);
         $pemeriksaanFisik = $data->pemerisaan_fisik_tindakan()->paginate(5);
         if($data->pemerisaan_fisik_tindakan->last() != NULL){
@@ -353,6 +352,7 @@ class LansiaControllerP extends Controller
             $validated = $request->validate([
                //table p__l_a_b_s
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p_lab' => 'required',
                 'kolesterol' => 'required',
@@ -368,6 +368,7 @@ class LansiaControllerP extends Controller
                 //table lansia
                 'id' => 'required',
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p_lab' => 'required',
                 'kolesterol' => 'required',
@@ -422,6 +423,7 @@ class LansiaControllerP extends Controller
                 // table p3_g_s
                 'user_id' => 'required',
                 'lansia_id' => 'required',
+                'desa_id' => 'required',
                 'tanggal_p_p3g' => 'required',
                 'tingkat_kemandirian' => 'required',
                 'g_emosional' => 'required',
@@ -436,6 +438,7 @@ class LansiaControllerP extends Controller
                 //table lansia
                 'id' => 'required',
                 'user_id' => 'required',
+                'desa_id' => 'required',
                 'lansia_id' => 'required',
                 'tanggal_p_p3g' => 'required',
                 'tingkat_kemandirian' => 'required',

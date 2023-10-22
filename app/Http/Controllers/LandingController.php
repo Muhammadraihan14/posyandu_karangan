@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Desa;
+use App\Models\Lansia;
 use App\Models\Petugas;
 use App\Charts\AsamUrat;
 use App\Charts\GulaDarah;
@@ -10,6 +12,7 @@ use App\Charts\Kolesterol;
 use App\Charts\TekananDarah;
 use Illuminate\Http\Request;
 use App\Services\BlogService;
+use App\Services\DesaService;
 use App\Charts\StatusGiziChart;
 use App\Charts\JenisKelaminChart;
 use Illuminate\Pagination\Paginator;
@@ -40,8 +43,8 @@ class LandingController extends Controller
         $blg = Blog::with('user')->limit(6)->get();
         Paginator::useBootstrap();
         $petugas = Petugas::with('user')->get();
-        // dd($petugas);
-        return view('welcome', compact('blog', 'blg','petugas','data'));
+        $desa = DesaService::DesaLocation();
+        return view('welcome', compact('blog', 'blg','petugas','data','desa'));
     }
     public function blog(Request $request)
     {

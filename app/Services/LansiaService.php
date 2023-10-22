@@ -281,6 +281,7 @@ class LansiaService
         try {
             $inputRiwayat['user_id'] = $params['user_id'];
             $inputRiwayat['lansia_id'] = $params['lansia_id'];
+            $inputRiwayat['desa_id'] = $params['desa_id'];
             $inputRiwayat['tanggal_p_g'] = $params['tanggal_p_g'];
             $inputRiwayat['g_ginjal'] = $params['g_ginjal'];
             $inputRiwayat['g_pengelihatan'] = $params['g_pengelihatan'];
@@ -366,12 +367,14 @@ class LansiaService
     }
     public static function LansiaStoreFisik($params)
     {
+        // dd($params);
         $nilai_imt =  LansiaService::IMT($params['berat_badan'], $params['tinggi_badan']);
         $nilai_tk =  LansiaService::tekananDarah($params['sistole'], $params['diastole']);
         $statusGizi =  LansiaService::statusGizi($nilai_imt);
         DB::beginTransaction();
         try {
             $inputFisik['user_id'] = $params['user_id'];
+            $inputFisik['desa_id'] = $params['desa_id'];
             $inputFisik['lansia_id'] = $params['lansia_id'];
             $inputFisik['tanggal_p'] = $params['tanggal_p'];
             $inputFisik['berat_badan'] = $params['berat_badan'];
@@ -429,6 +432,7 @@ class LansiaService
         try {
             $inputLabs['user_id'] = $params['user_id'];
             $inputLabs['lansia_id'] = $params['lansia_id'];
+            $inputLabs['desa_id'] = $params['desa_id'];
             $inputLabs['tanggal_p_lab'] = $params['tanggal_p_lab'];
             $inputLabs['kolesterol'] = $params['kolesterol'];
             $inputLabs['gula_darah'] = $params['gula_darah'];
@@ -458,43 +462,6 @@ class LansiaService
             return "Failed";
         }
     }
-
-    public static function asamUrat()
-    {
-    //   $result =[];
-      $data =  P_LAB::leftJoin('lansias', 'lansias.id', 'pemeriksaan_labs.lansia_id')
-      ->select('lansias.*', 'pemeriksaan_labs.*')->get();
-    //   dd($data);
-       $wnt = $data->where('gender', 'wanita')->where('asam_urat', '>=', '3.05' AND 'asam_urat', '<=', '7.00' )->count();
-       $wnt = $data->where('gender', 'wanita')->where('asam_urat', '>=', '3.05' AND 'asam_urat', '<=', '7.00' )->count();
-        dd($wnt);
-    //   foreach($data as $dt)
-    //   {
-        
-    //   $result = [
-        
-    // // $status->where('asam_urat', '>=', '200')->count(),
-    //     ];
-    //     dd($result);
-    //     // if($dt->gender == "pria"){
-    //     //     if($dt->asam_urat >= 3.05 && $dt->asam_urat <= 7.00){
-    //     //         return $data = "Normal";
-    //     //     }else{
-    //     //         return $data = "Tinggi";
-    //     //     }
-    //     // }else{
-    //     //     if($dt->asam_urat >= 2.06 && $dt->asam_urat <= 6.00){
-    //     //         return $data = "Normal";
-    //     //     }else{
-    //     //         return $data = "Tinggi";
-    //     //     }
-    //     // }
-    //   }
-
-        $data ="";
-
-        return $data;
-    }
     // ============= End LAB==============
     // ============= P3G ==================
     public static function LansiaStoreP3G($params)
@@ -503,6 +470,7 @@ class LansiaService
         try {
                 $inputP3G['user_id'] = $params['user_id'];
                 $inputP3G['lansia_id'] = $params['lansia_id'];
+                $inputP3G['desa_id'] = $params['desa_id'];
                 $inputP3G['tanggal_p_p3g'] = $params['tanggal_p_p3g'];
                 $inputP3G['tingkat_kemandirian'] = $params['tingkat_kemandirian'];
                 $inputP3G['g_emosional'] = $params['g_emosional'];

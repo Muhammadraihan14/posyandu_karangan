@@ -29,10 +29,13 @@
                           method="POST">
                           @csrf
                           <div class="mb-13 text-center">
-                              <h1 class="mb-3">Pemeriksaan Fisik dan Tindakan</h1>
+                              <h1 class="mb-3">Pemeriksaan SSFisik dan Tindakan</h1>
                           </div>
+                          
                           <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" id="user_id">
+                           <p>sss</p>
                           <input type="hidden" value="{{ $data->id }}" name="lansia_id" id="lansia_id">
+                          <input type="hidden" value="{{ $data->desa_id }}" name="desa_id" id="desa_id">
                           <div class="d-flex flex-column mb-8 fv-row">
                               <!--begin::Label-->
                               <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -234,6 +237,7 @@
                           <input type="hidden" value="{{ $val->id }}" name="id" id="id">
                           <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" id="user_id">
                           <input type="hidden" value="{{ $data->id }}" name="lansia_id" id="lansia_id">
+                          <input type="hidden" value="{{ $data->desa_id }}" name="desa_id" id="desa_id">
                           <div class="d-flex flex-column mb-8 fv-row">
                               <!--begin::Label-->
                               <label class="d-flex align-items-center fs-6 fw-bold mb-2">

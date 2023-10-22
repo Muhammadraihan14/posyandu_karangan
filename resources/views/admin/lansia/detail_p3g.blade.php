@@ -173,7 +173,7 @@
             <div class="card-header align-items-center border-0 mt-4">
                 <h3 class="card-title align-items-start flex-column">
                     <span class="fw-bolder mb-2 text-dark">Riwayat Aktifitas </span>
-                    <span class="text-muted fw-bold fs-7">Total : {{ $data->pemerisaan_lab->count() }}</span>
+                    <span class="text-muted fw-bold fs-7">Total : {{ $data->p3g->count() }}</span>
                 </h3>
             </div>
             <!--end::Header-->
@@ -182,10 +182,10 @@
                 <!--begin::Timeline-->
                 <div class="timeline-label">
                     <!--begin::Item-->
-                    @foreach ($data->pemerisaan_lab as $key => $val)
+                    @foreach ($data->p3g as $key => $val)
                         <div class="timeline-item">
                             <!--begin::Label-->
-                            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ $val->tanggal_p_lab->translatedFormat('h:i A') }}</div>
+                            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ $val->tanggal_p_p3g->translatedFormat('h:i A') }}</div>
                             <!--end::Label-->
                             <!--begin::Badge-->
                             <div class="timeline-badge">
@@ -193,7 +193,7 @@
                             </div>
                             <!--end::Badge-->
                             <!--begin::Text-->
-                            <div class="fw-mormal timeline-content text-muted ps-3">Diperiksa oleh : {{ $val->user->name }}, {{  $val->tanggal_p_lab->translatedFormat('d M Y') }}</div>
+                            <div class="fw-mormal timeline-content text-muted ps-3">Diperiksa oleh : {{ $val->user->name }}, {{  $val->tanggal_p_p3g->translatedFormat('d M Y') }}</div>
                             <!--end::Text-->
                         </div>
                     @endforeach
