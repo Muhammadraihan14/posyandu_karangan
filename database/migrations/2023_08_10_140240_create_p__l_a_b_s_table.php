@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('kolesterol')->nullable();
             $table->integer('gula_darah')->nullable();
             $table->float('asam_urat', 8, 2)->nullable();
+            $table->enum('status_asam_urat',['Tinggi','Normal'])->nullable();
             $table->integer('hb')->nullable();
             $table->unsignedBigInteger('lansia_id');
             $table->foreign('lansia_id')->references('id')->on('lansias')->onDelete('cascade')->onUpdate('cascade');

@@ -225,7 +225,7 @@
                                     <th class="min-w-125px text-center">Title</th>
                                     <th class="min-w-125px text-center">Creator ID</th>
                                     <th class="min-w-125px text-center">Created At</th>
-                                    <th class="min-w-125px text-center">Update At</th>
+                                    {{-- <th class="min-w-125px text-center">Update At</th> --}}
                                     {{-- <th class="min-w-125px">nip</th> --}}
                                     <th class="text-end min-w-70px">Actions</th>
                                 </tr>
@@ -261,17 +261,6 @@
                                         <!--begin::Email=-->
                                         <td class="text-center">{{ $val->created_at->translatedFormat('d M Y, h:i A') }}
                                         </td>
-                                        <!--end::Last login=-->
-                                        <!--begin::Joined-->
-                                        <td class="text-center">{{ $val->updated_at->translatedFormat('d M Y, h:i A') }}
-                                        </td>
-                                        <!--end::Email=-->
-                                        <!--begin::Company=-->
-                                        {{-- <td>{{ $val->user->nip }}</td> --}}
-                                        <!--end::Company=-->
-                                        <!--begin::Payment method=-->
-                                        <!--end::Date=-->
-                                        <!--begin::Action=-->
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions

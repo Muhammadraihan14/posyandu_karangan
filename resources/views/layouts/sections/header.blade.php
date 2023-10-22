@@ -796,7 +796,11 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
+                                @if (Auth::user()->user_type == 'admin')
+                                <a href="{{ route('admin.details') }}" class="menu-link px-5">My Profile</a>
+                                @else
                                 <a href="{{ route('petugas.details') }}" class="menu-link px-5">My Profile</a>
+                                @endif
                             </div>
                             {{-- <div class="separator my-2"></div> --}}
                             <!--end::Menu item-->

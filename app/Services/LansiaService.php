@@ -9,11 +9,12 @@ use App\Models\Admin;
 use App\Models\P_LAB;
 use App\Models\Lansia;
 use App\Models\R_gangguan;
+use App\Services\LansiaService;
 use App\Models\P_Fisik_Tindakan;
+use Illuminate\Pagination\Paginator;
+// use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Request;
-// use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Pagination\Paginator;
 
 
 
@@ -420,6 +421,10 @@ class LansiaService
     // ============= LAB ==================
     public static function LansiaStoreLAB($params)
     {
+        // dd($params);
+        $jk = Lansia::find($params["lansia_id"]);
+        // dd($jk);
+        $dtAsamUrat = LansiaService::statusAsamUrat($params['asam_urat'], $jk->gender);
         DB::beginTransaction();
         try {
             $inputLabs['user_id'] = $params['user_id'];
@@ -428,6 +433,7 @@ class LansiaService
             $inputLabs['kolesterol'] = $params['kolesterol'];
             $inputLabs['gula_darah'] = $params['gula_darah'];
             $inputLabs['asam_urat'] = $params['asam_urat'];
+            $inputLabs['status_asam_urat'] = $dtAsamUrat;
             $inputLabs['hb'] = $params['hb'];
             if (isset($params['id'])) {
                 $data =  P_LAB::find($params['id']);
@@ -451,6 +457,43 @@ class LansiaService
         }else{
             return "Failed";
         }
+    }
+
+    public static function asamUrat()
+    {
+    //   $result =[];
+      $data =  P_LAB::leftJoin('lansias', 'lansias.id', 'pemeriksaan_labs.lansia_id')
+      ->select('lansias.*', 'pemeriksaan_labs.*')->get();
+    //   dd($data);
+       $wnt = $data->where('gender', 'wanita')->where('asam_urat', '>=', '3.05' AND 'asam_urat', '<=', '7.00' )->count();
+       $wnt = $data->where('gender', 'wanita')->where('asam_urat', '>=', '3.05' AND 'asam_urat', '<=', '7.00' )->count();
+        dd($wnt);
+    //   foreach($data as $dt)
+    //   {
+        
+    //   $result = [
+        
+    // // $status->where('asam_urat', '>=', '200')->count(),
+    //     ];
+    //     dd($result);
+    //     // if($dt->gender == "pria"){
+    //     //     if($dt->asam_urat >= 3.05 && $dt->asam_urat <= 7.00){
+    //     //         return $data = "Normal";
+    //     //     }else{
+    //     //         return $data = "Tinggi";
+    //     //     }
+    //     // }else{
+    //     //     if($dt->asam_urat >= 2.06 && $dt->asam_urat <= 6.00){
+    //     //         return $data = "Normal";
+    //     //     }else{
+    //     //         return $data = "Tinggi";
+    //     //     }
+    //     // }
+    //   }
+
+        $data ="";
+
+        return $data;
     }
     // ============= End LAB==============
     // ============= P3G ==================

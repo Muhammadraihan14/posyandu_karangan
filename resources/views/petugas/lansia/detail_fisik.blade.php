@@ -19,7 +19,7 @@
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
 
-                    <li class="breadcrumb-item text-muted"><a href="{{ route('lansia.petugas') }}">List lansia</a></li>
+                    <li class="breadcrumb-item text-muted"><a href="{{ route('lansia') }}">List lansia</a></li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -27,7 +27,8 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark"><a href="{{ route('lansia.petugas.detail', ['id' => $data->id]) }}">Detail lansia</a></li>
+                    <li class="breadcrumb-item text-dark"><a href="{{ route('lansia.detail', ['id' => $data->id]) }}">Detail
+                            lansia</a></li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -116,7 +117,7 @@
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->tanggal_p->translatedFormat('d M Y, h:i A') }}</a>
+                                    class="menu-link px-3">{{ $val->tanggal_p->translatedFormat('d M Y') }}</a>
                                 {{-- <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}" class="menu-link px-3">{{ $val->tanggal_p }}</a> --}}
                             </td>
 
@@ -166,8 +167,46 @@
             </table>
             {{ $pemeriksaanFisik->links() }}
 
+
+
         </div>
         <!--end::Card body-->
+    </div>
+    <div class="card card-xl-stretch mb-5 mb-xl-8 ">
+        <!--begin::Header-->
+        <div class="card-header align-items-center border-0 mt-4">
+            <h3 class="card-title align-items-start flex-column">
+                <span class="fw-bolder mb-2 text-dark">Riwayat Aktifitas </span>
+                <span class="text-muted fw-bold fs-7">Total : {{ $data->pemerisaan_fisik_tindakan->count() }}</span>
+            </h3>
+            <div class="card-toolbar">
+            </div>
+        </div>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class="card-body  card-scroll h-400px pt-5">
+            <!--begin::Timeline-->
+            <div class="timeline-label">
+                <!--begin::Item-->
+                @foreach ($data->pemerisaan_fisik_tindakan as $key => $val)
+                    <div class="timeline-item">
+                        <!--begin::Label-->
+                        <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ $val->tanggal_p->translatedFormat('h:i A') }}</div>
+                        <!--end::Label-->
+                        <!--begin::Badge-->
+                        <div class="timeline-badge">
+                            <i class="fa fa-genderless text-warning fs-1"></i>
+                        </div>
+                        <!--end::Badge-->
+                        <!--begin::Text-->
+                        <div class="fw-mormal timeline-content text-muted ps-3">Diperiksa oleh :{{ $val->user->name }} {{  $val->tanggal_p->translatedFormat('d M Y') }}</div>
+                        <!--end::Text-->
+                    </div>
+                @endforeach
+            </div>
+            <!--end::Timeline-->
+        </div>
+        <!--end: Card Body-->
     </div>
     {{-- ==========End Pemeriksaaan Fisik dan Tindakan============= --}}
     <!--begin::Modal - New Target-->
@@ -197,7 +236,7 @@
                 <!--begin::Modal header-->
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <form id="kt_modal_new_target_form" class="form" action="{{ route('lansia.petugas.save.f') }}"
+                    <form id="kt_modal_new_target_form" class="form" action="{{ route('lansia.save.f') }}"
                         method="POST">
                         @csrf
                         <div class="mb-13 text-center">
@@ -225,8 +264,9 @@
                             <!--begin::Col-->
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-bold mb-2">Tinggi Badan</label>
-                                <input type="number" name="tinggi_badan" id="tinggi_badan" @error('tinggi_badan') is-invalid @enderror
-                                    class="form-control form-control-solid" required />
+                                <input type="number" name="tinggi_badan" id="tinggi_badan"
+                                    @error('tinggi_badan') is-invalid @enderror class="form-control form-control-solid"
+                                    required />
                                 @error('tinggi_badan')
                                     <div class="invalid-feddback " role="alert">
                                         {{ $message }}
@@ -237,8 +277,9 @@
                             <!--begin::Col-->
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-bold mb-2">Berat Badan</label>
-                                <input type="number" name="berat_badan" id="berat_badan" @error('berat_badan') is-invalid @enderror
-                                    class="form-control form-control-solid" required />
+                                <input type="number" name="berat_badan" id="berat_badan"
+                                    @error('berat_badan') is-invalid @enderror class="form-control form-control-solid"
+                                    required />
                                 @error('berat_badan')
                                     <div class="invalid-feddback " role="alert">
                                         {{ $message }}
@@ -260,16 +301,6 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                {{-- <select class="form-select form-select-solid" data-control="select2"
-                                    data-hide-search="true" data-placeholder="Select a Team Member"
-                                    name="target_assign">
-                                    <option value="">Select user...</option>
-                                    <option value="1">Karina Clark</option>
-                                    <option value="2">Robert Doe</option>
-                                    <option value="3">Niel Owen</option>
-                                    <option value="4">Olivia Wild</option>
-                                    <option value="5">Sean Bean</option>
-                                </select> --}}
                             </div>
                             <!--end::Col-->
                             <!--begin::Col-->
@@ -307,9 +338,8 @@
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Konseling</span>
                             </label>
-                            <select class="form-select form-select-solid" data-control="select2"
-                                data-hide-search="true" data-placeholder="Select a Team Member" name="konseling"
-                                id="konseling">
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
+                                data-placeholder="Select a Team Member" name="konseling" id="konseling">
                                 <option></option>
                                 <option value="Ya">Ya</option>
                                 <option value="Tidak">Tidak</option>
@@ -320,9 +350,8 @@
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Rujuk</span>
                             </label>
-                            <select class="form-select form-select-solid" data-control="select2"
-                                data-hide-search="true" data-placeholder="Select a Team Member" name="rujuk"
-                                id="rujuk">
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
+                                data-placeholder="Select a Team Member" name="rujuk" id="rujuk">
                                 <option></option>
                                 <option value="Ya">Ya</option>
                                 <option value="Tidak">Tidak</option>
@@ -367,6 +396,7 @@
 
 
     {{-- @include('admin.lansia.form.modal_fisik_tindakan') --}}
+    @include('petugas.lansia.form.modal_fisik_tindakan')
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -451,22 +481,21 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="/js/app.js"></script>
-        <script>
-            // Enable pusher logging - don't include this in production
-            Pusher.logToConsole = true;
-    
-            var pusher = new Pusher('6f68404576d48427f8f3', {
-                cluster: 'ap1'
-            });
-    
-            var channel = pusher.subscribe('posyandu');
-            channel.bind('new-request', function(data) {
-                console.log(data.tinggi);
-                $('#tinggi_badan').val(data.tinggi).toString();
-                $('#berat_badan').val(data.berat).toString();
-    
-    
-            });
-        </script>>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
 
+        var pusher = new Pusher('6f68404576d48427f8f3', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('posyandu');
+        channel.bind('new-request', function(data) {
+            console.log(data.tinggi);
+            $('#tinggi_badan').val(data.tinggi).toString();
+            $('#berat_badan').val(data.berat).toString();
+
+
+        });
+    </script>>
 @endsection

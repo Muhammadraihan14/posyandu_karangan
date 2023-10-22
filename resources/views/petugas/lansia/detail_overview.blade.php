@@ -499,7 +499,7 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
-                <form method="POST" action="{{ route('lansia.petugas.save.g') }}" class="form"  enctype="multipart/form-data">
+                <form method="POST" action="{{ route('lansia.save.g') }}" class="form"  enctype="multipart/form-data">
                     @csrf
                     <!--begin::Heading-->
 										<input type="hidden" name="petugas_id" id="petugas_id" value="{{ Auth::user()->id }}">

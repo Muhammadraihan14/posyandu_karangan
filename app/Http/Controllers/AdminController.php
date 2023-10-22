@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\AdminService;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -46,11 +47,11 @@ class AdminController extends Controller
             $params = $request->all();
         }        
         if ($request->hasFile('image_url')) {
-            $image      = $request->file('image_url');
-            $image_name = time() . '.' . $image->extension();
-            $image = Image::make($request->file('image_url'));
-            $image->fit(750, 300)->save(public_path()."/files/$image_name", 80, 'png');
-            $params['image_url'] = url('/files/'.$image_name);
+            $file = $request->file('image_url');
+            $extension = $request->file('image_url')->getClientOriginalName();
+            $filenames = time() . '.' . $extension;
+            $file->move('upload/', $filenames);
+            $params["image_url"] = $filenames;
         }
         $data = AdminService::AdminStore($params);
         if(!isset($request['id'])){
@@ -70,5 +71,11 @@ class AdminController extends Controller
     {
         $data = AdminService::delete($id);
         return redirect()->back()->with('success_hapus', 'Berhasil dihapus');
+    }
+
+    public function me()
+    {
+        $data = Auth::user();
+        return view('admin.me', compact('data'));
     }
 }

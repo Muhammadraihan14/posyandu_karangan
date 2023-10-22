@@ -23,13 +23,15 @@ class LoginController extends Controller
             if(Auth::user()-> user_type == 'admin'){
                 $request->session()->regenerate();
                 return redirect()->intended('dashboard');
-            } else if (Auth::user()-> user_type == 'petugas'){
+            } else {
                 $request->session()->regenerate();
                 return redirect()->intended('dashboard');
             }
-        }
+        }else{
+            return redirect()->route('login')->with('error','Email & Password are incorrect.');
+        } 
      
-        return back()->with('error', 'Login failed !');
+        // return back()->with('error', 'Login failed !');
     }
     public function logout(Request $request): RedirectResponse
     {

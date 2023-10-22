@@ -359,7 +359,6 @@
                                             No
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">username</th>
                                     <th class="min-w-125px">name</th>
                                     <th class="min-w-125px">Email</th>
                                     <th class="min-w-125px">nip</th>
@@ -382,10 +381,7 @@
                                         <!--end::nomor-->
                                         <!--end::Checkbox-->
                                         <!--begin::Name=-->
-                                        <td>
-                                            <a href="{{ route('petugas.detail', ['id' => $val->id]) }}"
-                                                class="text-gray-800 text-hover-primary mb-1">{{ $val->user->user_name }}</a>
-                                        </td>
+          
                                         <!--end::Name=-->
                                         <!--begin::Name=-->
                                         <td>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    <title>Petugas Detail | Posyandu lansia</title>
+    <title>Admin Detail | Posyandu lansia</title>
     <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('konten')

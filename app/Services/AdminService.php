@@ -73,6 +73,7 @@ class AdminService
     public static function AdminEdit($id)
     {
         $data = Admin::with('user')->find($id);
+        // dd($data);
         return $data;
     }
     public static function delete($id)

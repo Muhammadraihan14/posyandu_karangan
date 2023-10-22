@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('head')
-    <title>Admin | Posyandu lansia</title>
+    @if (Auth::user()->user_type == 'admin')
+        <title>Admin | Posyandu lansia</title>
+    @else
+        <title>Petugas | Posyandu lansia</title>
+    @endif
 @endsection
 
 @section('konten')

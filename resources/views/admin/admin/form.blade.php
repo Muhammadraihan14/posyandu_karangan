@@ -72,7 +72,7 @@
         <!--begin::Content-->
         <div id="kt_account_settings_profile_details" class="collapse show">
             <!--begin::Form-->
-            <form class="form" action="{{ route('admin.save') }}" method="POST">
+            <form class="form" action="{{ route('admin.save') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!--begin::Card body-->
                 <div class="card-body border-top p-9">
@@ -96,7 +96,7 @@
                                     <!--begin::Image input-->
                                     <div class="image-input image-input-empty image-input-outline mb-3"
                                         data-kt-image-input="true"
-                                        style="background-image:url('{{ isset($data) ? $data->user->image_url : '' }}');">
+                                        style="background-image:url('{{ asset('/upload/'.$data->user->image_url) }}');">
                                         <!--begin::Preview existing avatar-->
                                         <div class="image-input-wrapper w-150px h-150px"></div>
                                         <!--end::Preview existing avatar-->

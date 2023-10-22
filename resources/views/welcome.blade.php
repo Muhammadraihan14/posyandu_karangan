@@ -34,7 +34,28 @@ License: For each use you must have a valid license purchased only from above li
 		<link href="{{ url('/') }}/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+		<style>
+			#Berita p {
+				text-indent: 30px;
+				width: 320px;
+				height: 20px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
 
+			#blogss   div {
+        /* border: black solid;
+        width: 400px;
+        height: 400px; */
+        }
+
+        #Berita div  img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+            background-repeat: no-repeat;
+            }
+		</style>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -66,7 +87,7 @@ License: For each use you must have a valid license purchased only from above li
 									</button>
 									<!--end::Mobile menu toggle-->
 									<!--begin::Logo image-->
-									<a href="../../demo1/dist/landing.html">
+									<a href="#">
 										<img alt="Logo" src="{{ url('/') }}/assets/media/logo/lg2.png" class="logo-default h-45px h-lg-100px" />
 										{{-- <img alt="Logo" src="{{ url('/') }}/assets/media/logos/logo-landing-dark.svg" class="logo-sticky h-20px h-lg-25px" /> --}}
 									</a>
@@ -163,6 +184,74 @@ License: For each use you must have a valid license purchased only from above li
 				</div>
 				<!--begin::Container-->
 				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<div class="card card-xl-stretch mb-xl-8 ">
+								<div class="card-body">
+									{!! $data['stChart']->container() !!}
+								</div>
+								<!--end::Body-->
+							</div>
+						</div>
+						<div class="col-6">
+							<!--begin::Tables Widget 9-->
+							<div class="card card-xl-stretch mb-xl-8 ">
+								<div class="card-body">
+									{!! $data['jkChart']->container() !!}
+								</div>
+								<!--begin::Body-->
+							</div>
+							<!--end::Tables Widget 9-->
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<div class="card card-xl-stretch mb-xl-8 ">
+								<div class="card-body">
+									{!! $data['gdChart']->container() !!}
+								</div>
+								<!--end::Body-->
+							</div>
+						</div>
+						<div class="col-6">
+							<!--begin::Tables Widget 9-->
+							<div class="card card-xl-stretch mb-xl-8 ">
+								<div class="card-body">
+									{!! $data['koChart']->container() !!}
+								</div>
+								<!--begin::Body-->
+							</div>
+							<!--end::Tables Widget 9-->
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<div class="card card-xl-stretch mb-xl-8 ">
+								<div class="card-body">
+									{!! $data['tkChart']->container() !!}
+								</div>
+								<!--end::Body-->
+							</div>
+						</div>
+						<div class="col-6">
+							<!--begin::Tables Widget 9-->
+							<div class="card card-xl-stretch mb-xl-8 ">
+								<div class="card-body">
+									{!! $data['asChart']->container() !!}
+								</div>
+								<!--begin::Body-->
+							</div>
+							<!--end::Tables Widget 9-->
+						</div>
+					</div>
+				</div>
+
+				<div class="container">
+
 					<div id="map" style="width: 100%; height: 400px;"></div>
 					<!--end::Row-->
 					<!--begin::Product slider-->
@@ -220,129 +309,30 @@ License: For each use you must have a valid license purchased only from above li
 					<!--end::Heading-->
 					<!--begin::Slider-->
 					<div class="tns tns-default">
-						<!--begin::Wrapper-->
+					<!--begin::Wrapper-->
 						<div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 3}, 992: {items: 2}}">
 							<!--begin::Item-->
+							@foreach ($petugas as $dt )
 							<div class="text-center">
 								<!--begin::Photo-->
-								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ url('/') }}/assets/media/avatars/150-2.jpg')"></div>
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('/upload/'.$dt->user->image_url) }}')"></div>
 								<!--end::Photo-->
 								<!--begin::Person-->
 								<div class="mb-0">
 									<!--begin::Name-->
-									<a href="#" class="text-white fw-bolder text-hover-primary fs-3">Paul Miles</a>
+									<a href="#" class="text-white fw-bolder text-hover-primary fs-3">{{ $dt->user->name }}</a>
 									<!--end::Name-->
 									<!--begin::Position-->
-									<div class="text-muted fs-6 fw-bold mt-1">Development Lead</div>
+									<div class="text-muted fs-6 fw-bold mt-1">{{ $dt->jabatan }}</div>
 									<!--begin::Position-->
 								</div>
 								<!--end::Person-->
 							</div>
-							<!--end::Item-->
-							<!--begin::Item-->
-							<div class="text-center">
-								<!--begin::Photo-->
-								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ url('/') }}/assets/media/avatars/150-3.jpg')"></div>
-								<!--end::Photo-->
-								<!--begin::Person-->
-								<div class="mb-0">
-									<!--begin::Name-->
-									<a href="#" class="text-white fw-bolder text-hover-primary fs-3">Melisa Marcus</a>
-									<!--end::Name-->
-									<!--begin::Position-->
-									<div class="text-muted fs-6 fw-bold mt-1">Creative Director</div>
-									<!--begin::Position-->
-								</div>
-								<!--end::Person-->
-							</div>
-							<!--end::Item-->
-							<!--begin::Item-->
-							<div class="text-center">
-								<!--begin::Photo-->
-								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ url('/') }}/assets/media/avatars/150-4.jpg')"></div>
-								<!--end::Photo-->
-								<!--begin::Person-->
-								<div class="mb-0">
-									<!--begin::Name-->
-									<a href="#" class="text-white fw-bolder text-hover-primary fs-3">David Nilson</a>
-									<!--end::Name-->
-									<!--begin::Position-->
-									<div class="text-muted fs-6 fw-bold mt-1">Python Expert</div>
-									<!--begin::Position-->
-								</div>
-								<!--end::Person-->
-							</div>
-							<!--end::Item-->
-							<!--begin::Item-->
-							<div class="text-center">
-								<!--begin::Photo-->
-								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ url('/') }}/assets/media/avatars/150-5.jpg')"></div>
-								<!--end::Photo-->
-								<!--begin::Person-->
-								<div class="mb-0">
-									<!--begin::Name-->
-									<a href="#" class="text-white fw-bolder text-hover-primary fs-3">Anne Clarc</a>
-									<!--end::Name-->
-									<!--begin::Position-->
-									<div class="text-muted fs-6 fw-bold mt-1">Project Manager</div>
-									<!--begin::Position-->
-								</div>
-								<!--end::Person-->
-							</div>
-							<!--end::Item-->
-							<!--begin::Item-->
-							<div class="text-center">
-								<!--begin::Photo-->
-								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ url('/') }}/assets/media/avatars/150-6.jpg')"></div>
-								<!--end::Photo-->
-								<!--begin::Person-->
-								<div class="mb-0">
-									<!--begin::Name-->
-									<a href="#" class="text-white fw-bolder text-hover-primary fs-3">Ricky Hunt</a>
-									<!--end::Name-->
-									<!--begin::Position-->
-									<div class="text-muted fs-6 fw-bold mt-1">Art Director</div>
-									<!--begin::Position-->
-								</div>
-								<!--end::Person-->
-							</div>
-							<!--end::Item-->
-							<!--begin::Item-->
-							<div class="text-center">
-								<!--begin::Photo-->
-								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ url('/') }}/assets/media/avatars/150-7.jpg')"></div>
-								<!--end::Photo-->
-								<!--begin::Person-->
-								<div class="mb-0">
-									<!--begin::Name-->
-									<a href="#" class="text-white fw-bolder text-hover-primary fs-3">Alice Wayde</a>
-									<!--end::Name-->
-									<!--begin::Position-->
-									<div class="text-muted fs-6 fw-bold mt-1">Marketing Manager</div>
-									<!--begin::Position-->
-								</div>
-								<!--end::Person-->
-							</div>
-							<!--end::Item-->
-							<!--begin::Item-->
-							<div class="text-center">
-								<!--begin::Photo-->
-								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ url('/') }}/assets/media/avatars/150-8.jpg')"></div>
-								<!--end::Photo-->
-								<!--begin::Person-->
-								<div class="mb-0">
-									<!--begin::Name-->
-									<a href="#" class="text-white fw-bolder text-hover-primary fs-3">Carles Puyol</a>
-									<!--end::Name-->
-									<!--begin::Position-->
-									<div class="text-muted fs-6 fw-bold mt-1">QA Managers</div>
-									<!--begin::Position-->
-								</div>
-								<!--end::Person-->
-							</div>
-							<!--end::Item-->
+						@endforeach
+
 						</div>
-						<!--end::Wrapper-->
+						<!--end::Wrapper-->						
+	
 						<!--begin::Button-->
 						<button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev">
 							<!--begin::Svg Icon | path: icons/duotune/arrows/arr074.svg-->
@@ -384,37 +374,36 @@ License: For each use you must have a valid license purchased only from above li
 			<!--end::Statistics Section-->
 
 			<!--begin::Projects Section-->
-			<div class="mb-lg-n15 position-relative z-index-2" id="Berita">
+			<div class="mb-lg-n15 position-relative z-index-2 mt-5" id="Berita">
 				<!--begin::Container-->
 				<div class="mb-13 text-center">
 					<h1 class="fs-2hx fw-bolder text-black mb-3" data-kt-scroll-offset="{default: 100, lg: 150}">Berita Posyandu Karangan</h1>
 					<div class="text-gray-600 fw-bold fs-5">Berita dan informasi terbaru dari Posyandu Karangan</div>
 				</div>
 				<div class="container">
+				
 					<div class="row w-100 gy-10 mb-md-20">
+						@foreach ($blg as $dt )
 						<div class="col-md-4">
 							<!--begin::Feature post-->
 							<div class="card-xl-stretch me-md-6">
 								<!--begin::Image-->
-								<a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('assets/media/stock/600x400/img-73.jpg')" data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/ptgwzvvAHy4">
-									<img src="assets/media/svg/misc/video-play.svg" class="position-absolute top-50 start-50 translate-middle" alt="" />
+								<a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('{{ asset('/upload/'.$dt->image_url) }}')" href="{{ route('blog-list.detail', ['id' => $dt->id]) }}">
+									<img src="{{ asset('/upload/'.$dt->image_url) }}" class="position-absolute top-50 start-50 translate-middle " alt="" />
 								</a>
 								<!--end::Image-->
 								<!--begin::Body-->
 								<div class="m-0">
 									<!--begin::Title-->
-									<a href="../../demo1/dist/pages/profile/overview.html" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Metronic Admin - How To Started the Dashboard Tutorial</a>
-									<!--end::Title-->
-									<!--begin::Text-->
-									<div class="fw-bold fs-5 text-gray-600 text-dark my-4">We’ve been focused on making a the from also not been afraid to and step away been focused create eye</div>
-									<!--end::Text-->
-									<!--begin::Content-->
+									<a href="#" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">{{ $dt->judul }}</a>
 									<div class="fs-6 fw-bolder">
 										<!--begin::Author-->
-										<a href="../../demo1/dist/pages/profile/overview.html" class="text-gray-700 text-hover-primary">Jane Miller</a>
+										<a href="#" class="text-gray-700 text-hover-primary">Jane Miller</a>
 										<!--end::Author-->
 										<!--begin::Date-->
-										<span class="text-muted">on Mar 21 2021</span>
+										<span class="text-muted">{{  $dt->user->name  }} 
+											<br>
+											pada {{ $dt->created_at->translatedFormat('d M Y, h:i ') }}</span>
 										<!--end::Date-->
 									</div>
 									<!--end::Content-->
@@ -423,164 +412,13 @@ License: For each use you must have a valid license purchased only from above li
 							</div>
 							<!--end::Feature post-->
 						</div>
-						<div class="col-md-4">
-							<!--begin::Feature post-->
-							<div class="card-xl-stretch me-md-6">
-								<!--begin::Image-->
-								<a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('assets/media/stock/600x400/img-73.jpg')" data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/ptgwzvvAHy4">
-									<img src="assets/media/svg/misc/video-play.svg" class="position-absolute top-50 start-50 translate-middle" alt="" />
-								</a>
-								<!--end::Image-->
-								<!--begin::Body-->
-								<div class="m-0">
-									<!--begin::Title-->
-									<a href="../../demo1/dist/pages/profile/overview.html" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Metronic Admin - How To Started the Dashboard Tutorial</a>
-									<!--end::Title-->
-									<!--begin::Text-->
-									<div class="fw-bold fs-5 text-gray-600 text-dark my-4">We’ve been focused on making a the from also not been afraid to and step away been focused create eye</div>
-									<!--end::Text-->
-									<!--begin::Content-->
-									<div class="fs-6 fw-bolder">
-										<!--begin::Author-->
-										<a href="../../demo1/dist/pages/profile/overview.html" class="text-gray-700 text-hover-primary">Jane Miller</a>
-										<!--end::Author-->
-										<!--begin::Date-->
-										<span class="text-muted">on Mar 21 2021</span>
-										<!--end::Date-->
-									</div>
-									<!--end::Content-->
-								</div>
-								<!--end::Body-->
-							</div>
-							<!--end::Feature post-->
-						</div>
-						<div class="col-md-4">
-							<!--begin::Feature post-->
-							<div class="card-xl-stretch me-md-6">
-								<!--begin::Image-->
-								<a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('assets/media/stock/600x400/img-73.jpg')" data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/ptgwzvvAHy4">
-									<img src="assets/media/svg/misc/video-play.svg" class="position-absolute top-50 start-50 translate-middle" alt="" />
-								</a>
-								<!--end::Image-->
-								<!--begin::Body-->
-								<div class="m-0">
-									<!--begin::Title-->
-									<a href="../../demo1/dist/pages/profile/overview.html" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Metronic Admin - How To Started the Dashboard Tutorial</a>
-									<!--end::Title-->
-									<!--begin::Text-->
-									<div class="fw-bold fs-5 text-gray-600 text-dark my-4">We’ve been focused on making a the from also not been afraid to and step away been focused create eye</div>
-									<!--end::Text-->
-									<!--begin::Content-->
-									<div class="fs-6 fw-bolder">
-										<!--begin::Author-->
-										<a href="../../demo1/dist/pages/profile/overview.html" class="text-gray-700 text-hover-primary">Jane Miller</a>
-										<!--end::Author-->
-										<!--begin::Date-->
-										<span class="text-muted">on Mar 21 2021</span>
-										<!--end::Date-->
-									</div>
-									<!--end::Content-->
-								</div>
-								<!--end::Body-->
-							</div>
-							<!--end::Feature post-->
-						</div>
-						<div class="col-md-4">
-							<!--begin::Feature post-->
-							<div class="card-xl-stretch me-md-6">
-								<!--begin::Image-->
-								<a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('assets/media/stock/600x400/img-73.jpg')" data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/ptgwzvvAHy4">
-									<img src="assets/media/svg/misc/video-play.svg" class="position-absolute top-50 start-50 translate-middle" alt="" />
-								</a>
-								<!--end::Image-->
-								<!--begin::Body-->
-								<div class="m-0">
-									<!--begin::Title-->
-									<a href="../../demo1/dist/pages/profile/overview.html" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Metronic Admin - How To Started the Dashboard Tutorial</a>
-									<!--end::Title-->
-									<!--begin::Text-->
-									<div class="fw-bold fs-5 text-gray-600 text-dark my-4">We’ve been focused on making a the from also not been afraid to and step away been focused create eye</div>
-									<!--end::Text-->
-									<!--begin::Content-->
-									<div class="fs-6 fw-bolder">
-										<!--begin::Author-->
-										<a href="../../demo1/dist/pages/profile/overview.html" class="text-gray-700 text-hover-primary">Jane Miller</a>
-										<!--end::Author-->
-										<!--begin::Date-->
-										<span class="text-muted">on Mar 21 2021</span>
-										<!--end::Date-->
-									</div>
-									<!--end::Content-->
-								</div>
-								<!--end::Body-->
-							</div>
-							<!--end::Feature post-->
-						</div>
-						<div class="col-md-4">
-							<!--begin::Feature post-->
-							<div class="card-xl-stretch me-md-6">
-								<!--begin::Image-->
-								<a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('assets/media/stock/600x400/img-73.jpg')" data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/ptgwzvvAHy4">
-									<img src="assets/media/svg/misc/video-play.svg" class="position-absolute top-50 start-50 translate-middle" alt="" />
-								</a>
-								<!--end::Image-->
-								<!--begin::Body-->
-								<div class="m-0">
-									<!--begin::Title-->
-									<a href="../../demo1/dist/pages/profile/overview.html" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Metronic Admin - How To Started the Dashboard Tutorial</a>
-									<!--end::Title-->
-									<!--begin::Text-->
-									<div class="fw-bold fs-5 text-gray-600 text-dark my-4">We’ve been focused on making a the from also not been afraid to and step away been focused create eye</div>
-									<!--end::Text-->
-									<!--begin::Content-->
-									<div class="fs-6 fw-bolder">
-										<!--begin::Author-->
-										<a href="../../demo1/dist/pages/profile/overview.html" class="text-gray-700 text-hover-primary">Jane Miller</a>
-										<!--end::Author-->
-										<!--begin::Date-->
-										<span class="text-muted">on Mar 21 2021</span>
-										<!--end::Date-->
-									</div>
-									<!--end::Content-->
-								</div>
-								<!--end::Body-->
-							</div>
-							<!--end::Feature post-->
-						</div>
-						<div class="col-md-4">
-							<!--begin::Feature post-->
-							<div class="card-xl-stretch me-md-6">
-								<!--begin::Image-->
-								<a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('assets/media/stock/600x400/img-73.jpg')" data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/ptgwzvvAHy4">
-									<img src="assets/media/svg/misc/video-play.svg" class="position-absolute top-50 start-50 translate-middle" alt="" />
-								</a>
-								<!--end::Image-->
-								<!--begin::Body-->
-								<div class="m-0">
-									<!--begin::Title-->
-									<a href="../../demo1/dist/pages/profile/overview.html" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Metronic Admin - How To Started the Dashboard Tutorial</a>
-									<!--end::Title-->
-									<!--begin::Text-->
-									<div class="fw-bold fs-5 text-gray-600 text-dark my-4">We’ve been focused on making a the from also not been afraid to and step away been focused create eye</div>
-									<!--end::Text-->
-									<!--begin::Content-->
-									<div class="fs-6 fw-bolder">
-										<!--begin::Author-->
-										<a href="../../demo1/dist/pages/profile/overview.html" class="text-gray-700 text-hover-primary">Jane Miller</a>
-										<!--end::Author-->
-										<!--begin::Date-->
-										<span class="text-muted">on Mar 21 2021</span>
-										<!--end::Date-->
-									</div>
-									<!--end::Content-->
-								</div>
-								<!--end::Body-->
-							</div>
-							<!--end::Feature post-->
-						</div>
+						@endforeach
+					</div>	
+					<div class="text-gray-600 fw-bold fs-5 text-end"><a href="{{ Route('blog-list') }}">Selengkapnya</a></div>
 
-					</div>
 				</div>
+				<br>
+				<br>
 				<!--end::Container-->
 			</div>
 			<!--end::Testimonials Section-->
@@ -822,6 +660,23 @@ License: For each use you must have a valid license purchased only from above li
 		};
 		var layerControl = L.control.layers(baseMaps).addTo(map);
 		</script>
+		<script src="{{ $data['jkChart']->cdn() }}"></script>
+		{{ $data['jkChart']->script() }}
+		
+		<script src="{{ $data['stChart']->cdn() }}"></script>
+		{{ $data['stChart']->script() }}
+
+		<script src="{{ $data['gdChart']->cdn() }}"></script>
+		{{ $data['gdChart']->script() }}
+
+		<script src="{{ $data['koChart']->cdn() }}"></script>
+		{{ $data['koChart']->script() }}
+		
+		<script src="{{ $data['asChart']->cdn() }}"></script>
+		{{ $data['asChart']->script() }}
+
+		<script src="{{ $data['tkChart']->cdn() }}"></script>
+		{{ $data['tkChart']->script() }}
 	</body>
 	<!--end::Body-->
 </html>

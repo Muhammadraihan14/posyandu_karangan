@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LansiaController;
 use App\Http\Controllers\SensorController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LansiaControllerP;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PetugasControllerP;
@@ -16,9 +17,16 @@ use App\Http\Controllers\DashboardController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/', [LandingController::class, 'index']);
+Route::get('/blog-list', [LandingController::class, 'blog'])->name('blog-list');
+Route::get('/blog-list/{id}', [LandingController::class, 'detail'])->name('blog-list.detail');
+
+
 Route::get('/app', function () {
     return view('layouts.app');
 });
@@ -107,6 +115,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('lansia/p3g/save', [LansiaController::class, 'save_p3g'])->name('lansia.save.p3g')->middleware('cekAuth:admin');
     Route::get('lansia/p3g/delete/{id}', [LansiaController::class, 'delete_p3g'])->name('lansia.delete.p3g')->middleware('cekAuth:admin');
     Route::get('lansia/p3g/{id}', [LansiaController::class, 'detail_p3g'])->name('lansia.detail.p3g')->middleware('cekAuth:admin');
+
+    Route::get('Admin/detail', [AdminController::class, 'me'])->name('admin.details')->middleware('cekAuth:admin');
+
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -120,27 +131,28 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('Lansia/edit/gangguan/{id}', [LansiaControllerP::class, 'edit_ganngguan'])->name('lansia.petugas.edit.ganngguan')->middleware('cekAuth:petugas');
     Route::post('Lansia/gangguan/save', [LansiaControllerP::class, 'save_gangguan'])->name('lansia.petugas.save.g')->middleware('cekAuth:petugas');
-    Route::get('Lansia/delete/gangguan/{id}', [LansiaControllerP::class, 'delete_gangguan'])->name('lansia.petugas.delete.g')->middleware('cekAuth:petugas');
+    Route::get('Lansia/gangguan/delete/{id}', [LansiaControllerP::class, 'delete_gangguan'])->name('lansia.petugas.delete.g')->middleware('cekAuth:petugas');
     Route::get('Lansia/gangguan/{id}', [LansiaControllerP::class, 'detail_gangguan'])->name('lansia.petugas.detail.g')->middleware('cekAuth:petugas');
 
 
 
     // Route::get('lansia/create/fisik', [LansiaControllerP::class, 'create_fisik'])->name('lansia.create.fisik')->middleware('cekAuth:petugas');
     Route::post('Lansia/fisik/save', [LansiaControllerP::class, 'save_fisik'])->name('lansia.petugas.save.f')->middleware('cekAuth:petugas');
-    Route::get('Lansia/delete/fisik/{id}', [LansiaControllerP::class, 'delete_fisik'])->name('lansia.petugas.delete.f')->middleware('cekAuth:petugas');
+    Route::get('Lansia/fisik/delete/{id}', [LansiaControllerP::class, 'delete_fisik'])->name('lansia.petugas.delete.f')->middleware('cekAuth:petugas');
     Route::get('Lansia/fisik/{id}', [LansiaControllerP::class, 'detail_fisik'])->name('lansia.petugas.detail.f')->middleware('cekAuth:petugas');
 
+    // Route::get('lansia/fisik/delete/{id}', [LansiaController::class, 'delete_fisik'])->name('lansia.delete.f')->middleware('cekAuth:admin');
 
     Route::post('Lansia/lab/save', [LansiaControllerP::class, 'save_lab'])->name('lansia.petugas.save.lab')->middleware('cekAuth:petugas');
-    Route::get('Lansia/delete/lab/{id}', [LansiaControllerP::class, 'delete_lab'])->name('lansia.petugas.delete.lab')->middleware('cekAuth:petugas');
+    Route::get('Lansia/lab/delete/{id}', [LansiaControllerP::class, 'delete_lab'])->name('lansia.petugas.delete.lab')->middleware('cekAuth:petugas');
     Route::get('Lansia/lab/{id}', [LansiaControllerP::class, 'detail_lab'])->name('lansia.petugas.detail.lab')->middleware('cekAuth:petugas');
 
     Route::post('Lansia/p3g/save', [LansiaControllerP::class, 'save_p3g'])->name('lansia.petugas.save.p3g')->middleware('cekAuth:petugas');
-    Route::get('Lansia/delete/p3g/{id}', [LansiaControllerP::class, 'delete_p3g'])->name('lansia.petugas.delete.p3g')->middleware('cekAuth:petugas');
+    Route::get('Lansia/p3g/delete/{id}', [LansiaControllerP::class, 'delete_p3g'])->name('lansia.petugas.delete.p3g')->middleware('cekAuth:petugas');
     Route::get('Lansia/p3g/{id}', [LansiaControllerP::class, 'detail_p3g'])->name('lansia.petugas.detail.p3g')->middleware('cekAuth:petugas');
 
 
-    Route::get('petugas/detail', [PetugasControllerP::class, 'detail'])->name('petugas.details')->middleware('cekAuth:petugas');
+    Route::get('Petugas/detail', [PetugasControllerP::class, 'detail'])->name('petugas.details')->middleware('cekAuth:petugas');
 
 
 });
