@@ -6,6 +6,7 @@ use DB;
 use App\Models\Desa;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Lansia;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,8 +106,20 @@ class DesaService
     }
     public static function DesaLocation()
     {
-        $data = Desa::with('lansia')->get();
+        // $data = Desa::with('lansia')
+        // ->get();
+
+
+        $data =  DB::table('pemeriksaan_fisikdantindakans')
+        ->select('desas.name', 'desas.latitude', 'desas.longitude')
+        ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Kurang" THEN 1 ELSE 0 END) AS jumlah_statusgizi_kurang')
+        ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Normal" THEN 1 ELSE 0 END) AS jumlah_statusgizi_normal')
+        ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Lebih" THEN 1 ELSE 0 END) AS jumlah_statusgizi_lebih')
+        ->join('desas', 'pemeriksaan_fisikdantindakans.desa_id', '=', 'desas.id')
+        ->groupBy('desas.name', 'desas.latitude', 'desas.longitude')
+        ->get();
         // dd($data);
-        return $data;
+
+            return $data;
     }
 }
