@@ -17,9 +17,18 @@ class GulaDarah
     public function build(): \ArielMejiaDev\LarapexCharts\PieChart
     {
         $status = P_LAB::get();
+
+        $statusNormal = P_LAB::where('gula_darah', '<', '200')
+        ->distinct('lansia_id')
+        ->count();
+        $statusTinggi = P_LAB::where('gula_darah', '>=', '200')
+        ->distinct('lansia_id')
+        ->count();
+
+
         $data = [
-            $status->where('gula_darah', '<', '200')->count(),
-            $status->where('gula_darah', '>=', '200')->count(),
+            $statusNormal,
+            $statusTinggi,
         ];
         // dd($data);
         $label = [

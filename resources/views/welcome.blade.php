@@ -197,7 +197,7 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Tables Widget 9-->
 							<div class="card card-xl-stretch mb-xl-8 ">
 								<div class="card-body">
-									{!! $data['jkChart']->container() !!}
+									{!! $data['mlChart']->container() !!}
 								</div>
 								<!--begin::Body-->
 							</div>
@@ -652,7 +652,9 @@ License: For each use you must have a valid license purchased only from above li
 		var layerControl = L.control.layers(baseMaps).addTo(map);
 		@isset($desa)
 			@foreach ($desa as $dt)
-				L.marker([{{ $dt->latitude }}, {{ $dt->longitude }}]).bindPopup("<h5>Desa :{{ $dt->name }}</h5>Jumlah Lansia : {{ $dt->lansia->count(); }}").addTo(map);
+				
+				L.marker([{{ $dt->latitude }}, {{ $dt->longitude }}]).bindPopup(
+					"<h5>Desa :{{ $dt->name }}</h5>Status Gizi Lebih : {{ $dt->jumlah_statusgizi_lebih }} <br> Status Gizi Normal : {{ $dt->jumlah_statusgizi_normal }} <br> Status Gizi Kurang : {{ $dt->jumlah_statusgizi_kurang }}").addTo(map);
 			@endforeach
 		@endisset
 
@@ -660,8 +662,8 @@ License: For each use you must have a valid license purchased only from above li
 		</script>
 
 
-		<script src="{{ $data['jkChart']->cdn() }}"></script>
-		{{ $data['jkChart']->script() }}
+		<script src="{{ $data['mlChart']->cdn() }}"></script>
+		{{ $data['mlChart']->script() }}
 		
 		<script src="{{ $data['stChart']->cdn() }}"></script>
 		{{ $data['stChart']->script() }}

@@ -17,10 +17,19 @@ class Kolesterol
     public function build(): \ArielMejiaDev\LarapexCharts\DonutChart
     {
 
-        $status = P_LAB::get();
+  
+
+        $statusNormal = P_LAB::where('kolesterol', '<', '190')
+        ->distinct('lansia_id')
+        ->count();
+        $statusTinggi = P_LAB::where('kolesterol', '>=', '190')
+        ->distinct('lansia_id')
+        ->count();
+
+
         $data = [
-            $status->where('kolesterol', '<', '190')->count(),
-            $status->where('kolesterol', '>=', '190')->count(),
+            $statusNormal,
+            $statusTinggi,
         ];
         // dd($data);
         $label = [

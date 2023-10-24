@@ -9,6 +9,7 @@ use App\Models\Petugas;
 use App\Charts\AsamUrat;
 use App\Charts\GulaDarah;
 use App\Charts\Kolesterol;
+use App\Charts\Malnutrisi;
 use App\Charts\TekananDarah;
 use Illuminate\Http\Request;
 use App\Services\BlogService;
@@ -26,12 +27,13 @@ class LandingController extends Controller
     Kolesterol $KOchart,
     AsamUrat $ASchart,
     TekananDarah $TKchart,
+    Malnutrisi $MLchart,
     
     
     
     )
     {
-        $data['jkChart'] =  $JKchart->build();
+        $data['mlChart'] =  $MLchart->build();
         $data['stChart'] =  $STchart->build();
         $data['gdChart'] =  $GDchart->build();
         $data['koChart'] =  $KOchart->build();
@@ -44,7 +46,8 @@ class LandingController extends Controller
         Paginator::useBootstrap();
         $petugas = Petugas::with('user')->get();
         $desa = DesaService::DesaLocation();
-        return view('welcome', compact('blog', 'blg','petugas','data','desa'));
+        $lansia = Lansia::leftJoin('pemeriksaan_fisikdantindakans', 'pemeriksaan_fisikdantindakans.lansia_id', '=', 'lansias.id')->get();
+        return view('welcome', compact('blog', 'blg','petugas','data','desa', 'lansia'));
     }
     public function blog(Request $request)
     {
