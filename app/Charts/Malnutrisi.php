@@ -57,15 +57,15 @@ class Malnutrisi
         // dd($data);
 
         $label = [
-            'Malnutrisi',
+            'Malnutri',
             'Normal',
-            'Resiko Malnutrisi'
+            'Resiko'
         ];
 
 
         
         return $this->chart->pieChart()
-                ->setTitle('Grafik Status Gizi Lansia')
+                ->setTitle('Grafik Penilaian Malnutrisi')
                 ->setSubtitle(date('Y'))
                 ->addData($data)
                 ->setColors([ '#FF0000','#58FFC5', '#FFFF00'])

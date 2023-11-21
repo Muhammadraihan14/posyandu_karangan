@@ -71,7 +71,7 @@ class StatusGiziChart
             'Rendah'
         ];
         return $this->chart->donutChart()
-            ->setTitle('Grafik Penilaian Resiko Malnutrisi')
+            ->setTitle('Grafik Status Gizi Lansia')
             ->setSubtitle(date('Y'))
             ->addData($data)
             ->setColors([ '#FF0000','#58FFC5', '#FFFF00'])

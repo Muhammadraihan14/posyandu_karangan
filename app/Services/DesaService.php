@@ -41,23 +41,10 @@ class DesaService
         // dd($params);
         // $username = $params['name'].rand(pow(10, 8 - 1), pow(10, 8) -1);
         DB::beginTransaction();
-        // try {
+        try {
             $inputUser['name'] = $params['name'];
             $inputUser['latitude'] = $params['latitude'];
             $inputUser['longitude'] = $params['longitude'];
-
-
-
-            // $inputUser['user_name'] = $username;
-            // $inputUser['user_type'] = 'admin';
-            // $inputUser['name'] = $params['name'];
-            // $inputUser['email'] = $params['email'];
-            // $inputUser['nip'] = $params['nip'];
-            // $inputUser['gender'] = $params['gender'];
-            // $inputUser['password'] = Hash::make($params['password']);
-            // if(isset($params['image_url'])){
-            //     $inputUser['image_url'] = $params['image_url'];
-            // }   
             if (isset($params['id'])) {
                 // dd($params['id']);
                 $desa =  Desa::find($params['id']);
@@ -70,10 +57,10 @@ class DesaService
             }
             DB::commit();
             return $desa;
-        // } catch (\Throwable $th) {
-        //     DB::rollback();
-        //     return $th;
-        // }
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th;
+        }
     }
     public static function AdminDetail($id)
     {
@@ -108,18 +95,27 @@ class DesaService
     {
         // $data = Desa::with('lansia')
         // ->get();
-
+//         SELECT desas.name, desas.latitude, desas.longitude, 
+//         SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = 'Kurang' 
+//             THEN 1 ELSE 0 END) AS jumlah_statusgizi_kurang,
+//         SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = 'Normal'
+//             THEN 1 ELSE 0 END) AS jumlah_statusgizi_normal,
+//         SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = 'Lebih' 
+//             THEN 1 ELSE 0 END) AS jumlah_statusgizi_lebih
+        //  FROM pemeriksaan_fisikdantindakans
+        //  JOIN desas ON pemeriksaan_fisikdantindakans.desa_id = desas.id
+        //  WHERE pemeriksaan_fisikdantindakans.lansia_id 
+        //  GROUP BY desas.name, desas.latitude, desas.longitude;
 
         $data =  DB::table('pemeriksaan_fisikdantindakans')
-        ->select('desas.name', 'desas.latitude', 'desas.longitude')
-        ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Kurang" THEN 1 ELSE 0 END) AS jumlah_statusgizi_kurang')
-        ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Normal" THEN 1 ELSE 0 END) AS jumlah_statusgizi_normal')
-        ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Lebih" THEN 1 ELSE 0 END) AS jumlah_statusgizi_lebih')
-        ->join('desas', 'pemeriksaan_fisikdantindakans.desa_id', '=', 'desas.id')
-        ->groupBy('desas.name', 'desas.latitude', 'desas.longitude')
-        ->get();
-        // dd($data);
+                ->select('desas.name', 'desas.latitude', 'desas.longitude')
+                ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Kurang" THEN 1 ELSE 0 END) AS jumlah_statusgizi_kurang')
+                ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Normal" THEN 1 ELSE 0 END) AS jumlah_statusgizi_normal')
+                ->selectRaw('SUM(CASE WHEN pemeriksaan_fisikdantindakans.status_gizi = "Lebih" THEN 1 ELSE 0 END) AS jumlah_statusgizi_lebih')
+                ->join('desas', 'pemeriksaan_fisikdantindakans.desa_id', '=', 'desas.id')
+                ->groupBy('desas.name', 'desas.latitude', 'desas.longitude')
+                ->get();
 
-            return $data;
+        return $data;
     }
 }

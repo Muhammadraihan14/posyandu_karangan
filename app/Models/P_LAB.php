@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class P_LAB extends Model
 {
     use HasFactory;
-    protected $table = "PEMERIKSAAN_LABS";
+    protected $table = "pemeriksaan_labs";
     protected $guarded= ['id'];
     protected $dates= ['tanggal_p_lab'];
 
