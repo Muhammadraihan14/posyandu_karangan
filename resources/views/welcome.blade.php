@@ -185,7 +185,7 @@ License: For each use you must have a valid license purchased only from above li
 				<!--begin::Container-->
 				<div class="container">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-lg-6 col-md-12">
 							<div class="card card-xl-stretch mb-xl-8 ">
 								<div class="card-body">
 									{!! $data['stChart']->container() !!}
@@ -193,7 +193,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Body-->
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-lg-6 col-md-12">
 							<!--begin::Tables Widget 9-->
 							<div class="card card-xl-stretch mb-xl-8 ">
 								<div class="card-body">
@@ -207,7 +207,7 @@ License: For each use you must have a valid license purchased only from above li
 				</div>
 				<div class="container">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-lg-6 col-md-12">
 							<div class="card card-xl-stretch mb-xl-8 ">
 								<div class="card-body">
 									{!! $data['gdChart']->container() !!}
@@ -215,7 +215,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Body-->
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-lg-6 col-md-12">
 							<!--begin::Tables Widget 9-->
 							<div class="card card-xl-stretch mb-xl-8 ">
 								<div class="card-body">
@@ -229,7 +229,7 @@ License: For each use you must have a valid license purchased only from above li
 				</div>
 				<div class="container">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-lg-6 col-md-12">
 							<div class="card card-xl-stretch mb-xl-8 ">
 								<div class="card-body">
 									{!! $data['tkChart']->container() !!}
@@ -237,7 +237,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Body-->
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-lg-6 col-md-12">
 							<!--begin::Tables Widget 9-->
 							<div class="card card-xl-stretch mb-xl-8 ">
 								<div class="card-body">
@@ -661,12 +661,13 @@ License: For each use you must have a valid license purchased only from above li
 		
 		</script>
 
+		<script src="{{ $data['stChart']->cdn() }}"></script>
+		{{ $data['stChart']->script() }}
 
 		<script src="{{ $data['mlChart']->cdn() }}"></script>
 		{{ $data['mlChart']->script() }}
 		
-		<script src="{{ $data['stChart']->cdn() }}"></script>
-		{{ $data['stChart']->script() }}
+
 
 		<script src="{{ $data['gdChart']->cdn() }}"></script>
 		{{ $data['gdChart']->script() }}

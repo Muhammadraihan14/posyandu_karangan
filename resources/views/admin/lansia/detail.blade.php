@@ -341,8 +341,7 @@
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
                                     <div class="col-lg-8 fv-row">
-                                        <span
-                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                        <span class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-7">
@@ -464,8 +463,7 @@
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
                                     <div class="col-lg-8 fv-row">
-                                        <span
-                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->tanggal_p_lab->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                        <span class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_lab->last() != null ? $data->pemerisaan_lab->last()->tanggal_p_lab->translatedFormat('d M Y, h:i A') : '-' }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-7">
@@ -558,8 +556,7 @@
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
-                                        <span
-                                            class="fw-bold text-gray-800 fs-6">{{ $data->p3g->last() != null ? $data->p3g->last()->tanggal_p_p3g->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                        <span class="fw-bold text-gray-800 fs-6">{{ $data->p3g->last() != null ? $data->p3g->last()->tanggal_p_p3g->translatedFormat('d M Y, h:i A') : '-' }}</span>
                                     </div>
                                     <!--end::Col-->
                                 </div>

@@ -1,7 +1,7 @@
 @extends('landing.layouts.app')
 @section('head')
-    <title>Petugas Detail | Posyandu lansia</title>
-    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <title>Blog List | Posyandu lansia</title>
+    <link href="{{ url('/') }}/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('konten')
 <div class="post d-flex flex-column-fluid" id="kt_post">
