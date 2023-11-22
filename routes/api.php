@@ -2,18 +2,27 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\LansiaApiController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/login', [ApiController::class, 'authenticate']);
+Route::post('/logout', [ApiController::class, 'logout'])->middleware('auth:sanctum');
+
+
+Route::get('/lansia', [LansiaApiController::class, 'lansiaList'])->middleware('auth:sanctum');
+Route::get('/lansia/{id}', [LansiaApiController::class, 'detail'])->middleware('auth:sanctum');
+
+Route::post('/lansia/save', [LansiaApiController::class, 'save'])->middleware('auth:sanctum');
+
+Route::get('/lansia/delete/{id}', [LansiaApiController::class, 'delete'])->middleware('auth:sanctum');
+
+// Route::get('Lansia/delete/{id}', [LansiaControllerP::class, 'delete'])->name('lansia.petugas.delete')->middleware('cekAuth:petugas');
+
+
+
+
+

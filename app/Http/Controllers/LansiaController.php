@@ -47,11 +47,8 @@ class LansiaController extends Controller
     }  
     public function save(Request $request)
     {
-        // dd($request);
         if(!isset($request['id'])){
             $validated = $request->validate([
-                //table lansia
-                // 'petugas_id' => 'required',
                 'name' => 'required',
                 'umur' => 'required',
                 'nik' => 'required|max:16|min:16',
@@ -59,85 +56,19 @@ class LansiaController extends Controller
                 'gender' => 'required',
                 'alamat' => 'required',
                 'desa_id' => 'required',
-            //     'g_ginjal' => 'required',
-            //     'g_pengelihatan' => 'required',
-            //     'g_pendengaran' => 'required',
-            //     'penyuluhan' => '',
-            //     'pemberdayaan' => '',
-            //     'keterangan' => '',
-            //     //table p__fisik__tindakans
-            //     'tanggal_p' => 'required',
-            //     'tinggi_badan' => 'required',
-            //     'berat_badan' => 'required',
-            //     'sistole' => 'required',
-            //     'diastole' => 'required',
-            //     'lain' => '',
-            //     'tata_laksana' => 'required',
-            //     'konseling' => '',
-            //     'rujuk' => '',
-            //     // table p3_g_s
-            //     'tanggal_p_p3g' => '',
-            //     'tingkat_kemandirian' => '',
-            //     'g_emosional' => '',
-            //     'g_kognitiv' => '',
-            //     'p_resiko_malnutrisi' => '',
-            //     'p_resiko_jatuh' => '',
-                
-            //    //table p__l_a_b_s
-            //     'tanggal_p_lab' => '',
-            //     'kolesterol' => '',
-            //     'gula_darah' => '',
-            //     'asam_urat' => '',
-            //     'hb' => '',
             ]);
             $params = $validated;;
-            // dd($params);
         }else{
             $validated = $request->validate([
-                //table lansia
                 'id' => 'required',
-                // 'petugas_id' => 'required',
                 'name' => 'required',
                 'nik' => 'required|max:16|min:16',
                 'umur' => 'required|max:3',
                 'gender' => 'required',
                 'alamat' => 'required',
                 'desa_id' => 'required',
-                //riwayat
-            //     'g_ginjal' => 'required',
-            //     'g_pengelihatan' => 'required',
-            //     'g_pendengaran' => 'required',
-            //     'penyuluhan' => '',
-            //     'pemberdayaan' => '',
-            //     'keterangan' => '',
-            //     //table p__fisik__tindakans
-            //     'tanggal_p' => 'required',
-            //     'tinggi_badan' => 'required',
-            //     'berat_badan' => 'required',
-            //     'sistole' => 'required',
-            //     'diastole' => 'required',
-            //     'lain' => '',
-            //     'tata_laksana' => 'required',
-            //     'konseling' => '',
-            //     'rujuk' => '',
-            //     // table p3_g_s
-            //     'tanggal_p_p3g' => '',
-            //     'tingkat_kemandirian' => '',
-            //     'g_emosional' => '',
-            //     'g_kognitiv' => '',
-            //     'p_resiko_malnutrisi' => '',
-            //     'p_resiko_jatuh' => '',
-                
-            //    //table p__l_a_b_s
-            //     'tanggal_p_lab' => '',
-            //     'kolesterol' => '',
-            //     'gula_darah' => '',
-            //     'asam_urat' => '',
-            //     'hb' => '',
             ]);
-
             $params = $validated;
-            // dd($params);
         }        
         $data = LansiaService::LansiaStore($params);
         if(!isset($request['id'])){
