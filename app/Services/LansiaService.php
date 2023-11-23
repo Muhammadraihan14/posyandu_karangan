@@ -37,7 +37,27 @@ class LansiaService
     }
     public static function lansiaListM()
     {
-        $data = Lansia::with('pemerisaan_fisik_tindakan','pemerisaan_lab','p3g' , 'riwayat_gangguan' )->paginate(5);
+        $data = Lansia::with('pemerisaan_fisik_tindakan','pemerisaan_lab','p3g' , 'riwayat_gangguan' )->paginate(10000);
+        Paginator::useBootstrap();
+        return $data;
+    }
+    public static function searchLansia($request)
+    {
+        $params = $request;
+        // dd($params);
+        $data = Lansia::where(function ($row) use ($params){
+            $row->where(function ($query) use ($params) {
+                foreach($params as $key=>$value){
+                    if($key=='name'){
+                        $query->where('lansias.name', 'like', '%' . $params['name'].'%');
+                    }
+                    else{
+                        $query->where($key,$value);
+                    }
+                }
+            });
+    })->paginate(10000);
+
         Paginator::useBootstrap();
         return $data;
         

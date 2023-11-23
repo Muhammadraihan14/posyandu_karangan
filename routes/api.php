@@ -17,6 +17,8 @@ Route::get('/lansia', [LansiaApiController::class, 'lansiaList'])->middleware('a
 Route::get('/lansia/{id}', [LansiaApiController::class, 'detail'])->middleware('auth:sanctum');
 
 Route::post('/lansia/save', [LansiaApiController::class, 'save'])->middleware('auth:sanctum');
+Route::get('/search', [LansiaApiController::class, 'searchList'])->middleware('auth:sanctum');
+
 
 Route::get('/lansia/delete/{id}', [LansiaApiController::class, 'delete'])->middleware('auth:sanctum');
 

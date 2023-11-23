@@ -17,6 +17,17 @@ class LansiaApiController extends Controller
                 "data"   => $data,
             ]);
       }
+      public function searchList(Request $request)
+      {
+            $input = $request->all();
+            // dd($input);
+            $data = LansiaService::searchLansia($input);
+            return response()->json([
+                "status"    => "success",
+                "message" => "Serch lansia",
+                "data"   => $data,
+            ]);
+      }
       public function detail($id)
       {
         // LansiaController::save();
