@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\LansiaApiController;
 
 Route::post('/login', [ApiController::class, 'authenticate']);
 Route::post('/logout', [ApiController::class, 'logout'])->middleware('auth:sanctum');
+Route::get('/me', [ApiController::class, 'me'])->middleware('auth:sanctum');
+
 
 
 Route::get('/lansia', [LansiaApiController::class, 'lansiaList'])->middleware('auth:sanctum');
@@ -18,6 +20,7 @@ Route::get('/lansia/{id}', [LansiaApiController::class, 'detail'])->middleware('
 
 Route::post('/lansia/save', [LansiaApiController::class, 'save'])->middleware('auth:sanctum');
 Route::get('/search', [LansiaApiController::class, 'searchList'])->middleware('auth:sanctum');
+
 
 
 Route::get('/lansia/delete/{id}', [LansiaApiController::class, 'delete'])->middleware('auth:sanctum');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,19 @@ class ApiController extends Controller
                 "message"   => "Unauthorised",
             ]);
         } 
+    }
+
+    public function me()
+    {
+        $user = Auth::user();
+        // $data = User::find($user);
+        // dd($user);
+        return response()->json([
+            "status"    => "success",
+            "message" => "Profile Petugas",
+            "data"   => $user,
+        ]);
+
     }
     public function logout()
     {
