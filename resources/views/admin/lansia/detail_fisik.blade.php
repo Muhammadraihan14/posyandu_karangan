@@ -78,7 +78,7 @@
                         <th class="min-w-125px text-center">Tinggi Badan</th>
                         <th class="min-w-125px text-center">IMT</th>
                         <th class="min-w-125px text-center">Status Gizi</th>
-                        <th class="min-w-125px text-center">Tekanan Darah</th>
+                        {{-- <th class="min-w-125px text-center">Tekanan Darah</th> --}}
                         <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
                         <th class="text-end min-w-70px">Actions</th>
                     </tr>
@@ -105,16 +105,16 @@
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->imt }} Kg/m^2</a>
+                                    class="menu-link px-3">{{ $val->imt }} Kg/m<sup>2</sup></a>
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
                                     class="menu-link px-3">{{ $val->status_gizi }}</a>
                             </td>
-                            <td class="text-center">
+                            {{-- <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
                                     class="menu-link px-3">{{ $val->tekanan_darah }}</a>
-                            </td>
+                            </td> --}}
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
                                     class="menu-link px-3">{{ $val->tanggal_p->translatedFormat('d M Y') }}</a>
@@ -191,7 +191,7 @@
                 @foreach ($data->pemerisaan_fisik_tindakan as $key => $val)
                     <div class="timeline-item">
                         <!--begin::Label-->
-                        <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ $val->tanggal_p->translatedFormat('h:i A') }}</div>
+                        <div class="timeline-label fw-bolder text-gray-800 fs-6"></div>
                         <!--end::Label-->
                         <!--begin::Badge-->
                         <div class="timeline-badge">
@@ -244,6 +244,7 @@
                         <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" id="user_id">
                         <input type="hidden" value="{{ $data->id }}" name="lansia_id" id="lansia_id">
                         <input type="hidden" value="{{ $data->desa_id }}" name="desa_id" id="desa_id">
+                        <input type="hidden"  name="imt" id="imt">
                         <div class="d-flex flex-column mb-8 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -277,7 +278,7 @@
                             <!--begin::Col-->
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-bold mb-2">Berat Badan</label>
-                                <input type="number" name="berat_badan" id="berat_badan"
+                                <input type="text" name="berat_badan" id="berat_badan"
                                     @error('berat_badan') is-invalid @enderror class="form-control form-control-solid"
                                     required />
                                 @error('berat_badan')
@@ -290,8 +291,7 @@
                         </div>
                         <!--end::Input group-->
                         <!--end::Input group-->
-                        <div class="row g-9 mb-8">
-                            <!--begin::Col-->
+                        {{-- <div class="row g-9 mb-8">
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-bold mb-2">Sistole</label>
                                 <input type="number" name="sistole" @error('sistole') is-invalid @enderror
@@ -302,8 +302,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-bold mb-2">Diastole</label>
                                 <input type="number" name="diastole" @error('diastole') is-invalid @enderror
@@ -314,16 +312,13 @@
                                     </div>
                                 @enderror
                             </div>
-                            <!--end::Col-->
-                        </div>
+                        </div> --}}
                         <!--end::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row">
+                        {{-- <div class="d-flex flex-column mb-8 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Tata Laksana</span>
-                                {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i> --}}
                             </label>
-                            <!--end::Label-->
                             <input type="text" name="tata_laksana" @error('tata_laksana') is-invalid @enderror
                                 class="form-control form-control-solid" required />
                             @error('tata_laksana')
@@ -331,7 +326,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <!--end::Input group-->
                         <div class="d-flex flex-column mb-8 fv-row">
                             <!--begin::Label-->
@@ -494,8 +489,7 @@
             console.log(data.tinggi);
             $('#tinggi_badan').val(data.tinggi).toString();
             $('#berat_badan').val(data.berat).toString();
-
-
+            $('#imt').val(data.imt).toString();
         });
     </script>>
 @endsection

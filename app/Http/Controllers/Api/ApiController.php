@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Desa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -53,7 +54,6 @@ class ApiController extends Controller
             "message" => "Profile Petugas",
             "data"   => $user,
         ]);
-
     }
     public function logout()
     {

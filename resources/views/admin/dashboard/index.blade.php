@@ -70,7 +70,7 @@
                                     <!--begin::Row-->
                                     <div class="row g-0 text-center">
                                         <!--begin::Col-->
-                                        <div class="col bg-light-danger px-6 py-8 rounded-2 me-7">
+                                        {{-- <div class="col bg-light-danger px-6 py-8 rounded-2 me-7">
                                           <p class="lead text-danger fw-bold h5">{{ $TDesa }}</p>
                                             <a href="{{ route('desa') }}" class="text-danger fw-bold fs-6 mt-2">Total Desa</a>
                                         </div>
@@ -79,7 +79,7 @@
                                         <div class="col bg-light-success px-6 py-8 rounded-2">
                                           <p class="lead text-danger fw-bold h5">{{ $TBlog }}</p>
                                             <a href="{{ route('blog') }}" class="text-success fw-bold fs-6 mt-2">Total Blog</a>
-                                        </div>
+                                        </div> --}}
                                         <!--end::Col-->
                                     </div>
                                     <!--end::Row-->

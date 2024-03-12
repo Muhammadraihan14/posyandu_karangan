@@ -81,6 +81,8 @@
                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
+                                        <span class="badge {{ $data->pemerisaan_fisik_tindakan->last()->status_gizi == 'Lebih' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->status_gizi != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '' }}</span>
+
                                         {{-- <a href="#" class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade to Pro</a> --}}
                                     </div>
                                 </div>
@@ -105,41 +107,24 @@
                                             <!--begin::Label-->
                                             <!--end::Label-->
                                         </div>
-                                        <div
-                                            class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <!--begin::Number-->
+                                        {{-- <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                             <div class="fw-bold fs-6 text-gray-400">Gangguan</div>
                                             <div class="d-flex align-items-center">
                                                 <div class="fs-2 fw-bolder">{{ $data->riwayat_gangguan->count() }}</div>
                                             </div>
-                                            <!--end::Number-->
-                                            <!--begin::Label-->
-                                            <!--end::Label-->
-                                        </div>
-                                        <div
-                                            class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <!--begin::Number-->
+                                        </div> --}}
+                                        {{-- <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                             <div class="fw-bold fs-6 text-gray-400">Laboratorium</div>
                                             <div class="d-flex align-items-center">
                                                 <div class="fs-2 fw-bolder">{{ $data->pemerisaan_lab->count() }}</div>
                                             </div>
-                                            <!--end::Number-->
-                                            <!--begin::Label-->
-                                            <!--end::Label-->
-                                        </div>
-                                        <div
-                                            class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <!--begin::Number-->
+                                        </div> --}}
+                                        {{-- <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                             <div class="fw-bold fs-6 text-gray-400">P3G</div>
                                             <div class="d-flex align-items-center">
-                                                {{-- <div class="fs-2 fw-bolder" data-kt-countup="true"  data-kt-countup-value="{{ $data->p3g->count() }}" >0</div> --}}
                                                 <div class="fs-2 fw-bolder">{{ $data->p3g->count() }}</div>
-
                                             </div>
-                                            <!--end::Number-->
-                                            <!--begin::Label-->
-                                            <!--end::Label-->
-                                        </div>
+                                        </div> --}}
                                         <!--end::Stat-->
 
                                     </div>
@@ -166,15 +151,15 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_8">Fisik & Tindakan</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_9">Gangguan</a>
-                            </li>
-                            <li class="nav-item">
+                            </li> --}}
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_10">LAB</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_11">P3G</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
@@ -193,16 +178,12 @@
                             </div>
                             <!--end::Row-->
                             <!--begin::Input group-->
-                            <div class="row mb-7">
-                                <!--begin::Label-->
+                            {{-- <div class="row mb-7">
                                 <label class="col-lg-4 fw-bold text-muted">NIK</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <span class="fw-bold text-gray-800 fs-6">{{ $data->nik }}</span>
                                 </div>
-                                <!--end::Col-->
-                            </div>
+                            </div> --}}
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="row mb-7">
@@ -290,15 +271,25 @@
                                         <div class="col-lg-8 d-flex align-items-center">
                                             <span
                                                 class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->imt : '-' }}
-                                                Kg/m^2 </span>
-                                            <span
-                                                class="badge {{ $data->pemerisaan_fisik_tindakan->last()->status_gizi == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->status_gizi != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '' }}</span>
+                                                Kg/m<sup>2</sup> </span>
+                                                {{-- <span class="badge {{ $data->pemerisaan_fisik_tindakan->last()->status_gizi == 'Lebih' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->status_gizi != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '' }}</span> --}}
 
                                         </div>
                                     </div>
                                     <!--end::Col-->
                                 </div>
                                 <div class="row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 fw-bold text-muted">Status Gizi</label>
+                                    <!--end::Label-->
+                                    <!--begin::Col-->
+                                    <div class="col-lg-8 fv-row">
+                                        <span class="badge {{ $data->pemerisaan_fisik_tindakan->last()->status_gizi == 'Lebih' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->status_gizi != null ? $data->pemerisaan_fisik_tindakan->last()->status_gizi : '' }}</span>
+
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                {{-- <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Tekanan Darah </label>
                                     <div class="col-lg-8 fv-row">
                                         <span
@@ -309,40 +300,40 @@
                                         <span
                                             class="badge {{ $data->pemerisaan_fisik_tindakan->last()->tekanan_darah == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->pemerisaan_fisik_tindakan->last()->tekanan_darah != null ? $data->pemerisaan_fisik_tindakan->last()->tekanan_darah : '' }}</span>
                                     </div>
-                                </div>
-                                <div class="row mb-7">
+                                </div> --}}
+                                {{-- <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Konseling </label>
                                     <div class="col-lg-8 fv-row">
                                         <span
                                             class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->konseling : '-' }}</span>
                                     </div>
-                                </div>
-                                <div class="row mb-7">
+                                </div> --}}
+                                {{-- <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Rujuk </label>
                                     <div class="col-lg-8 fv-row">
                                         <span
                                             class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->rujuk : '-' }}</span>
                                     </div>
-                                </div>
-                                <div class="row mb-7">
+                                </div> --}}
+                                {{-- <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Tata Laksana </label>
                                     <div class="col-lg-8 fv-row">
                                         <span
                                             class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tata_laksana : '-' }}</span>
                                     </div>
-                                </div>
-                                <div class="row mb-7">
+                                </div> --}}
+                                {{-- <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Lain-lain </label>
                                     <div class="col-lg-8 fv-row">
                                         <span
                                             class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->lain : '-' }}</span>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
                                     <div class="col-lg-8 fv-row">
                                         <span
-                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
+                                            class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tanggal_p->translatedFormat('d M Y') : '-' }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-7">
@@ -359,7 +350,7 @@
                             <div class="row"><p class="text-center col-12">Belum pernah melakukan pemeriksaan</p></div>
                             @endif
                         </div>
-                        <div class="tab-pane fade" id="kt_tab_pane_9" role="tabpanel">
+                        {{-- <div class="tab-pane fade" id="kt_tab_pane_9" role="tabpanel">
                             @if ($data->riwayat_gangguan->last() != null)
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Gangguan Ginjal</label>
@@ -411,8 +402,8 @@
                             </div> 
                             <div class="row"><p class="text-center col-12">Belum pernah melakukan pemeriksaan</p></div>
                             @endif
-                        </div>
-                        <div class="tab-pane fade" id="kt_tab_pane_10" role="tabpanel">
+                        </div> --}}
+                        {{-- <div class="tab-pane fade" id="kt_tab_pane_10" role="tabpanel">
                             @if ($data->pemerisaan_lab->last() != null)
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Kolesterol</label>
@@ -481,14 +472,11 @@
                             </div> 
                             <div class="row"><p class="text-center col-12">Belum pernah melakukan pemeriksaan</p></div>
                             @endif
-                        </div>
-                        <div class="tab-pane fade" id="kt_tab_pane_11" role="tabpanel">
+                        </div> --}}
+                        {{-- <div class="tab-pane fade" id="kt_tab_pane_11" role="tabpanel">
                             @if ($data->p3g->last() != null)
                                 <div class="row mb-7">
-                                    <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">Tingkat Kemandirian (AKS/ADL)</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
                                     <div class="col-mb-6 col-lg-7 ">
                                         <span class="fw-bolder fs-6 text-gray-800">{{ $data->p3g->last() != null ? $data->p3g->last()->tingkat_kemandirian : '-' }}</span>
                                         <span class="badge {{ $statusMan == 'Ketergantungan Berat / Total' ? 'badge-danger' : 'badge-success ' }}">{{ $statusMan != null ? $statusMan : '' }}</span>
@@ -496,72 +484,44 @@
                                     <div class="col-mb-end col-lg-1 ">
                                         <a href="{{ route('lansia.petugas.detail.p3g', ['id' => $data->id]) }}"><i class="bi bi-clock-history fs-2x"></i></a> 
                                      </div>
-                                    <!--end::Col-->
                                 </div>
-                                <!--end::Row-->
-                                <!--begin::Input group-->
                                 <div class="row mb-7">
-                                    <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">Gangguan Mental Emosional</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
                                         <span
                                             class="fw-bold text-gray-800 fs-6">{{ $data->p3g->last() != null ? $data->p3g->last()->g_emosional : '-' }}</span>
                                     </div>
-                                    <!--end::Col-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="row mb-7">
-                                    <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">Penilaian Resiko Malnutrisi</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
-
                                         <div class="col-lg-8 d-flex align-items-center">
-                                            {{-- <span class="fw-bolder fs-6 text-gray-800 me-2">{{ $data->p3g->last() != null ? $data->p3g->last()->p_resiko_malnutrisi : '-' }}</span> --}}
                                             <span
                                                 class="badge {{ $data->p3g->last()->p_resiko_malnutrisi == 'Malnutrisi' ? 'badge-danger' : 'badge-success ' }}">{{ $data->p3g->last()->p_resiko_malnutrisi != null ? $data->p3g->last()->p_resiko_malnutrisi : '' }}</span>
                                         </div>
                                     </div>
-                                    <!--end::Col-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="row mb-7">
-                                    <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">Penilaian Kognitiv</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
                                         <span
                                             class="fw-bold text-gray-800 fs-6">{{ $data->p3g->last() != null ? $data->p3g->last()->g_kognitiv : '-' }}</span>
                                     </div>
-                                    <!--end::Col-->
                                 </div>
                                 <div class="row mb-7">
-                                    <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">Resiko Jatuh</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
                                         <span
                                             class="fw-bold text-gray-800 fs-6">{{ $data->p3g->last() != null ? $data->p3g->last()->p_resiko_jatuh : '-' }}</span>
                                     </div>
-                                    <!--end::Col-->
                                 </div>
                                 <div class="row mb-7">
-                                    <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
                                         <span
                                             class="fw-bold text-gray-800 fs-6">{{ $data->p3g->last() != null ? $data->p3g->last()->tanggal_p_p3g->translatedFormat('d M Y, h:i A') : '-' }}</span>
                                     </div>
-                                    <!--end::Col-->
+                                   
                                 </div>
                                 <div class="row mb-7">
                                     <label class="col-lg-4 fw-bold text-muted">Diperiksa Oleh</label>
@@ -576,7 +536,7 @@
                             </div> 
                             <div class="row"><p class="text-center col-12">Belum pernah melakukan pemeriksaan</p></div>
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -696,8 +656,6 @@
         channel.bind('new-request', function(data) {
             console.log(data.tinggi);
             $('#tinggi_badan').val(data.tinggi).toString();
-
-
         });
     </script>
 @endsection

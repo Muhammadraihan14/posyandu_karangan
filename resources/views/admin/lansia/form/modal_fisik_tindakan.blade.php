@@ -29,11 +29,11 @@
                           method="POST">
                           @csrf
                           <div class="mb-13 text-center">
-                              <h1 class="mb-3">Pemeriksaan SSFisik dan Tindakan</h1>
+                              <h1 class="mb-3">Pemeriksaan Fisik dan Tindakan</h1>
                           </div>
                           
                           <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" id="user_id">
-                           <p>sss</p>
+                           {{-- <p>sss</p> --}}
                           <input type="hidden" value="{{ $data->id }}" name="lansia_id" id="lansia_id">
                           <input type="hidden" value="{{ $data->desa_id }}" name="desa_id" id="desa_id">
                           <div class="d-flex flex-column mb-8 fv-row">
@@ -68,7 +68,7 @@
                               <!--begin::Col-->
                               <div class="col-md-6 fv-row">
                                   <label class="required fs-6 fw-bold mb-2">Berat Badan</label>
-                                  <input type="number" name="berat_badan" id="berat_badan" @error('berat_badan') is-invalid @enderror
+                                  <input type="text" name="berat_badan" id="berat_badan" @error('berat_badan') is-invalid @enderror
                                       class="form-control form-control-solid" required />
                                   @error('berat_badan')
                                       <div class="invalid-feddback " role="alert">
@@ -275,7 +275,7 @@
                               <!--begin::Col-->
                               <div class="col-md-6 fv-row">
                                   <label class="required fs-6 fw-bold mb-2">Berat Badan</label>
-                                  <input type="number" name="berat_badan" @error('berat_badan') is-invalid @enderror value="{{ $val->berat_badan }}"
+                                  <input type="text" name="berat_badan" @error('berat_badan') is-invalid @enderror value="{{ $val->berat_badan }}"
                                       class="form-control form-control-solid" required />
                                   @error('berat_badan')
                                       <div class="invalid-feddback " role="alert">
@@ -287,8 +287,7 @@
                           </div>
                           <!--end::Input group-->
                           <!--end::Input group-->
-                          <div class="row g-9 mb-8">
-                              <!--begin::Col-->
+                          {{-- <div class="row g-9 mb-8">
                               <div class="col-md-6 fv-row">
                                   <label class="required fs-6 fw-bold mb-2">Sistole</label>
                                   <input type="number" name="sistole" @error('sistole') is-invalid @enderror value="{{ $val->sistole }}"
@@ -299,8 +298,6 @@
                                       </div>
                                   @enderror
                               </div>
-                              <!--end::Col-->
-                              <!--begin::Col-->
                               <div class="col-md-6 fv-row">
                                   <label class="required fs-6 fw-bold mb-2">Diastole</label>
                                   <input type="number" name="diastole" @error('diastole') is-invalid @enderror value="{{ $val->diastole }}"
@@ -311,16 +308,11 @@
                                       </div>
                                   @enderror
                               </div>
-                              <!--end::Col-->
-                          </div>
-                          <!--end::Input group-->
-                          <div class="d-flex flex-column mb-8 fv-row">
-                              <!--begin::Label-->
+                          </div> --}}
+                          {{-- <div class="d-flex flex-column mb-8 fv-row">
                               <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                   <span class="required">Tata Laksana</span>
-                                  {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i> --}}
                               </label>
-                              <!--end::Label-->
                               <input type="text" name="tata_laksana" @error('tata_laksana') is-invalid @enderror value="{{ $val->tata_laksana }}"
                                   class="form-control form-control-solid" required />
                               @error('tata_laksana')
@@ -328,10 +320,8 @@
                                       {{ $message }}
                                   </div>
                               @enderror
-                          </div>
-                          <!--end::Input group-->
+                          </div> --}}
                           <div class="d-flex flex-column mb-8 fv-row">
-                              <!--begin::Label-->
                               <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                   <span class="required">Konseling</span>
                               </label>
@@ -344,7 +334,6 @@
                               </select>
                           </div>
                           <div class="d-flex flex-column mb-8 fv-row">
-                              <!--begin::Label-->
                               <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                   <span class="required">Rujuk</span>
                               </label>
@@ -446,7 +435,7 @@
 											<div class="col-lg-8 fv-row">
 													<span
 															class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tinggi_badan : '-' }}
-															m </span>
+															cm </span>
 													{{-- <span class="badge {{ $statusGula == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusGula != null ? $statusGula : '' }}</span> --}}
 											</div>
 											<!--end::Col-->
@@ -461,7 +450,7 @@
 													<div class="col-lg-8 d-flex align-items-center">
 															<span
 																	class="fw-bolder fs-6 text-gray-800 me-2">{{ $val != null ? $val->imt : '-' }}
-																	Kg/m^2 </span>
+																	Kg/m<sup>2</sup> </span>
 															<span
 																	class="badge {{ $val->status_gizi == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $val->status_gizi != null ? $val->status_gizi : '' }}</span>
 
@@ -469,7 +458,7 @@
 											</div>
 											<!--end::Col-->
 									</div>
-									<div class="row mb-7">
+									{{-- <div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Tekanan Darah </label>
 											<div class="col-lg-8 fv-row">
 													<span
@@ -480,7 +469,7 @@
 													<span
 															class="badge {{ $val->tekanan_darah == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $val->tekanan_darah != null ? $val->tekanan_darah : '' }}</span>
 											</div>
-									</div>
+									</div> --}}
 									<div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Konseling </label>
 											<div class="col-lg-8 fv-row">
@@ -493,12 +482,12 @@
 												<span class="fw-bold text-gray-800 fs-6">{{ $val->rujuk != null ? $val->rujuk : '-' }}</span>
 										</div>
 									</div>
-									<div class="row mb-7">
+									{{-- <div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Tata Laksana </label>
 											<div class="col-lg-8 fv-row">
 												<span class="fw-bold text-gray-800 fs-6">{{ $val->tata_laksana != null ? $val->tata_laksana : '-' }}</span>
 										</div>
-									</div>
+									</div> --}}
 									<div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Lain-lain </label>
 											<div class="col-lg-8 fv-row">
@@ -508,7 +497,7 @@
 									<div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
 											<div class="col-lg-8 fv-row">
-													<span class="fw-bold text-gray-800 fs-6">{{ $val->tanggal_p != null ? $val->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
+													<span class="fw-bold text-gray-800 fs-6">{{ $val->tanggal_p != null ? $val->tanggal_p->translatedFormat('d M Y') : '-' }}</span>
 											</div>
 									</div>
 									<div class="row mb-7">

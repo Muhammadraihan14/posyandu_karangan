@@ -78,7 +78,7 @@
                         <th class="min-w-125px text-center">Tinggi Badan</th>
                         <th class="min-w-125px text-center">IMT</th>
                         <th class="min-w-125px text-center">Status Gizi</th>
-                        <th class="min-w-125px text-center">Tekanan Darah</th>
+                        {{-- <th class="min-w-125px text-center">Tekanan Darah</th> --}}
                         <th class="min-w-125px text-center">Tanggal Pemeriksaan</th>
                         <th class="text-end min-w-70px">Actions</th>
                     </tr>
@@ -105,16 +105,16 @@
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
-                                    class="menu-link px-3">{{ $val->imt }} Kg/m^2</a>
+                                    class="menu-link px-3">{{ $val->imt }} Kg/m <sup>2</sup></a>
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
                                     class="menu-link px-3">{{ $val->status_gizi }}</a>
                             </td>
-                            <td class="text-center">
+                            {{-- <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
                                     class="menu-link px-3">{{ $val->tekanan_darah }}</a>
-                            </td>
+                            </td> --}}
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#" data-bs-target="#detailFisik{{ $val->id }}"
                                     class="menu-link px-3">{{ $val->tanggal_p->translatedFormat('d M Y') }}</a>
@@ -290,7 +290,7 @@
                         </div>
                         <!--end::Input group-->
                         <!--end::Input group-->
-                        <div class="row g-9 mb-8">
+                        {{-- <div class="row g-9 mb-8">
                             <!--begin::Col-->
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-bold mb-2">Sistole</label>
@@ -315,15 +315,12 @@
                                 @enderror
                             </div>
                             <!--end::Col-->
-                        </div>
+                        </div> --}}
                         <!--end::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row">
-                            <!--begin::Label-->
+                        {{-- <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Tata Laksana</span>
-                                {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i> --}}
                             </label>
-                            <!--end::Label-->
                             <input type="text" name="tata_laksana" @error('tata_laksana') is-invalid @enderror
                                 class="form-control form-control-solid" required />
                             @error('tata_laksana')
@@ -331,7 +328,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <!--end::Input group-->
                         <div class="d-flex flex-column mb-8 fv-row">
                             <!--begin::Label-->

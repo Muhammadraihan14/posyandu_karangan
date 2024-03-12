@@ -276,7 +276,7 @@
                               <!--begin::Col-->
                               <div class="col-md-6 fv-row">
                                   <label class="required fs-6 fw-bold mb-2">Berat Badan</label>
-                                  <input type="number" name="berat_badan" @error('berat_badan') is-invalid @enderror value="{{ $val->berat_badan }}"
+                                  <input type="text" name="berat_badan" @error('berat_badan') is-invalid @enderror value="{{ $val->berat_badan }}"
                                       class="form-control form-control-solid" required />
                                   @error('berat_badan')
                                       <div class="invalid-feddback " role="alert">
@@ -447,7 +447,7 @@
 											<div class="col-lg-8 fv-row">
 													<span
 															class="fw-bold text-gray-800 fs-6">{{ $data->pemerisaan_fisik_tindakan->last() != null ? $data->pemerisaan_fisik_tindakan->last()->tinggi_badan : '-' }}
-															m </span>
+															cm </span>
 													{{-- <span class="badge {{ $statusGula == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $statusGula != null ? $statusGula : '' }}</span> --}}
 											</div>
 											<!--end::Col-->
@@ -462,15 +462,15 @@
 													<div class="col-lg-8 d-flex align-items-center">
 															<span
 																	class="fw-bolder fs-6 text-gray-800 me-2">{{ $val != null ? $val->imt : '-' }}
-																	Kg/m^2 </span>
+																	Kg/m<sup>2</sup> </span>
 															<span
-																	class="badge {{ $val->status_gizi == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $val->status_gizi != null ? $val->status_gizi : '' }}</span>
+																	class="badge {{ $val->status_gizi == 'Lebih' ? 'badge-danger' : 'badge-success ' }}">{{ $val->status_gizi != null ? $val->status_gizi : '' }}</span>
 
 													</div>
 											</div>
 											<!--end::Col-->
 									</div>
-									<div class="row mb-7">
+									{{-- <div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Tekanan Darah </label>
 											<div class="col-lg-8 fv-row">
 													<span
@@ -481,7 +481,7 @@
 													<span
 															class="badge {{ $val->tekanan_darah == 'Tinggi' ? 'badge-danger' : 'badge-success ' }}">{{ $val->tekanan_darah != null ? $val->tekanan_darah : '' }}</span>
 											</div>
-									</div>
+									</div> --}}
 									<div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Konseling </label>
 											<div class="col-lg-8 fv-row">
@@ -494,12 +494,12 @@
 												<span class="fw-bold text-gray-800 fs-6">{{ $val->rujuk != null ? $val->rujuk : '-' }}</span>
 										</div>
 									</div>
-									<div class="row mb-7">
+									{{-- <div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Tata Laksana </label>
 											<div class="col-lg-8 fv-row">
 												<span class="fw-bold text-gray-800 fs-6">{{ $val->tata_laksana != null ? $val->tata_laksana : '-' }}</span>
 										</div>
-									</div>
+									</div> --}}
 									<div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Lain-lain </label>
 											<div class="col-lg-8 fv-row">
@@ -509,7 +509,7 @@
 									<div class="row mb-7">
 											<label class="col-lg-4 fw-bold text-muted">Terakhir Pemeriksaaan</label>
 											<div class="col-lg-8 fv-row">
-													<span class="fw-bold text-gray-800 fs-6">{{ $val->tanggal_p != null ? $val->tanggal_p->translatedFormat('d M Y, h:i A') : '-' }}</span>
+													<span class="fw-bold text-gray-800 fs-6">{{ $val->tanggal_p != null ? $val->tanggal_p->translatedFormat('d M Y') : '-' }}</span>
 											</div>
 									</div>
 									<div class="row mb-7">

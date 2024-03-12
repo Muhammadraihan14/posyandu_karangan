@@ -234,7 +234,7 @@ class LansiaService
     public static function IMT($bb,$tb)
     {
         $toMeter = $tb/100;
-        $imt = round($bb / ($toMeter * $toMeter), 2);
+        $imt = number_format($bb / ($toMeter * $toMeter), 1);
         return $imt;
     }
     public static function statusGizi($nilai)
@@ -278,31 +278,63 @@ class LansiaService
     {
         // dd($params);
         $nilai_imt =  LansiaService::IMT($params['berat_badan'], $params['tinggi_badan']);
-        $nilai_tk =  LansiaService::tekananDarah($params['sistole'], $params['diastole']);
-        $statusGizi =  LansiaService::statusGizi($nilai_imt);
+        // $nilai_tk =  LansiaService::tekananDarah($params['sistole'], $params['diastole']);
+        
+        if(isset($params['imt'])){
+            // dd('masuk');
+            $statusGizi =  LansiaService::statusGizi($params['imt']);
+
+        }else{
+            $statusGizi =  LansiaService::statusGizi($nilai_imt);
+            // dd('masuk2');
+        }
+
+
         DB::beginTransaction();
         try {
+
+            // wajib
             $inputFisik['user_id'] = $params['user_id'];
             $inputFisik['desa_id'] = $params['desa_id'];
             $inputFisik['lansia_id'] = $params['lansia_id'];
             $inputFisik['tanggal_p'] = $params['tanggal_p'];
             $inputFisik['berat_badan'] = $params['berat_badan'];
             $inputFisik['tinggi_badan'] = $params['tinggi_badan'];
-            $inputFisik['imt'] = $nilai_imt;
-            $inputFisik['sistole'] = $params['sistole'];
-            $inputFisik['diastole'] = $params['diastole'];
-            $inputFisik['tekanan_darah'] = $nilai_tk;
+           
+            if(isset($params['imt'])){
+                $inputFisik['imt'] = $params['imt'];
+            }else{
+                 $inputFisik['imt'] = $nilai_imt;
+            }
             $inputFisik['status_gizi'] = $statusGizi;
+
+            // tidak wajib
+            // $inputFisik['sistole'] = $params['sistole'];
+            // $inputFisik['diastole'] = $params['diastole'];
+            // $inputFisik['tekanan_darah'] = $nilai_tk;
+            // $inputFisik['tata_laksana'] = $params['tata_laksana'];
+            // if(isset($params['tata_laksana'])){
+            //     $inputFisik['tata_laksana'] = $params['tata_laksana'];
+            // }       
+            // if(isset($params['sistole'])){
+            //     $inputFisik['sistole'] = $params['sistole'];
+            // }       
+            // if(isset($params['diastole'])){
+            //     $inputFisik['diastole'] = $params['diastole'];
+            // }      
+            // if(isset($params['tekanan_darah'])){
+            //     $inputFisik['tekanan_darah'] = $params['tekanan_darah'];
+            // } 
             if(isset($params['lain'])){
                 $inputFisik['lain'] = $params['lain'];
             } 
-            $inputFisik['tata_laksana'] = $params['tata_laksana'];
             if(isset($params['konseling'])){
                 $inputFisik['konseling'] = $params['konseling'];
             } 
             if(isset($params['rujuk'])){
                 $inputFisik['rujuk'] = $params['rujuk'];
             } 
+
             if (isset($params['id'])) {
                 $data =  P_Fisik_Tindakan::find($params['id']);
                 $data->update($inputFisik);

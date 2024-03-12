@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('umur');
             // $table->dateTime('pemeriksaan1')->nullable();
             // $table->dateTime('pemeriksaan2')->nullable();
-            $table->string('nik')->unique();
+            $table->string('nik')->nullable();
             $table->string('alamat');
             // $table->integer('gender');
             $table->enum('gender',['pria','wanita']);
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->enum('g_ginjal',['Ya','Tidak'])->nullable();
             $table->enum('g_pengelihatan',['Ya','Tidak'])->nullable();
             $table->enum('g_pendengaran',['Ya','Tidak'])->nullable();
+            
 
             // $table->integer('g_pengelihatan')->nullable();
             // $table->integer('g_pendengaran')->nullable();

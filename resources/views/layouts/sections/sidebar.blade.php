@@ -94,7 +94,7 @@
                             <span class="menu-title">Petugas</span>
                         </a>
                     </div>
-                    <div class="menu-item">
+                    {{-- <div class="menu-item">
                         <a class="menu-link {{ checkRouteActive('admin') }}" href="{{ url('admin') }}">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -113,13 +113,13 @@
                             </span>
                             <span class="menu-title">Admin</span>
                         </a>
-                    </div>
+                    </div> --}}
                     <div class="menu-item">
                         <div class="menu-content pb-2">
                             <span class="menu-section text-muted text-uppercase fs-8 ls-1">Manajemen Data</span>
                         </div>
                     </div>
-                    <div class="menu-item">
+                    {{-- <div class="menu-item">
                         <a class="menu-link {{ checkRouteActive('blog') }}" href="{{ url('blog') }}">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -143,7 +143,7 @@
                             </span>
                             <span class="menu-title">Blog</span>
                         </a>
-                    </div>
+                    </div> --}}
                     <div class="menu-item">
                         <a class="menu-link {{ checkRouteActive('lansia') }}" href="{{ url('lansia') }}">
                             <span class="menu-icon">
@@ -162,7 +162,7 @@
                             <span class="menu-title">Lansia</span>
                         </a>
                     </div>
-                    <div class="menu-item">
+                    {{-- <div class="menu-item">
                         <a class="menu-link {{ checkRouteActive('desa') }}" href="{{ url('desa') }}">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -179,7 +179,7 @@
                             </span>
                             <span class="menu-title">Desa</span>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             @elseif (Auth::user()->user_type == 'petugas')
                 <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"

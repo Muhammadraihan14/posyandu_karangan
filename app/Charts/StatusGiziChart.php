@@ -36,8 +36,12 @@ class StatusGiziChart
              {
                 $join->on('pemeriksaan_fisikdantindakans.lansia_id', '=', DB::raw('latest.lansia_id'))->on('pemeriksaan_fisikdantindakans.created_at', '=', DB::raw('latest.max_timestamp'));
              })
-        ->where('pemeriksaan_fisikdantindakans.status_gizi', '=', 'Tinggi')->pluck('jumlah_tinggi');
+        ->where('pemeriksaan_fisikdantindakans.status_gizi', '=', 'Lebih')->pluck('jumlah_tinggi');
+        // dd($statusTinggi);
 
+
+
+        
         $statusNormal = DB::table('pemeriksaan_fisikdantindakans')
         ->select(DB::raw('COUNT(DISTINCT pemeriksaan_fisikdantindakans.lansia_id) AS jumlah_normal'))
         ->join(DB::raw('(SELECT lansia_id, MAX(created_at) AS max_timestamp
@@ -56,7 +60,7 @@ class StatusGiziChart
              {
                 $join->on('pemeriksaan_fisikdantindakans.lansia_id', '=', DB::raw('latest.lansia_id'))->on('pemeriksaan_fisikdantindakans.created_at', '=', DB::raw('latest.max_timestamp'));
              })
-        ->where('pemeriksaan_fisikdantindakans.status_gizi', '=', 'Rendah')->pluck('jumlah_rendah');
+        ->where('pemeriksaan_fisikdantindakans.status_gizi', '=', 'Kurang')->pluck('jumlah_rendah');
 
         $data = [
             $statusTinggi[0],

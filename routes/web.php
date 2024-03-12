@@ -45,7 +45,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 
 //Route di node MCU
-Route::get('/simpan/{nilaiTinggi}/{nilaiBerat}', [SensorController::class, 'simpan']);
+Route::get('/simpan/{nilaiTinggi}/{nilaiBerat}/{imt}', [SensorController::class, 'simpan']);
 
 
 

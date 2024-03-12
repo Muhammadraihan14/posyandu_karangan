@@ -15,16 +15,18 @@ class SensorEvent implements shouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $tinggi;
     public $berat;
+    public $imt;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($tinggi,$berat)
+    public function __construct($tinggi,$berat,$imt)
     {
         $this->tinggi = $tinggi;
         $this->berat = $berat;
+        $this->imt = $imt;
     }
 
     /**

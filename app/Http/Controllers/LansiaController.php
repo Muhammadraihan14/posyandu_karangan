@@ -220,11 +220,12 @@ class LansiaController extends Controller
                 'tanggal_p' => 'required',
                 'tinggi_badan' => 'required',
                 'berat_badan' => 'required',
-                'sistole' => 'required',
-                'diastole' => 'required',
-                'tata_laksana' => 'required',
-                'konseling' => 'required',
-                'rujuk' => 'required',
+                'imt' => '',
+                // 'sistole' => 'required',
+                // 'diastole' => 'required',
+                // 'tata_laksana' => 'required',
+                'konseling' => '',
+                'rujuk' => '',
                 'lain' => 'required',
             ]);
             // dd('created');
@@ -240,12 +241,13 @@ class LansiaController extends Controller
                 'tanggal_p' => 'required',
                 'tinggi_badan' => 'required',
                 'berat_badan' => 'required',
-                'sistole' => 'required',
-                'diastole' => 'required',
-                'lain' => 'required',
-                'tata_laksana' => 'required',
-                'konseling' => 'required',
-                'rujuk' => 'required',
+                'imt' => '',
+                // 'sistole' => 'required',
+                // 'diastole' => 'required',
+                'lain' => '',
+                // 'tata_laksana' => 'required',
+                'konseling' => '',
+                'rujuk' => '',
             ]);
             // dd('edit');
             $params = $validated;

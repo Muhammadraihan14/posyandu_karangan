@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class SensorController extends Controller
 {
-    public function simpan($nilaiTinggi, $nilaiBerat)
+    public function simpan($nilaiTinggi, $nilaiBerat, $imt)
     {
         // $data = DB::table('sensors');
         $tgl = Carbon::now();
@@ -28,7 +28,7 @@ class SensorController extends Controller
         "updated_at" => $tgl,
     ]);
 
-    return event(new SensorEvent($nilaiBerat, $nilaiTinggi));
+    return event(new SensorEvent($nilaiBerat, $nilaiTinggi,$imt));
 
 
     }

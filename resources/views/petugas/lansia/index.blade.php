@@ -235,7 +235,7 @@
                                         </div>
                                     </th>
                                     <th class="min-w-125px ">name</th>
-                                    <th class="min-w-125px ">nik</th>
+                                    {{-- <th class="min-w-125px ">nik</th> --}}
                                     <th class="min-w-125px ">umur</th>
                                     <th class="min-w-125px ">alamat</th>
                                     {{-- <th class="min-w-125px">nip</th> --}}
@@ -264,10 +264,10 @@
                                         </td>
                                         <!--end::Name=-->
                                         <!--begin::Name=-->
-                                        <td class="">
+                                        {{-- <td class="">
                                             <a href="{{ route('lansia.petugas.detail', ['id' => $val->id]) }}"
                                                 class="text-gray-800 text-hover-primary mb-1">{{ $val->nik }}</a>
-                                        </td>
+                                        </td> --}}
                                         <!--end::Name=-->
                                         <!--begin::Name=-->
                                         <td class="">

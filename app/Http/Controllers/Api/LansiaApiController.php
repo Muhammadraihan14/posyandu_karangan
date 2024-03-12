@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+use App\Models\Desa;
 use Illuminate\Http\Request;
 use App\Services\LansiaService;
 use App\Http\Controllers\Controller;
@@ -38,7 +39,15 @@ class LansiaApiController extends Controller
               "data"      => $data,
           ]);
       }
-
+      public function desa()
+      {
+        $result = Desa::pluck('name')->toArray();
+          return response()->json([
+              "status"    => "success",
+              "message" => "Desa list",
+              "data"   => $result,
+          ]);
+      }
       public function save(Request $request)
       {
           if(!isset($request['id'])){
@@ -71,7 +80,7 @@ class LansiaApiController extends Controller
           if(!isset($request['id'])){
             //   return redirect('lansia')->with('success', 'Berhasil menambahkan data');
             return  response()->json([
-                "status" => "success ",
+                "status" => "success",
                 "message" => "Success created lansia",
                 "data"      => $data,
             ]);
